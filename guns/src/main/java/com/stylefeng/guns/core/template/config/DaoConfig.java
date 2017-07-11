@@ -16,8 +16,8 @@ public class DaoConfig {
     private String packageName;
 
     public void init() {
-        this.daoPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\{}Dao.java";
-        this.xmlPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\mapping\\{}Dao.xml";
+        this.daoPathTemplate = "/src/main/java/com/stylefeng/guns/modular/" + contextConfig.getModuleName() + "/dao/{}Dao.java";
+        this.xmlPathTemplate = "/src/main/java/com/stylefeng/guns/modular/" + contextConfig.getModuleName() + "/dao/mapping/{}Dao.xml";
         this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".dao";
     }
 

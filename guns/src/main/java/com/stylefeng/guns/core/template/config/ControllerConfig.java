@@ -27,7 +27,7 @@ public class ControllerConfig {
         imports.add("org.springframework.web.bind.annotation.PathVariable");
         this.imports = imports;
         this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
-        this.controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
+        this.controllerPathTemplate = "/src/main/java/com/stylefeng/guns/modular/" + contextConfig.getModuleName() + "/controller/{}Controller.java";
     }
 
     public String getPackageName() {

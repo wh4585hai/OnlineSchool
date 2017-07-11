@@ -51,6 +51,7 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     }
 
     public void generateFile(String template,String filePath){
+    	System.out.println("filePath="+filePath);
         Template pageTemplate = groupTemplate.getTemplate(template);
         configTemplate(pageTemplate);
         File file = new File(filePath);

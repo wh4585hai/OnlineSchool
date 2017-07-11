@@ -42,5 +42,7 @@ public interface Dict {
      * 通知管理业务的字典
      */
     String NoticeMap = "NoticeMap";
-
+    /**
+     * 通知管理业务的字典
+     */
 }

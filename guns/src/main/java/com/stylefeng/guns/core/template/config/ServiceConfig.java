@@ -25,8 +25,8 @@ public class ServiceConfig {
         imports.add("org.springframework.stereotype.Service");
         imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
-        this.servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
-        this.serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
+        this.servicePathTemplate = "/src/main/java/com/stylefeng/guns/modular/" + contextConfig.getModuleName() + "/service/I{}Service.java";
+        this.serviceImplPathTemplate = "/src/main/java/com/stylefeng/guns/modular/" + contextConfig.getModuleName() + "/service/impl/{}ServiceImpl.java";
         this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
     }
 

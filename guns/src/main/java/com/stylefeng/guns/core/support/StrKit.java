@@ -940,6 +940,7 @@ public class StrKit {
 	 * @return 格式化后的文本
 	 */
 	public static String format(String template, Object... values) {
+		System.out.println("template="+template);
 		if (CollectionKit.isEmpty(values) || isBlank(template)) {
 			return template;
 		}

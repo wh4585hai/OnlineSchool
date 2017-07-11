@@ -35,7 +35,9 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
-
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
@@ -87,7 +89,7 @@ spring:
       username: root
       password: root
       filters: log4j,wall,mergeStat
-
+            
 logging:
   level: warn
   file: logs/guns.log

@@ -17,11 +17,11 @@ public class PageConfig {
     private String pageInfoJsPathTemplate;
 
     public void init() {
-        pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}.html";
-        pageAddPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_add.html";
-        pageEditPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_edit.html";
-        pageJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}.js";
-        pageInfoJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_info.js";
+        pagePathTemplate = "/src/main/webapp/WEB-INF/view/" + contextConfig.getModuleName() + "/{}/{}.html";
+        pageAddPathTemplate = "/src/main/webapp/WEB-INF/view/" + contextConfig.getModuleName() + "/{}/{}_add.html";
+        pageEditPathTemplate = "/src/main/webapp/WEB-INF/view/" + contextConfig.getModuleName() + "/{}/{}_edit.html";
+        pageJsPathTemplate = "/src/main/webapp/static/modular/" + contextConfig.getModuleName() + "/{}/{}.js";
+        pageInfoJsPathTemplate = "/src/main/webapp/static/modular/" + contextConfig.getModuleName() + "/{}/{}_info.js";
     }
 
     public String getPagePathTemplate() {
