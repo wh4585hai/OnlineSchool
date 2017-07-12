@@ -49,7 +49,7 @@ public class MyBatisPlusGenerator {
         });
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("123456");
         dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
