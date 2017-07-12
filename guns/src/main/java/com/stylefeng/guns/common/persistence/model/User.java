@@ -1,19 +1,18 @@
 package com.stylefeng.guns.common.persistence.model;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
-
-import java.io.Serializable;
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.activerecord.Model;
+import java.io.Serializable;
 
 /**
  * <p>
  * 管理员表
  * </p>
  *
- * @author stylefeng
- * @since 2017-06-20
+ * @author wanghai
+ * @since 2017-07-12
  */
 public class User extends Model<User> {
 

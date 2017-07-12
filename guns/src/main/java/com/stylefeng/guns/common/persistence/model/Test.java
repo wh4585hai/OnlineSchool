@@ -8,8 +8,8 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author stylefeng
- * @since 2017-06-23
+ * @author wanghai
+ * @since 2017-07-12
  */
 public class Test extends Model<Test> {
 

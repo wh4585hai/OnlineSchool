@@ -183,6 +183,7 @@ public class ShufflingController extends BaseController {
      * 修改shuffling
      */
     @RequestMapping(value = "/update")
+    @Permission
     @ResponseBody
     public Object update(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
     	String shufflingId=request.getParameter("id");

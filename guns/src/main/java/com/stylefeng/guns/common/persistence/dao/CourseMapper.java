@@ -1,6 +1,6 @@
 package com.stylefeng.guns.common.persistence.dao;
 
-import com.stylefeng.guns.common.persistence.model.Shuffling;
+import com.stylefeng.guns.common.persistence.model.Course;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author wanghai
  * @since 2017-07-12
  */
-public interface ShufflingMapper extends BaseMapper<Shuffling> {
+public interface CourseMapper extends BaseMapper<Course> {
 
 }

@@ -10,8 +10,8 @@ import java.io.Serializable;
  * 部门表
  * </p>
  *
- * @author stylefeng
- * @since 2017-06-20
+ * @author wanghai
+ * @since 2017-07-12
  */
 public class Dept extends Model<Dept> {
 
