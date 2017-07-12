@@ -54,7 +54,6 @@ ShufflingInfoDlg.addSubmit = function() {
 //
 //    this.clearData();
 //    this.collectData();
-	alert(1)
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("添加成功!");
@@ -66,7 +65,6 @@ ShufflingInfoDlg.addSubmit = function() {
 	    		}
 	};
     $('#shufflingAdd').ajaxSubmit(options);  
-    alert(2)
 //    //提交信息
 //    var ajax = new $ax(Feng.ctxPath + "/shuffling/add", function(data){
 //        Feng.success("添加成功!");
@@ -83,21 +81,36 @@ ShufflingInfoDlg.addSubmit = function() {
  * 提交修改
  */
 ShufflingInfoDlg.editSubmit = function() {
+	
+	
+	var options = {
+		    success: function(data) {
+		    	 Feng.success("修改成功!");
+	    	        window.parent.Shuffling.table.refresh();
+	    	        ShufflingInfoDlg.close();    
+		    },
+		    error: function(data){
+	    		 Feng.error("修改失败!" + data.responseJSON.message + "!");
+	    		}
+	};
+    $('#shufflingUpdate').ajaxSubmit(options);  
 
-    this.clearData();
-    this.collectData();
-    //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/shuffling/update", function(data){
-        Feng.success("修改成功!");
-        window.parent.Shuffling.table.refresh();
-        ShufflingInfoDlg.close();
-    },function(data){
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.shufflingInfoData);
-    ajax.start();
+//    this.clearData();
+//    this.collectData();
+//    //提交信息
+//    var ajax = new $ax(Feng.ctxPath + "/shuffling/update", function(data){
+//        Feng.success("修改成功!");
+//        window.parent.Shuffling.table.refresh();
+//        ShufflingInfoDlg.close();
+//    },function(data){
+//        Feng.error("修改失败!" + data.responseJSON.message + "!");
+//    });
+//    ajax.set(this.shufflingInfoData);
+//    ajax.start();
 }
 
 $(function() {
-   
+	 // 初始化头像上传
+    var avatarUp = new $WebUpload("file",false);
+    avatarUp.init();
 });

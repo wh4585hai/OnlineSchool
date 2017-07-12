@@ -2,16 +2,18 @@
 <div class="ibox float-e-margins">
     <div class="ibox-content">
         <div class="form-horizontal">
-
-            <input type="hidden" id="id" value="${shuffling.id}">
+<form action="${ctxPath}/shuffling/update" method="post" id="shufflingUpdate" enctype="multipart/form-data">
+            <input type="hidden" id="id" name="id" value="${shuffling.id}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
+					<#input id="title" name="轮播图标题" underline="true" value="${shuffling.title}"/>
 
+                    <#input id="file" name="文件" type="file" underline="true" />
                 </div>
 
                 <div class="col-sm-6">
-
+				<#input id="num" name="排序" underline="true" value="${shuffling.num}"/>
                 </div>
             </div>
 
@@ -21,6 +23,7 @@
                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ShufflingInfoDlg.close()"/>
                 </div>
             </div>
+            </form>
         </div>
 
     </div>

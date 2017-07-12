@@ -9,7 +9,7 @@
  */
 (function() {
 	
-	var $WebUpload = function(pictureId) {
+	var $WebUpload = function(pictureId,flag) {
 		this.pictureId = pictureId;
 		this.uploadBtnId = pictureId + "BtnId";
 		this.uploadPreId = pictureId + "PreId";
@@ -17,6 +17,7 @@
 		this.fileSizeLimit = 10 * 1024 * 1024;
 		this.picWidth = 800;
 		this.picHeight = 800;
+		this.flag = flag;
 	};
 
 	$WebUpload.prototype = {
@@ -34,7 +35,7 @@
 		 */
 		create : function() {
 			var webUploader = WebUploader.create({
-				auto : true,
+				auto : this.flag==undefined?true:this.flag,
 				pick : {
 					id : '#' + this.uploadBtnId,
 					multiple : false,// 只上传一个

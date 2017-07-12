@@ -45,4 +45,5 @@ public interface Dict {
     /**
      * 通知管理业务的字典
      */
+    String ShufflingDict="ShufflingDict";
 }

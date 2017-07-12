@@ -1,34 +1,46 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.ShufflingMapper;
+import com.stylefeng.guns.common.persistence.model.Dept;
 import com.stylefeng.guns.common.persistence.model.Shuffling;
 import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.util.FileUtil;
+import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.ShufflingDao;
 import com.stylefeng.guns.modular.system.warpper.ShufflingWarpper;
+
 
 /**
  * shuffling控制器
@@ -47,6 +59,8 @@ public class ShufflingController extends BaseController {
     private ShufflingDao shufflingDao;
     @Resource
     ShufflingMapper shufflingMapper;
+    @Resource
+    private ResourceLoader resourceLoader; 
     /**
      * 跳转到shuffling首页
      */
@@ -68,9 +82,11 @@ public class ShufflingController extends BaseController {
      */
     @RequestMapping("/shuffling_update/{shufflingId}")
     public String shufflingUpdate(@PathVariable Integer shufflingId, Model model) {
+    	 Shuffling shuffling = shufflingMapper.selectById(shufflingId);
+         model.addAttribute(shuffling);
+         LogObjectHolder.me().set(shuffling);
         return PREFIX + "shuffling_edit.html";
     }
-
     /**
      * 获取shuffling列表
      */
@@ -80,30 +96,67 @@ public class ShufflingController extends BaseController {
     	 List<Map<String, Object>> list = this.shufflingDao.list(condition);
          return super.warpObject(new ShufflingWarpper(list));
     }
-
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")  
+    @ResponseBody  
+    public String getFile(HttpServletRequest request,  
+            HttpServletResponse response, @PathVariable String filename) {  
+    	String ROOT = gunsProperties.getFileUploadPath()+"shuffling/";
+    	 // response.setContentType("image/*");  
+        FileInputStream fis = null;  
+        OutputStream os = null;  
+        File file = new File(ROOT+filename);
+       if(!file.exists()){
+    	   return "ok";
+       }
+//       byte[] bytes = FileUtil.toByteArray(path);
+//       response.getOutputStream().write(bytes);
+        try {  
+        	if(FileUtil.isImage(file)){
+            fis = new FileInputStream(file);  
+            os = response.getOutputStream();  
+            int count = 0;  
+            byte[] buffer = new byte[1024 * 8];  
+            while ((count = fis.read(buffer)) != -1) {  
+                os.write(buffer, 0, count);  
+                os.flush();  
+            }  
+            }
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        try {  
+            fis.close();  
+            os.close();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+        return "ok";  
+//        try {  
+//            return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(ROOT, filename).toString()));  
+//        } catch (Exception e) {  
+//            return ResponseEntity.notFound().build();  
+//        }  
+    }  
     /**
      * 新增shuffling
      */
-    @BussinessLog(value = "添加轮播图")
+    @BussinessLog(value = "添加轮播图", key = "title", dict = Dict.ShufflingDict)
     @RequestMapping(value = "/add")
     @Permission
     @ResponseBody
     public Object add(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
-//    	MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
- //   	MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
-    	gunsProperties.setFileUploadPath("webapp/static/upload");
     	 String pictureName = UUID.randomUUID().toString() + ".jpg";
     	 String path = "";
          try {
              String fileSavePath = gunsProperties.getFileUploadPath();
-             path= fileSavePath+pictureName;
-             System.out.println("path="+path);
+             path= fileSavePath+"shuffling/"+pictureName;
              file.transferTo(new File(path));
          } catch (Exception e) {
         	 e.printStackTrace();
              throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
          }
-    	
+    	path ="shuffling/"+pictureName;
     	String title =request.getParameter("title");
     	String num =request.getParameter("num");
     	Shuffling sf = new Shuffling();
@@ -116,9 +169,12 @@ public class ShufflingController extends BaseController {
     /**
      * 删除shuffling
      */
+    @BussinessLog(value = "删除轮播图", key = "shufflingId", dict = Dict.ShufflingDict)
     @RequestMapping(value = "/delete")
+    @Permission
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer shufflingId) {
+    	this.shufflingMapper.deleteById(shufflingId);
         return SUCCESS_TIP;
     }
 
@@ -128,16 +184,43 @@ public class ShufflingController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
-        return super.SUCCESS_TIP;
+    public Object update(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
+    	String shufflingId=request.getParameter("id");
+    	String title =request.getParameter("title");
+    	String num =request.getParameter("num");
+    	if(shufflingId==null || shufflingId.equals("")){
+    		 throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+    	}
+    	 Shuffling shuffling = shufflingMapper.selectById(Integer.parseInt(shufflingId));
+    	 shuffling.setTitle(title);
+    	 shuffling.setNum(Integer.parseInt(num));
+    	 if(file!=null){
+    		 String pictureName = UUID.randomUUID().toString() + ".jpg";
+        	 String path = "";
+             try {
+                 String fileSavePath = gunsProperties.getFileUploadPath();
+                 path= fileSavePath+"shuffling/"+pictureName;
+                 file.transferTo(new File(path));
+             } catch (Exception e) {
+            	 e.printStackTrace();
+                 throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+             }
+        	path ="shuffling/"+pictureName;
+        	shuffling.setPath(path);
+        	shufflingMapper.updateById(shuffling);
+    	 }else{
+    		 shufflingMapper.updateById(shuffling);
+    	 }
+    	return super.SUCCESS_TIP;
     }
 
     /**
      * shuffling详情
      */
-    @RequestMapping(value = "/detail")
+    @RequestMapping(value = "/detail/{shufflingId}")
     @ResponseBody
-    public Object detail() {
-        return null;
+    public Object detail(@PathVariable("shufflingId") Integer shufflingId) {
+        return shufflingMapper.selectById(shufflingId);
     }
+    
 }
