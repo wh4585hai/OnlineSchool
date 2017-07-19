@@ -99,7 +99,7 @@ public class KaptchaController {
      */
     @RequestMapping("/{pictureId}")
     public void renderPicture(@PathVariable("pictureId") String pictureId, HttpServletResponse response) {
-        String path = gunsProperties.getFileUploadPath() + pictureId + ".jpg";
+        String path = gunsProperties.getFileUploadPath() +"avatar/"+ pictureId + ".jpg";
         try {
             byte[] bytes = FileUtil.toByteArray(path);
             response.getOutputStream().write(bytes);

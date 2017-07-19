@@ -329,8 +329,11 @@ public class UserMgrController extends BaseController {
         String pictureName = UUID.randomUUID().toString() + ".jpg";
         try {
             String fileSavePath = gunsProperties.getFileUploadPath();
-            picture.transferTo(new File(fileSavePath + pictureName));
+            System.out.println("file="+fileSavePath + pictureName);
+            picture.transferTo(new File(fileSavePath +"avatar/"+
+            		pictureName));
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;

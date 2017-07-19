@@ -88,5 +88,4 @@ CourseInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
 });
