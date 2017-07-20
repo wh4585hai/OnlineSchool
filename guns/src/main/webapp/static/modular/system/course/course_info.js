@@ -2,7 +2,17 @@
  * 初始化course详情对话框
  */
 var CourseInfoDlg = {
-    courseInfoData : {}
+    courseInfoData : {},
+    content: null,
+    validateFields: {
+        title: {
+            validators: {
+                notEmpty: {
+                    message: '标题不能为空'
+                }
+            }
+        }
+    }
 };
 
 /**
@@ -37,14 +47,30 @@ CourseInfoDlg.get = function(key) {
  * 关闭此对话框
  */
 CourseInfoDlg.close = function() {
-    parent.layer.close(window.parent.Course.layerIndex);
+	 window.location=Feng.ctxPath + '/course';
+//    parent.layer.close(window.parent.Course.layerIndex);
 }
-
+/**
+ * 验证数据是否为空
+ */
+CourseInfoDlg.validate = function () {
+    $('#courseInfoForm').data("bootstrapValidator").resetForm();
+    $('#courseInfoForm').bootstrapValidator('validate');
+    return $("#courseInfoForm").data('bootstrapValidator').isValid();
+};
 /**
  * 收集数据
  */
 CourseInfoDlg.collectData = function() {
     this.set('id');
+    this.set('title');
+    this.courseInfoData['content'] =  CKEDITOR.instances.content.getData();
+    if ($("#isHome").is(":checked")) {
+    	  this.courseInfoData['isHome']=1;
+    }else{
+    	  this.courseInfoData['isHome']=0;
+    }
+   // this.set('isHome');
 }
 
 /**
@@ -54,15 +80,19 @@ CourseInfoDlg.addSubmit = function() {
 
     this.clearData();
     this.collectData();
-
+    if (!this.validate()) {
+        return;
+    }
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/course/add", function(data){
         Feng.success("添加成功!");
-        window.parent.Course.table.refresh();
-        CourseInfoDlg.close();
+//        window.parent.Course.table.refresh();
+      //  CourseInfoDlg.close();
+        window.location=Feng.ctxPath + '/course';
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
+    console.log(this.courseInfoData)
     ajax.set(this.courseInfoData);
     ajax.start();
 }
@@ -78,8 +108,9 @@ CourseInfoDlg.editSubmit = function() {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/course/update", function(data){
         Feng.success("修改成功!");
-        window.parent.Course.table.refresh();
-        CourseInfoDlg.close();
+        window.location=Feng.ctxPath + '/course';
+//        window.parent.Course.table.refresh();
+//        CourseInfoDlg.close();
     },function(data){
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
@@ -88,4 +119,6 @@ CourseInfoDlg.editSubmit = function() {
 }
 
 $(function() {
+	 Feng.initValidator("courseInfoForm", CourseInfoDlg.validateFields);
+
 });

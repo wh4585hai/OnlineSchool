@@ -14,7 +14,11 @@ var Course = {
 Course.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'}
+        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: '标题', field: 'title', align: 'center', valign: 'middle', sortable: true},
+        {title: '内容', field: 'content', align: 'center', valign: 'middle', sortable: true},
+        {title: '发布者', field: 'createrName', align: 'center', valign: 'middle', sortable: true},
+        {title: '创建时间', field: 'createTime', align: 'center', valign: 'middle', sortable: true}
     ];
 };
 
@@ -55,17 +59,20 @@ Course.openAddCourse = function () {
  * 打开查看course详情
  */
 Course.openCourseDetail = function () {
-    if (this.check()) {
-        var index = layer.open({
-            type: 2,
-            title: 'course详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/course/course_update/' + Course.seItem.id
-        });
-        this.layerIndex = index;
-    }
+	 if (this.check()) {
+	window.location=Feng.ctxPath + '/course/course_update/'+Course.seItem.id;
+	}
+//    if (this.check()) {
+//        var index = layer.open({
+//            type: 2,
+//            title: 'course详情',
+//            area: ['800px', '420px'], //宽高
+//            fix: false, //不固定
+//            maxmin: true,
+//            content: Feng.ctxPath + '/course/course_update/' + Course.seItem.id
+//        });
+//        this.layerIndex = index;
+//    }
 };
 
 /**

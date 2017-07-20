@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.system.warpper;
 
 import java.util.Map;
 
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 
 public class CourseWarpper extends BaseControllerWarpper{
@@ -11,6 +12,8 @@ public class CourseWarpper extends BaseControllerWarpper{
 	@Override
 	protected void warpTheMap(Map<String, Object> map) {
 		// TODO Auto-generated method stub
+		  Integer creater = (Integer) map.get("userId");
+	        map.put("createrName", ConstantFactory.me().getUserNameById(creater));
 	}
 
 }

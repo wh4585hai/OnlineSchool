@@ -44,7 +44,8 @@ public class Course extends Model<Course> {
 	private Date updateTime;
 	@TableField("category_id")
 	private Integer categoryId;
-
+	@TableField("is_home")
+	private Integer isHome;
 
 	public Integer getId() {
 		return id;
@@ -113,6 +114,14 @@ public class Course extends Model<Course> {
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
+	}
+
+	public Integer getIsHome() {
+		return isHome;
+	}
+
+	public void setIsHome(Integer isHome) {
+		this.isHome = isHome;
 	}
 
 }
