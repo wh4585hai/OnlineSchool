@@ -51,4 +51,5 @@ public interface Dict {
      */
     String ShufflingDict="ShufflingDict";
     String DocumentUploadDict="DocumentUpload";
+    String  MaterialMap="MaterialMap";
 }
