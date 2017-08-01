@@ -49,6 +49,10 @@ public interface Dict {
     /**
      * 通知管理业务的字典
      */
+    String TeacherMap = "TeacherMap";
+    /**
+     * 通知管理业务的字典
+     */
     String ShufflingDict="ShufflingDict";
     String DocumentUploadDict="DocumentUpload";
     String  MaterialMap="MaterialMap";
