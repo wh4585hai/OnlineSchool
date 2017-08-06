@@ -44,7 +44,7 @@ ShufflingInfoDlg.close = function() {
  * 收集数据
  */
 ShufflingInfoDlg.collectData = function() {
-    this.set('id').set('title').set('num').set('path');
+    this.set('id').set('title').set('num').set('path').set('price').set('summary').set('content');
 }
 
 /**
@@ -54,6 +54,7 @@ ShufflingInfoDlg.addSubmit = function() {
 //
 //    this.clearData();
 //    this.collectData();
+	CKupdate();
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("添加成功!");
@@ -81,8 +82,7 @@ ShufflingInfoDlg.addSubmit = function() {
  * 提交修改
  */
 ShufflingInfoDlg.editSubmit = function() {
-	
-	
+	CKupdate();
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("修改成功!");
@@ -108,9 +108,17 @@ ShufflingInfoDlg.editSubmit = function() {
 //    ajax.set(this.shufflingInfoData);
 //    ajax.start();
 }
+function CKupdate() {
+    for (instance in CKEDITOR.instances)
+        CKEDITOR.instances[instance].updateElement();
+}
 
 $(function() {
 	 // 初始化头像上传
     var avatarUp = new $WebUpload("file",false);
     avatarUp.init();
+    CKEDITOR.replace('content');
+  //处理CKEDITOR的值
+   
+    
 });

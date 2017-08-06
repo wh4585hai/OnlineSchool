@@ -27,6 +27,8 @@ public class ShufflingWarpper extends BaseControllerWarpper {
             	String img = "<img style='width:160px;height:160px;' src='"+path+"'/>";
                 map.put("path", img);
             }
+    		String price = String.valueOf(map.get("price"));
+    		map.put("price", price);
     }
 
 }

@@ -159,9 +159,15 @@ public class ShufflingController extends BaseController {
     	path ="shuffling/"+pictureName;
     	String title =request.getParameter("title");
     	String num =request.getParameter("num");
+    	String price =request.getParameter("price");
+    	String summary=request.getParameter("summary");
+    	String content =request.getParameter("content");
     	Shuffling sf = new Shuffling();
     	sf.setNum(Integer.parseInt(num));
     	sf.setTitle(title);
+    	sf.setPrice(Double.parseDouble(price));
+    	sf.setSummary(summary);
+    	sf.setContent(content);
     	sf.setPath(path);
     	 return this.shufflingMapper.insert(sf);
     }
@@ -189,11 +195,17 @@ public class ShufflingController extends BaseController {
     	String shufflingId=request.getParameter("id");
     	String title =request.getParameter("title");
     	String num =request.getParameter("num");
+    	String price =request.getParameter("price");
+    	String summary=request.getParameter("summary");
+    	String content =request.getParameter("content");
     	if(shufflingId==null || shufflingId.equals("")){
     		 throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
     	}
     	 Shuffling shuffling = shufflingMapper.selectById(Integer.parseInt(shufflingId));
     	 shuffling.setTitle(title);
+    	 shuffling.setPrice(Double.parseDouble(price));
+    	 shuffling.setSummary(summary);
+    	 shuffling.setContent(content);
     	 shuffling.setNum(Integer.parseInt(num));
     	 if(file!=null){
     		 String pictureName = UUID.randomUUID().toString() + ".jpg";

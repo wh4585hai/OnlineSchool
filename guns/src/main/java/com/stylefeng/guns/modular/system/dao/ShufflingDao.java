@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.stylefeng.guns.common.persistence.model.Shuffling;
+
 /**
  * shufflingDao
  *
@@ -14,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 public interface ShufflingDao {
 
 	List<Map<String, Object>> list(@Param("condition") String condition);
+	
+	List<Shuffling> listforFront();
 }

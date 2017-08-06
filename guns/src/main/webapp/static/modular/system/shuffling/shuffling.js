@@ -16,8 +16,10 @@ Shuffling.initColumn = function () {
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '标题', field: 'title', align: 'center', valign: 'middle', sortable: true},
-        {title: '图片', field: 'path', align: 'center', valign: 'middle', sortable: true},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true}
+        {title: '价钱', field: 'price', align: 'center', valign: 'middle', sortable: true},
+        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: '简介', field: 'summary', align: 'center', valign: 'middle', sortable: true},
+        {title: '图片', field: 'path', align: 'center', valign: 'middle', sortable: true}
     ];
 };
 

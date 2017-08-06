@@ -8,4 +8,9 @@
 		</if>
 		order by num ASC
 	</select>
+	
+	<select id="listforFront" resultType="com.stylefeng.guns.common.persistence.model.Shuffling">
+		select * from shuffling
+		order by num ASC
+	</select>
 </mapper>

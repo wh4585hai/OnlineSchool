@@ -8,6 +8,9 @@
 		<result column="num" property="num" />
 		<result column="title" property="title" />
 		<result column="path" property="path" />
+		<result column="price" property="price" />
+		<result column="summary" property="summary" />
+		<result column="content" property="content" />
 		<result column="version" property="version" />
 	</resultMap>
 

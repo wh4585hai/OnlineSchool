@@ -34,6 +34,10 @@ public class Shuffling extends Model<Shuffling> {
      * 全称
      */
 	private String path;
+	
+	private Double price;
+	private String summary;
+	private String content;
     /**
      * 版本（乐观锁保留字段）
      */
@@ -83,6 +87,30 @@ public class Shuffling extends Model<Shuffling> {
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }
