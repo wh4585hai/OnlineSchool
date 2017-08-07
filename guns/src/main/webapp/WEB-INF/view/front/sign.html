@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			i{
+				position:absolute!important;right: 20px!important;top: 12.5px!important;
+			}
+		</style>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="page-wrapper">
+
+		<!-- main-container start -->
+		<!-- ================ -->
+		<section class="main-container light-translucent-bg" style="padding-top: 20px;">
+
+			<div class="container">
+				<div class="row">
+
+					<!-- main start -->
+					<!-- ================ -->
+					<div class="main col-md-8 col-md-offset-2">
+
+						<!-- logo -->
+						<div class="logo">
+							<a href="index.html"><img id="logo" style="width: 20%;margin: 0 auto;display: block;" src="images/slide1.png" alt="iDea"></a>
+						</div>
+
+						<!-- name-and-slogan -->
+						<div class="site-slogan">欢迎注册</div>
+
+						<div class="object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+							<div class="form-block center-block">
+								<h2 class="title">新用户注册</h2>
+								<hr>
+								<div class="form-horizontal">
+									<div class="form-group has-feedback">
+										<label for="inputName" class="col-sm-3 control-label">账户名
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" name="userId" id="userId" placeholder="手机号" required=""> <i class="glyphicon glyphicon-user"></i>
+												
+										</div>
+								
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputPassword" class="col-sm-3 control-label">密码
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="password" class="form-control" id="passwd" name="passwd" placeholder="密码" required=""> <i class="glyphicon glyphicon-lock"></i>
+										</div>
+									</div>
+								<div class="form-group has-feedback"> 
+                            	<label for="inputPassword" class="col-sm-3 control-label">图片验证码
+                            	<span class="text-danger small">*</span>
+                            	</label>
+                                <div class="col-sm-4  form-inline">
+                                	<input type="text" name="codeRand" style="width:210px;" id="veryCode" placeholder="验证码" class="form-control">
+                                	
+                             	<div style="column-rule-width: 80px;position:relative;top:-21px;margin-left:220px;width:190px;">
+								<img alt="code..." name="randImage" id="randImage" src="images/slide1.png" border="1" align="absmiddle" style="width: 60px;height: 20px;">
+								</div> 
+                                </div>
+                            </div>
+									<div class="form-group has-feedback" style="margin-top:-15px;">
+										<label for="inputName" class="col-sm-3 control-label">短信验证码
+											<span class="text-danger small">*</span>
+										</label>
+										
+										<div class="col-sm-8 form-inline">
+											
+												<input type="text" class="form-control" name="userId" id="smsCode" placeholder="您手机收到的验证码"> 
+											<button class="btn-sm btn-default" id="btnCode" onclick="settime(this)">获取验证码</button>	
+										</div>
+									
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputLastName" class="col-sm-3 control-label">昵称
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="nickName" name="nickName" placeholder="昵称（请使用英文，老师均为歪果仁，看不懂中文）" required=""> 
+												<i class="glyphicon glyphicon-pencil"></i>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">姓名
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="realName" name="realName" placeholder="真实姓名" required=""> <i class="glyphicon glyphicon-pencil"></i>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputEmail" class="col-sm-3 control-label">请选择上课工具
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<div class="checkbox">
+												 <label> <input type="radio" name="contact_mode" required="" checked="" onclick="setTools('qq')" maxlength="50">
+													QQ（外教老师连接境内服务器效果不如Skype）
+												</label>
+												<label> <input type="radio" name="contact_mode" maxlength="50" required="" onclick="setTools('skype')">Skype（通话质量最好的工具，点击<a target="_blank" href="http://skype.gmw.cn/down/skype-for-computers.html">此处</a>下载）
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputEmail" class="col-sm-3 control-label">上课工具账号
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+
+											<input type="text" class="form-control" id="contact" name="contact" placeholder="QQ或者Skype账号" required=""> <i class="glyphicon glyphicon-pencil" id="tools"></i>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">推荐人
+											
+										</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="referrer" name="realName" placeholder="推荐人号码" required=""> <i class="glyphicon glyphicon-pencil"></i>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div style="margin-left:90px;color:red;display:none" id="prompt">
+											<label>提示：如收不到短信验证码，请联系客服QQ:2583777937
+												</label>
+										</div>
+										<div class="col-sm-offset-3 col-sm-8">
+											<div class="checkbox">
+												<label> <input type="checkbox" onclick="agreelicense();"> 同意
+													<a target="_blank" href="agree.html">服务协议</a>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-8">
+											<a onclick="Register()" class="btn btn-default">注册</a>
+											<a href="login.html" style="background: #d0c9c9;color: #000000;margin-left: 10px;" class="btn">已有账号，直接登录</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- main end -->
+
+				</div>
+			</div>
+
+		</section>
+		<!-- main-container end -->
+
+	</div>
+	</body>
+</html>

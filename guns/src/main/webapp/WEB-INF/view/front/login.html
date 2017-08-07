@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="page-wrapper">
+			<section class="main-container light-translucent-bg">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2"">
+							，<div class="logo">
+								<a href="index.html">
+									<img src="images/slide1.png" style="width: 20%;margin: 0 auto;display: block;" />
+								</a>
+							</div>
+						<div class="site-slogan">某某某英语，外教天天学</div>
+						<div class="object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+							<div class="form-block center-block">
+								<h2 class="title">登录</h2>
+								<hr>
+								<ul id="myTab" class="nav nav-tabs">
+									<li class="active">
+										<a href="#teacher" data-toggle="tab">
+											 教师登录
+										</a>
+									</li>
+									<li>
+										<a href="#students" data-toggle="tab">学生登录</a>
+									</li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+									<div class="tab-pane fade in active" id="teacher">
+										<form class="form-horizontal">
+											<div class="form-group has-feedback">
+												<label for="inputUserName" class="col-sm-3 control-label">用户名</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="userId" placeholder="请输入用户名" required="">
+													<i style="right: 20px;position: absolute;top: 12.5px;" class="glyphicon glyphicon-user"></i>
+												</div>
+											</div>
+											<div class="form-group has-feedback">
+												<label for="inputPassword" class="col-sm-3 control-label">密码</label>
+												<div class="col-sm-8">
+													<input type="password" class="form-control" id="passwd" placeholder="请输入密码" required=""> 
+														<i style="right: 20px;position: absolute;top: 12.5px;" class="glyphicon glyphicon-lock"></i>
+												</div>
+											</div>
+											<!--<div class="form-group has-feedback"> 
+				                            	<label for="inputPassword" class="col-sm-3 control-label">验证码</label>
+				                                <div class="col-sm-4">
+				                                	<input type="text" name="rand" id="veryCode" placeholder="验证码" class="form-control">
+				                                	
+				                             	<div style="column-rule-width: 80px;position:relative;top:-21px;margin-left:190px;width:190px;">
+												<img alt="code..." name="randImage" id="randImage" src="images/slide1.png" border="1" align="absmiddle" style="width: 60px;height: 20px;">
+												</div> 
+				                                </div>
+				                            </div>-->
+											<div class="form-group">
+												<div class="col-sm-offset-3 col-sm-8">
+													
+													<a class="btn btn-group btn-default btn-sm">登录</a>
+													<!--<a class="btn btn-group  btn-sm">忘记密码</a>-->
+		
+		
+													<div>
+														
+		
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="tab-pane fade" id="students">
+										<form class="form-horizontal">
+											<div class="form-group has-feedback">
+												<label for="inputUserName" class="col-sm-3 control-label">用户名</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" id="userId" placeholder="请输入用户名" required="">
+													<i style="right: 20px;position: absolute;top: 12.5px;" class="glyphicon glyphicon-user"></i>
+												</div>
+											</div>
+											<div class="form-group has-feedback">
+												<label for="inputPassword" class="col-sm-3 control-label">密码</label>
+												<div class="col-sm-8">
+													<input type="password" class="form-control" id="passwd" placeholder="请输入密码" required=""> 
+														<i style="right: 20px;position: absolute;top: 12.5px;" class="glyphicon glyphicon-lock"></i>
+												</div>
+											</div>
+											<div class="form-group has-feedback"> 
+				                            	<label for="inputPassword" class="col-sm-3 control-label">验证码</label>
+				                                <div class="col-sm-4">
+				                                	<input type="text" name="rand" id="veryCode" placeholder="验证码" class="form-control">
+				                                	
+				                             	<div style="column-rule-width: 80px;position:relative;top:-21px;margin-left:190px;width:190px;">
+												<img alt="code..." name="randImage" id="randImage" src="images/slide1.png" border="1" align="absmiddle" style="width: 60px;height: 20px;">
+												</div> 
+				                                </div>
+				                            </div>
+											<div class="form-group">
+												<div class="col-sm-offset-3 col-sm-8">
+													
+													<a class="btn btn-group btn-default btn-sm">登录</a>
+													<!--<a class="btn btn-group  btn-sm">忘记密码</a>-->
+		
+		
+													<div>
+														
+		
+													</div>
+												</div>
+											</div>
+											<p class="text-center" style="margin-bottom: 0px;">
+												还没有账号? 立即<a href="sign.html">注册</a>
+											</p>
+										</form>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<style>
+	#nav-menu{
+	  line-height:40px;
+	  padding:0px 10px 0px 10px;
+	  position:fixed;
+	  top:0px;
+	  left:0px;
+	    z-index: 100;
+	  background:#ffffff;
+	}
+	#nav-menu a{
+	    font-size:14px;
+	    padding:10px 10px;
+            cursor:pointer;
+	    color:#000000;
+	    font-weight:700;
+	    text-decoration:none;
+	}
+	#nav-menu a:hover{
+	      background-color: #e84c3d;
+    		color: white;
+	}
+
+	#down-menu{
+	    position:absolute;
+	    right:140px;
+	    top:42px;
+	    list-style:none;
+	    display:none;
+	}
+	#down-menu li{
+	    line-height:30px;
+	    background:#ffffff;
+	    padding:5px;10px;
+	    
+	}
+	#down-menu li:hover{
+		background-color: #e84c3d;
+    		color: white;
+	}
+    a{
+	 		text-decoration:none;
+	}
+	</style>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<title>我的课程</title>
+	</head>
+	<body>
+		<div class="col-xs-12 text-right" id="nav-menu">
+	<img src="images/slide1.png" style="width:60px;height:40px;margin-top:5px;margin-left: 35px;" class="pull-left" />
+	<a href="index.html">首页</a>
+	<a href="login.html">登录</a>
+	<a href="sign.html">注册</a>
+	<a onmouseover="showMenu()">个人中心<span class="caret"></span></a>
+	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()">
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="passWord.html">修改密码</a>
+		</li>
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="myLesson.html">我的课程</a>
+		</li>
+	</ul>
+	<a href="appoint.html">课程预约</a>
+	<a href="appoint.html">退出</a>
+</div>
+	<div class="col-xs-12" style="margin-top: 60px;">
+		<div class="col-xs-2">
+			
+		</div>
+		<div class="col-xs-10">
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>Teacher Telly</h4>
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+			<div class="col-xs-12" style="padding: 30px 0px;">
+				<div class="col-xs-3">
+					<img src="images/slider.png" style="width: 100%;height:200px" />
+				</div>
+				<div class="col-xs-9">
+					<h4>Teacher Telly</h4>
+					<h4>朗文国际英语教程</h4>
+					<p>English is fun and so learning it is more fun! There are several ways to have fun in learning English. We can learn through playing games, singing and simple conversation. It's not an overnight process. It takes a lot of patience to acquire the things we need to learn.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="col-xs-12" style="margin-bottom:15px;margin-top:50px">
+		<div class="col-xs-12 text-center">
+			<a>关于我们</a>
+			<a style="margin-left:10px">联系客服</a>
+		</div>
+		<div class="col-xs-12 text-center" style="font-size:12px;margin-top:10px">
+			<span>天创造的工作，前六天创造了组成万物的各种要素</span>
+			<span>@2003-2017 Taobao.com</span>
+		</div>
+		</footer>
+		<script>
+			function showMenu(){
+			   $("#down-menu").show();
+			}
+			function hideMenu(){
+			   $("#down-menu").hide();
+			}
+		</script>
+	</body>
+</html>
