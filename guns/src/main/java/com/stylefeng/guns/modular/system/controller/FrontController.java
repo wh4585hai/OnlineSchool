@@ -40,6 +40,7 @@ import com.stylefeng.guns.core.shiro.factory.ShiroFactroy;
 import com.stylefeng.guns.modular.system.dao.MaterialDao;
 import com.stylefeng.guns.modular.system.dao.ShufflingDao;
 import com.stylefeng.guns.modular.system.dao.StudentDao;
+import com.stylefeng.guns.modular.system.dao.UserMgrDao;
 
 @Controller
 @RequestMapping("/front")
@@ -57,6 +58,9 @@ public class FrontController extends BaseController {
 	private StudentMapper studentMapper;
 	@Resource
 	private StudentDao studentDao;
+	@Resource
+	private UserMgrDao userDao;
+	
 
 	private String PREFIX = "/front/";
 	private void setStudentForRequest(Model model){
@@ -66,7 +70,8 @@ public class FrontController extends BaseController {
 			System.out.println("account="+account);
 			if(account!=null&&!account.equals("")){
 				Student student = studentDao.getByAccount(account);
-				User user =ShiroFactroy.me().user(account);
+				System.out.println("student="+student);
+				User user =userDao.getByAccount(account);
 				if(user!=null){
 					model.addAttribute("user", user);
 				}
@@ -134,6 +139,7 @@ public class FrontController extends BaseController {
     	System.out.println(ShiroKit.isAuthenticated());
     	System.out.println(ShiroKit.getUser());
         if (ShiroKit.isAuthenticated() || ShiroKit.getUser() != null) {
+        	System.out.println("not user");
             return REDIRECT +"/front";
         } else {
         	super.setAttr("tips", str);

@@ -154,6 +154,7 @@ public class ShiroConfig {
          *
          */
         Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("/front", "anon");
         hashMap.put("/front/**", "anon");
         hashMap.put("/*/**.jpg", "anon");
         hashMap.put("/static/**", "anon");
