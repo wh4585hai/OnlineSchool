@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.StudentDao">
+
+	<sql id="Base_Column_List">
+		id, account, nickname, realname,birthday, sex, email,
+		avatar,qq,skype,
+		phone,status,
+		createtime, version
+	</sql>
+
+	<sql id="Base_Column_List_With_Pwd">
+		id, account, nickname, realname, birthday,password, sex, email, avatar,
+		phone,salt,qq,skype,
+		status,
+		createtime, version
+	</sql>
+
+	<select id="getByAccount" resultType="student">
+		select
+		<include refid="Base_Column_List_With_Pwd" />
+		from student where account = #{account}
+	</select>
+	<select id="list" resultType="map">
+		select * from student
+		<if test="condition != null and condition != ''">
+			where nickname like CONCAT('%',#{condition},'%')
+		</if>
+		order by id DESC
+	</select>
+</mapper>

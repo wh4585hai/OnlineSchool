@@ -6,7 +6,9 @@ import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
+import com.stylefeng.guns.modular.system.dao.StudentDao;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.common.persistence.model.Student;
 import com.stylefeng.guns.common.persistence.model.User;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -21,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 @Service
 @DependsOn("springContextHolder")
 @Transactional(readOnly = true)
@@ -28,7 +32,8 @@ public class ShiroFactroy implements IShiro {
 
     @Autowired
     private UserMgrDao userMgrDao;
-
+	@Resource
+	private StudentDao studentDao;
     @Autowired
     private MenuDao menuDao;
 
@@ -50,6 +55,22 @@ public class ShiroFactroy implements IShiro {
             throw new LockedAccountException();
         }
         return user;
+    }
+    
+    @Override
+    public Student student(String account) {
+
+    	Student student = studentDao.getByAccount(account);
+
+        // 账号不存在
+        if (null == student) {
+            throw new CredentialsException();
+        }
+//        // 账号被冻结
+//        if (user.getStatus() != ManagerStatus.OK.getCode()) {
+//            throw new LockedAccountException();
+//        }
+        return student;
     }
 
     @Override
@@ -74,7 +95,17 @@ public class ShiroFactroy implements IShiro {
 
         return shiroUser;
     }
+    @Override
+    public ShiroUser shiroStudent(Student student) {
+        ShiroUser shiroUser = new ShiroUser();
 
+        shiroUser.setId(student.getId());            // 账号id
+        shiroUser.setAccount(student.getAccount());// 账号
+        shiroUser.setDeptId(0);    // 部门id
+        shiroUser.setDeptName("student");// 部门名称
+        shiroUser.setName(student.getNickname());        // 用户名称
+        return shiroUser;
+    }
     @Override
     public List<String> findPermissionsByRoleId(Integer roleId) {
         List<String> resUrls = menuDao.getResUrlsByRoleId(roleId);
@@ -95,4 +126,13 @@ public class ShiroFactroy implements IShiro {
         return new SimpleAuthenticationInfo(shiroUser, credentials, credentialsSalt, realmName);
     }
 
+	@Override
+	public SimpleAuthenticationInfo infoStudent(ShiroUser shiroUser, Student student, String realmName) {
+		// TODO Auto-generated method stub
+		  String credentials = student.getPassword();
+	        // 密码加盐处理
+	        String source = student.getSalt();
+	        ByteSource credentialsSalt = new Md5Hash(source);
+	        return new SimpleAuthenticationInfo(shiroUser,credentials, credentialsSalt,realmName);
+	}
 }

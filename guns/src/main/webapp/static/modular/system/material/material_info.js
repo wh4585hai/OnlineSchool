@@ -65,11 +65,11 @@ MaterialInfoDlg.addSubmit = function() {
 //    });
 //    ajax.set(this.materialInfoData);
 //    ajax.start();
+	CKupdate();
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("添加成功!");
-	    	        window.parent.Material.table.refresh();
-	    	        MaterialInfoDlg.close();    
+		    	 window.location=Feng.ctxPath + '/material';
 		    },
 		    error: function(data){
 	    		 Feng.error("添加失败!" + data.responseJSON.message + "!");
@@ -82,11 +82,11 @@ MaterialInfoDlg.addSubmit = function() {
  * 提交修改
  */
 MaterialInfoDlg.editSubmit = function() {
+	CKupdate();
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("修改成功!");
-	    	        window.parent.Material.table.refresh();
-	    	        MaterialInfoDlg.close();    
+		    	 window.location=Feng.ctxPath + '/material';
 		    },
 		    error: function(data){
 	    		 Feng.error("修改失败!" + data.responseJSON.message + "!");
@@ -108,7 +108,10 @@ MaterialInfoDlg.editSubmit = function() {
 //    ajax.set(this.materialInfoData);
 //    ajax.start();
 }
-
+function CKupdate() {
+    for (instance in CKEDITOR.instances)
+        CKEDITOR.instances[instance].updateElement();
+}
 $(function() {
-
+	 CKEDITOR.replace('content');
 });

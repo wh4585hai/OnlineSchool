@@ -1,6 +1,7 @@
 package com.stylefeng.guns.core.shiro.factory;
 
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.common.persistence.model.Student;
 import com.stylefeng.guns.common.persistence.model.User;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 
@@ -20,14 +21,14 @@ public interface IShiro {
      * @param account 账号
      */
     User user(String account);
-
+   Student student(String account);
     /**
      * 根据系统用户获取Shiro的用户
      *
      * @param user 系统用户
      */
     ShiroUser shiroUser(User user);
-
+    ShiroUser shiroStudent(Student student);
     /**
      * 获取权限列表通过角色id
      *
@@ -46,5 +47,6 @@ public interface IShiro {
      * 获取shiro的认证信息
      */
     SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName);
+    SimpleAuthenticationInfo infoStudent(ShiroUser shiroUser,Student student,String realmName);
 
 }

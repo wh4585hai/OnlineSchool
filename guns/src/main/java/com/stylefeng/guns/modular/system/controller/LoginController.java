@@ -12,6 +12,7 @@ import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.shiro.UsernamePasswordUsertypeToken;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -97,7 +98,8 @@ public class LoginController extends BaseController {
         }
 
         Subject currentUser = ShiroKit.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
+        UsernamePasswordUsertypeToken token = new UsernamePasswordUsertypeToken(username, password,"admin");
+        //UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
         token.setRememberMe(true);
 
         currentUser.login(token);

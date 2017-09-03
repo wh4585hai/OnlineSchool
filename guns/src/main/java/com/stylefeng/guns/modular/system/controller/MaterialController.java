@@ -98,22 +98,46 @@ public class MaterialController extends BaseController {
     @ResponseBody
     @Permission
     @BussinessLog(value = "新增教材",key = "name",dict = Dict.MaterialMap)
-    public Object add(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
-    	 String pdfName = UUID.randomUUID().toString() + ".pdf";
-    	 String path = "";
-         try {
-             String fileSavePath = gunsProperties.getFileUploadPath();
-             path= fileSavePath+"pdf/"+pdfName;
-             file.transferTo(new File(path));
-         } catch (Exception e) {
-        	 e.printStackTrace();
-             throw new BussinessException(BizExceptionEnum.UPLOAD_FILE_ERROR);
-         }
-    	path ="pdf/"+pdfName;
-    	String name =request.getParameter("name");
+    public Object add(@RequestParam(value = "imgFile", required = false) MultipartFile imgFile, @RequestParam(value = "pdfFile", required = false) MultipartFile pdfFile, HttpServletRequest request) {
     	Material material = new Material();
+    	 if(pdfFile!=null){
+    		 String pdfName = UUID.randomUUID().toString() + ".pdf";
+        	 String path = "";
+             try {
+                 String fileSavePath = gunsProperties.getFileUploadPath();
+                 path= fileSavePath+"material/"+pdfName;
+                 pdfFile.transferTo(new File(path));
+             } catch (Exception e) {
+            	 e.printStackTrace();
+                 throw new BussinessException(BizExceptionEnum.UPLOAD_FILE_ERROR);
+             }
+        	path ="material/"+pdfName;
+        	material.setPdfPath(path);
+    	 }
+    	 if(imgFile!=null){
+    		 String imgName = UUID.randomUUID().toString() + ".jpg";
+        	 String path = "";
+             try {
+                 String fileSavePath = gunsProperties.getFileUploadPath();
+                 path= fileSavePath+"material/"+imgName;
+                 imgFile.transferTo(new File(path));
+             } catch (Exception e) {
+            	 e.printStackTrace();
+                 throw new BussinessException(BizExceptionEnum.UPLOAD_FILE_ERROR);
+             }
+        	path ="material/"+imgName;
+        	material.setImgPath(path);
+    	 }
+    	String name =request.getParameter("name");
+    	String num =request.getParameter("num");
+    	String description =request.getParameter("description");
+    	String summary=request.getParameter("summary");
+    	String content =request.getParameter("content"); 
     	material.setName(name);
-    	material.setPath(path);
+    	material.setNum(Integer.parseInt(num));
+    	material.setDescription(description);
+    	material.setSummary(summary);
+    	material.setContent(content);
     	return this.materialMapper.insert(material);
     }
 
@@ -140,31 +164,51 @@ public class MaterialController extends BaseController {
     @ResponseBody
     @Permission
     @BussinessLog(value = "修改教材",key = "id",dict = Dict.MaterialMap)
-    public Object update(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
+    public Object update(@RequestParam(value = "imgFile", required = false) MultipartFile imgFile, @RequestParam(value = "pdfFile", required = false) MultipartFile pdfFile, HttpServletRequest request) {
     	String materialId=request.getParameter("id");
     	String name =request.getParameter("name");
+    	String num =request.getParameter("num");
+     	String description =request.getParameter("description");
+     	String summary=request.getParameter("summary");
+     	String content =request.getParameter("content"); 
     	if(materialId==null || materialId.equals("")){
     		 throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
     	}
     	Material material = materialMapper.selectById(Integer.parseInt(materialId));
     	material.setName(name);
-    	 if(file!=null){
+     	material.setNum(Integer.parseInt(num));
+     	material.setDescription(description);
+     	material.setSummary(summary);
+     	material.setContent(content);
+    	 if(pdfFile!=null){
     		 String pdfName = UUID.randomUUID().toString() + ".pdf";
         	 String path = "";
              try {
                  String fileSavePath = gunsProperties.getFileUploadPath();
-                 path= fileSavePath+"pdf/"+pdfName;
-                 file.transferTo(new File(path));
+                 path= fileSavePath+"material/"+pdfName;
+                 pdfFile.transferTo(new File(path));
              } catch (Exception e) {
             	 e.printStackTrace();
                  throw new BussinessException(BizExceptionEnum.UPLOAD_FILE_ERROR);
              }
-        	path ="pdf/"+pdfName;
-        	material.setPath(path);
-        	materialMapper.updateById(material);
-    	 }else{
-    		 materialMapper.updateById(material);
+        	path ="material/"+pdfName;
+        	material.setPdfPath(path);
     	 }
+    	 if(imgFile!=null){
+    		 String imgName = UUID.randomUUID().toString() + ".jpg";
+        	 String path = "";
+             try {
+                 String fileSavePath = gunsProperties.getFileUploadPath();
+                 path= fileSavePath+"material/"+imgName;
+                 imgFile.transferTo(new File(path));
+             } catch (Exception e) {
+            	 e.printStackTrace();
+                 throw new BussinessException(BizExceptionEnum.UPLOAD_FILE_ERROR);
+             }
+        	path ="material/"+imgName;
+        	material.setImgPath(path);
+    	 }
+    	 materialMapper.updateById(material);
     	return super.SUCCESS_TIP;
     }
 

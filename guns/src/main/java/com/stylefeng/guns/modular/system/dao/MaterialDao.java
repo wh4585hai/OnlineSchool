@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.stylefeng.guns.common.persistence.model.Material;
+
 /**
  * materialDao
  *
@@ -14,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 public interface MaterialDao {
 
 	List<Map<String, Object>> list(@Param("condition") String condition);
+	List<Material> listForFront();
+	List<Material> listForAll();
 }

@@ -13,13 +13,20 @@ public class MaterialWarpper extends BaseControllerWarpper{
 	@Override
 	protected void warpTheMap(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		String path = (String) map.get("path");
-		if (ToolUtil.isEmpty(path) || path.equals("")) {
-            map.put("path", path);
+		String pdf_path = (String) map.get("pdf_path");
+		if (ToolUtil.isEmpty(pdf_path) || pdf_path.equals("")) {
+            map.put("pdf_path", pdf_path);
         } else {
-        	String url = "http://localhost:8080/guns/"+path;
+        	String url = "http://localhost:8080/guns/"+pdf_path;
         	String pdf = "<a target='_blank' href='/generic/web/viewer.html?file="+url+"'>点击查看PDF</a>";
-            map.put("path", pdf);
+            map.put("pdf_path", pdf);
+        }
+		String img_path = (String) map.get("img_path");
+		if (ToolUtil.isEmpty(img_path) || img_path.equals("")) {
+            map.put("img_path", img_path);
+        } else {
+        	String img = "<img style='width:160px;height:160px;' src='"+img_path+"'/>";
+            map.put("img_path", img);
         }
 	}
 

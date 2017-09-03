@@ -22,6 +22,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
+import com.stylefeng.guns.common.persistence.model.Student;
+
 import java.util.Random;
 
 /**
@@ -90,6 +92,18 @@ public class ShiroKit {
             return null;
         } else {
             return (ShiroUser) getSubject().getPrincipals().getPrimaryPrincipal();
+        }
+    }
+    /**
+     * 获取封装的 ShiroUser
+     *
+     * @return ShiroUser
+     */
+    public static Student getStudent() {
+        if (isGuest()) {
+            return null;
+        } else {
+            return (Student) getSubject().getPrincipals().getPrimaryPrincipal();
         }
     }
 

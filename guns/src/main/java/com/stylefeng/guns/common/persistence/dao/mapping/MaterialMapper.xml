@@ -6,7 +6,12 @@
 	<resultMap id="BaseResultMap" type="com.stylefeng.guns.common.persistence.model.Material">
 		<id column="id" property="id" />
 		<result column="name" property="name" />
-		<result column="path" property="path" />
+		<result column="num" property="num" />
+		<result column="img_path" property="imgPath" />
+		<result column="pdf_path" property="pdfPath" />
+		<result column="description" property="description" />
+		<result column="summary" property="summary" />
+		<result column="content" property="content" />
 	</resultMap>
 
 </mapper>

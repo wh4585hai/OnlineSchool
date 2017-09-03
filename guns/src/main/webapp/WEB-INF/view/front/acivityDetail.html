@@ -56,23 +56,8 @@
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
 </head>
 <body>
-<div class="col-xs-12 text-right" id="nav-menu">
-	<img src="images/slide1.png" style="width:60px;height:40px;margin-top:5px;margin-left: 35px;" class="pull-left" />
-	<a href="index.html">首页</a>
-	<a href="login.html">登录</a>
-	<a href="sign.html">注册</a>
-	<a onmouseover="showMenu()">个人中心<span class="caret"></span></a>
-	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()">
-		<li role="presentation">
-			<a role="menuitem" tabindex="-1" href="passWord.html">修改密码</a>
-		</li>
-		<li role="presentation">
-			<a role="menuitem" tabindex="-1" href="myLesson.html">我的课程</a>
-		</li>
-	</ul>
-	<a href="appoint.html">课程预约</a>
-	<a href="login.html">退出</a>
-</div>
+@layout("header.html"){
+@}
 <div class="col-xs-12" style="margin-top:60px">
 	<div class="col-xs-2">
 		
@@ -105,16 +90,8 @@
 			</div>
 	</div>
 </div>
-<footer class="col-xs-12" style="margin-bottom:15px;margin-top:50px">
-	<div class="col-xs-12 text-center">
-		<a>关于我们</a>
-		<a style="margin-left:10px">联系客服</a>
-	</div>
-	<div class="col-xs-12 text-center" style="font-size:12px;margin-top:10px">
-		<span>天创造的工作，前六天创造了组成万物的各种要素</span>
-		<span>2003-2017 Taobao.com</span>
-	</div>
-</footer>
+@layout("footer.html"){
+@}
 <script>
 function showMenu(){
 	   $("#down-menu").show();

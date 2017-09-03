@@ -1,10 +1,14 @@
 package com.stylefeng.guns.config.web;
 
 import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.shiro.DefautModularRealm;
 import com.stylefeng.guns.core.shiro.ShiroDbRealm;
+import com.stylefeng.guns.core.shiro.StudentDbRealm;
+
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -21,7 +25,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,7 +45,19 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSecurityManager securityManager(CookieRememberMeManager rememberMeManager, CacheManager cacheShiroManager, DefaultWebSessionManager defaultWebSessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(this.shiroDbRealm());
+      //  securityManager.setRealm(this.shiroDbRealm());
+        List<Realm> realms = new ArrayList<Realm>();
+        ShiroDbRealm sr = this.shiroDbRealm();
+        StudentDbRealm st=this.studentDbRealm();
+        realms.add(sr);
+        realms.add(st);
+        DefautModularRealm dr = new DefautModularRealm();
+        Map<String, Object> definedRealms = new HashMap<String,Object>();
+        definedRealms.put("shiroDbRealm", sr);
+        definedRealms.put("studentDbRealm", st);
+        dr.setDefinedRealms(definedRealms);
+        securityManager.setRealms(realms);
+        securityManager.setAuthenticator(dr);
         securityManager.setCacheManager(cacheShiroManager);
         securityManager.setRememberMeManager(rememberMeManager);
         securityManager.setSessionManager(defaultWebSessionManager);
@@ -82,7 +100,10 @@ public class ShiroConfig {
     public ShiroDbRealm shiroDbRealm() {
         return new ShiroDbRealm();
     }
-
+    @Bean
+    public StudentDbRealm studentDbRealm() {
+        return new StudentDbRealm();
+    }
     /**
      * rememberMe管理器, cipherKey生成见{@code Base64Test.java}
      */
@@ -133,6 +154,8 @@ public class ShiroConfig {
          *
          */
         Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("/front/**", "anon");
+        hashMap.put("/*/**.jpg", "anon");
         hashMap.put("/static/**", "anon");
         hashMap.put("/login", "anon");
         hashMap.put("/global/sessionError", "anon");

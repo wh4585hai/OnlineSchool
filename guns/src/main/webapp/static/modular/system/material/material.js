@@ -16,7 +16,11 @@ Material.initColumn = function () {
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '教材名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
-        {title: '教材文件', field: 'path', align: 'center', valign: 'middle', sortable: true},
+        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: '简介', field: 'summary', align: 'center', valign: 'middle', sortable: true},
+        {title: '描述', field: 'description', align: 'center', valign: 'middle', sortable: true},
+        {title: '教材文件', field: 'pdf_path', align: 'center', valign: 'middle', sortable: true},
+        {title: '教材图片', field: 'img_path', align: 'center', valign: 'middle', sortable: true},
     ];
 };
 
@@ -38,32 +42,36 @@ Material.check = function () {
  * 点击添加material
  */
 Material.openAddMaterial = function () {
-    var index = layer.open({
-        type: 2,
-        title: '添加material',
-        area: ['800px', '420px'], //宽高
-        fix: false, //不固定
-        maxmin: true,
-        content: Feng.ctxPath + '/material/material_add'
-    });
-    this.layerIndex = index;
+	window.location=Feng.ctxPath + '/material/material_add';
+//    var index = layer.open({
+//        type: 2,
+//        title: '添加material',
+//        area: ['800px', '420px'], //宽高
+//        fix: false, //不固定
+//        maxmin: true,
+//        content: Feng.ctxPath + '/material/material_add'
+//    });
+//    this.layerIndex = index;
 };
 
 /**
  * 打开查看material详情
  */
 Material.openMaterialDetail = function () {
-    if (this.check()) {
-        var index = layer.open({
-            type: 2,
-            title: 'material详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/material/material_update/' + Material.seItem.id
-        });
-        this.layerIndex = index;
-    }
+	 if (this.check()) {
+			window.location=Feng.ctxPath +  '/material/material_update/' + Material.seItem.id
+			}
+//    if (this.check()) {
+//        var index = layer.open({
+//            type: 2,
+//            title: 'material详情',
+//            area: ['800px', '420px'], //宽高
+//            fix: false, //不固定
+//            maxmin: true,
+//            content: Feng.ctxPath + '/material/material_update/' + Material.seItem.id
+//        });
+//        this.layerIndex = index;
+//    }
 };
 
 /**
