@@ -91,6 +91,10 @@ public interface IConstantFactory {
     String getSexName(Integer sex);
 
     /**
+     * 获取国家名称
+     */
+    String getCountryName(Integer country);
+    /**
      * 获取用户登录状态
      */
     String getStatusName(Integer status);
@@ -104,10 +108,16 @@ public interface IConstantFactory {
      * 查询字典
      */
     List<Dict> findInDict(Integer id);
+    /**
+     * 根据字典名称获取地点集合
+     */
+    List<Dict> getDictList(String dictName);
 
     /**
      * 获取被缓存的对象(用户删除业务)
      */
     String getCacheObject(String para);
+
+	String getIsShowName(Integer isshow);
 
 }

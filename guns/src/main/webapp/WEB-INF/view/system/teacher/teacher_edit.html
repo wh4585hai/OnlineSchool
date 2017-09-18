@@ -8,7 +8,7 @@
 
             <div class="row">
             <div class="col-sm-6 b-r">
-					<#input id="account" name="账户" value="${teacher.account}/>
+					<#input id="account" name="账户" value="${teacher.account}"/>
 
 					<#select id="sex" name="性别">
 						<option value="1">男</option>
@@ -16,20 +16,20 @@
 					</#select>
 					<#input id="country" name="国籍" value="${teacher.country}"/>
 					<#input id="qq" name="QQ" value="${teacher.qq}" />
-					<#input id="password" name="密码"  type="password" value="${teacher.account}/>	
-					<#input id="rePassword" name="确认密码" type="password" value="${teacher.account}/>				
-					<#input id="email" name="邮箱" underline="picture" type="email" value="${teacher.account}/>	
+					<#input id="password" name="密码"  type="password" value="${teacher.password}"/>	
+					<#input id="rePassword" name="确认密码" type="password" value="${teacher.password}"/>				
+					<#input id="email" name="邮箱" underline="picture" type="email" value="${teacher.email}"/>	
 								
 				</div>
 				<div class="col-sm-6">
 					<div id="driverInfoContent">
-						<#input id="name" name="姓名"  value="${teacher.account}/>
-						<#input id="age" name="年龄"  value="${teacher.account}/>
-						<#input id="language" name="语言"  value="${teacher.account}/>
-						<#input id="skype" name="skype" value="${teacher.account}/>
-						<#input id="phone" name="电话" value="${teacher.account}/>
+						<#input id="name" name="姓名"  value="${teacher.name}"/>
+						<#input id="age" name="年龄"  value="${teacher.age}"/>
+						<#input id="language" name="语言"  value="${teacher.language}"/>
+						<#input id="skype" name="skype" value="${teacher.skype}"/>
+						<#input id="phone" name="电话" value="${teacher.phone}"/>
 						<#input id="birthday" name="出生日期" underline="true" type="date"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${teacher.account}/>																		
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${teacher.birthday}"/>																		
 					</div>
             </div>
             </div>
@@ -37,7 +37,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">照片</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="picture" name="picture">
+						<input type="text" class="form-control" id="picture" name="picture"  value="${teacher.picture}">
 					</div>
 				</div>
 				
@@ -45,7 +45,9 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">introduction</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="introduction" name="introduction">
+					<textarea name="content" id="content" rows="30" cols="80">
+						${teacher.content}
+            		</textarea>						
 					</div>
 				</div>             
             </div>
@@ -60,5 +62,8 @@
 
     </div>
 </div>
+<script>
+	CKEDITOR.replace('content');
+</script>
 <script src="${ctxPath}/static/modular/system/teacher/teacher_info.js"></script>
 @}

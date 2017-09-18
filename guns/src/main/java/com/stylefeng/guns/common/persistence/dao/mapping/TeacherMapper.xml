@@ -6,12 +6,12 @@
 	<resultMap id="BaseResultMap" type="com.stylefeng.guns.common.persistence.model.Teacher">
 		<id column="id" property="id" />
 		<result column="name" property="name" />
-		<result column="user_id" property="userId" />
+		<result column="userid" property="userId" />
 		<result column="country" property="country" />
 		<result column="language" property="language" />
 		<result column="picture" property="picture" />
 		<result column="age" property="age" />
-		<result column="introduction" property="introduction" />
+		<result column="content" property="content" />
 		<result column="phone" property="phone" />
 		<result column="email" property="email" />
 		<result column="isshow" property="isshow" />
@@ -21,6 +21,9 @@
 		<result column="updateDate" property="updateDate" />
 		<result column="salt" property="salt" />
 		<result column="sex" property="sex" />
+		<result column="account" property="account" />
+		<result column="password" property="password" />
+		<result column="birthday" property="birthday" />
 	</resultMap>
 
 </mapper>

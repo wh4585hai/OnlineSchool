@@ -4,30 +4,30 @@ import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Dict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.TeacherMapper;
-import com.stylefeng.guns.common.persistence.model.Course;
 import com.stylefeng.guns.common.persistence.model.Teacher;
-import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
@@ -59,7 +59,8 @@ public class TeacherController extends BaseController {
      * 跳转到添加teacher
      */
     @RequestMapping("/teacher_add")
-    public String teacherAdd() {
+    public String teacherAdd(Model model) {
+    	Map countryMap = new HashMap();    	 	
         return PREFIX + "teacher_add.html";
     }
 
@@ -97,11 +98,14 @@ public class TeacherController extends BaseController {
     @Permission
     @ResponseBody
     @BussinessLog(value = "新增教师",key = "name",dict = Dict.TeacherMap)
-    public Object add(Teacher teacher,HttpServletRequest request) {
+    public Object add(@Valid Teacher teacher,BindingResult result) {
+    	   if (result.hasErrors()) {
+               throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+           }
     	if (ToolUtil.isOneEmpty(teacher, teacher.getName())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-    	String introduction = request.getParameter("introduction");
+    	//String introduction = request.getParameter("introduction");
     
     	teacher.setSalt(ShiroKit.getRandomSalt(5));
     	teacher.setPassword(ShiroKit.md5(teacher.getPassword(), teacher.getSalt()));         	
@@ -117,7 +121,10 @@ public class TeacherController extends BaseController {
     @RequestMapping(value = "/delete")
     @Permission
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer teacherId) {
+    	 LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(teacherId));
+
+         this.teacherMapper.deleteById(teacherId);
         return SUCCESS_TIP;
     }
 
@@ -129,7 +136,10 @@ public class TeacherController extends BaseController {
     @Permission
     @ResponseBody
     @BussinessLog(value = "修改教师",key = "name",dict = Dict.TeacherMap)
-    public Object update(Teacher teacher) {
+    public Object update(@Valid Teacher teacher, BindingResult result) {
+    	  if (result.hasErrors()) {
+              throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+          }
     	 if (ToolUtil.isOneEmpty(teacher, teacher.getName())) {
              throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
          }

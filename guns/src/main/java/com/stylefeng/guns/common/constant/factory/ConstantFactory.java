@@ -243,6 +243,21 @@ public class ConstantFactory implements IConstantFactory {
     public String getSexName(Integer sex) {
         return getDictsByName("性别", sex);
     }
+    /**
+     * 获取国籍名称
+     */
+    @Override
+    public String getCountryName(Integer country) {
+        return getDictsByName("国籍", country);
+    }
+
+    /**
+     * 获取是都展现
+     */
+    @Override
+    public String getIsShowName(Integer isshow) {
+        return getDictsByName("是否展现", isshow);
+    }
 
     /**
      * 获取用户登录状态
@@ -284,6 +299,22 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     public String getCacheObject(String para) {
         return LogObjectHolder.me().get().toString();
+    }
+    
+    @Override
+    public List<Dict> getDictList(String dictName){
+    	 List<Dict> dicts;
+    	Dict temp = new Dict();
+        temp.setName(dictName);
+        Dict dict = dictMapper.selectOne(temp);
+        if (dict == null) {
+            return null;
+        } else {
+            Wrapper<Dict> wrapper = new EntityWrapper<>();
+            wrapper = wrapper.eq("pid", dict.getId());
+           dicts = dictMapper.selectList(wrapper);
+        }
+        return dicts;
     }
 
 }

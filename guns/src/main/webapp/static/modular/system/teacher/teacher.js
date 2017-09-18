@@ -15,19 +15,20 @@ Teacher.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: 'name', field: 'name',  align: 'center', valign: 'middle'},
-        {title: 'country', field: 'country',  align: 'center', valign: 'middle'},
-        {title: 'language', field: 'language',  align: 'center', valign: 'middle'},
-        {title: 'picture', field: 'picture',  align: 'center', valign: 'middle'},
-        {title: 'age', field: 'age',  align: 'center', valign: 'middle'},
-        {title: 'introduction', field: 'introduction',  align: 'center', valign: 'middle'},
-        {title: 'phone', field: 'phone',  align: 'center', valign: 'middle'},
-        {title: 'email', field: 'email',  align: 'center', valign: 'middle'},
-        {title: 'isshow', field: 'isshow',  align: 'center', valign: 'middle'},
-        {title: 'qq', field: 'qq',  align: 'center', valign: 'middle'},
+        {title: '姓名', field: 'name',  align: 'center', valign: 'middle',sortable: true},
+        {title: '国家', field: 'countryName',  align: 'center', valign: 'middle'},
+        {title: '语言', field: 'language',  align: 'center', valign: 'middle'},
+        {title: '性别', field: 'sexName', align: 'center', valign: 'middle', sortable: true},
+        {title: '图片', field: 'picture',  visible: false,align: 'center', valign: 'middle'},
+        {title: '年龄', field: 'age',  align: 'center', valign: 'middle'},
+        {title: '简介', field: 'content', visible: false, align: 'center', valign: 'middle'},
+        {title: '电话', field: 'phone',  align: 'center', valign: 'middle'},
+        {title: '邮箱', field: 'email',  align: 'center', valign: 'middle'},
+        {title: '是否展现', field: 'isshowName',  align: 'center', valign: 'middle'},
+        {title: 'QQ', field: 'qq',  align: 'center', valign: 'middle'},
         {title: 'skype', field: 'skype',  align: 'center', valign: 'middle'},
-        {title: 'createdate', field: 'createdate',  align: 'center', valign: 'middle'},
-        {title: 'updatedate', field: 'updatedate',  align: 'center', valign: 'middle'}
+        {title: '创建日期', field: 'createdate', visible: false, align: 'center', valign: 'middle'},
+        {title: '上次修改时间', field: 'updatedate', visible: false, align: 'center', valign: 'middle'}
     ];
 };
 
@@ -67,15 +68,8 @@ Teacher.openAddTeacher = function () {
  */
 Teacher.openTeacherDetail = function () {
     if (this.check()) {
-        var index = layer.open({
-            type: 2,
-            title: 'teacher详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/teacher/teacher_update/' + Teacher.seItem.id
-        });
-        this.layerIndex = index;
+    	window.location=Feng.ctxPath + '/teacher/teacher_update/'+Teacher.seItem.id;
+       
     }
 };
 

@@ -1,7 +1,6 @@
 package com.stylefeng.guns.modular.system.warpper;
 
 import java.util.Map;
-
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 
@@ -17,6 +16,9 @@ public class TeacherWrapper extends BaseControllerWarpper{
 
 		  Integer creater = (Integer) map.get("userId");
 	        map.put("createrName", ConstantFactory.me().getUserNameById(creater));
+	        map.put("sexName", ConstantFactory.me().getSexName((Integer) map.get("sex")));
+	        map.put("countryName", ConstantFactory.me().getCountryName((Integer) map.get("country")));
+	        map.put("isshowName", ConstantFactory.me().getIsShowName((Integer) map.get("isshow")));
 		
 	}
 

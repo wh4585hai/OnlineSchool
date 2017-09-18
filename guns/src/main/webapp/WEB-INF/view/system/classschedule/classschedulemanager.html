@@ -1,0 +1,44 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>课程表管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="studentname" name="学会姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="teachername" name="教师姓名" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="classdata" name="日期" />
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Classschedule.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
+                          
+                            @if(shiro.hasPermission("/classschedule/delay")){
+                                <#button name="修改" icon="fa-plus" clickFun="Classschedule.openClassscheduleDetail()" space="true"/>
+                            @}
+                             @if(shiro.hasPermission("/classschedule/delay")){
+                                <#button name="删除" icon="fa-plus" clickFun="Classschedule.delete()" space="true"/>
+                            @}
+                        
+                        </div>
+                        <#table id="ClassscheduleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/classschedule/classschedule.js"></script>
+@}

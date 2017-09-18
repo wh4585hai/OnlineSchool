@@ -3,6 +3,8 @@ package com.stylefeng.guns.common.persistence.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -14,7 +16,7 @@ public class Teacher extends Model<Teacher>{
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
 	
-	@TableField("user_id")
+	@TableField("userid")
 	private Integer userId;
 	
 	private String name;
@@ -29,7 +31,7 @@ public class Teacher extends Model<Teacher>{
 	
 	private String sex;
 	
-	private String introduction;
+	private String content;
 	
 	private String phone;
 	
@@ -51,6 +53,9 @@ public class Teacher extends Model<Teacher>{
 	
 	@TableField("updatedate")
 	private Date updateDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date birthday;
 	
 	
 
@@ -137,15 +142,14 @@ public class Teacher extends Model<Teacher>{
 	}
 
 
-
-	public String getIntroduction() {
-		return introduction;
+	public String getContent() {
+		return content;
 	}
 
 
 
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 
@@ -286,6 +290,26 @@ public class Teacher extends Model<Teacher>{
 	protected Serializable pkVal() {		
 		return this.id;
 	}
+
+
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+
+
+
+
+
+
+
 	
 
 }

@@ -2,7 +2,8 @@
  * 初始化teacher详情对话框
  */
 var TeacherInfoDlg = {
-    teacherInfoData : {}
+    teacherInfoData : {},
+    content: null
 };
 
 /**
@@ -37,7 +38,7 @@ TeacherInfoDlg.get = function(key) {
  * 关闭此对话框
  */
 TeacherInfoDlg.close = function() {
-	 window.location=Feng.ctxPath + '/course';
+	 window.location=Feng.ctxPath + '/teacher';
    // parent.layer.close(window.parent.Teacher.layerIndex);
 }
 
@@ -55,10 +56,12 @@ TeacherInfoDlg.collectData = function() {
     this.set('picture');
     this.set('email');
     this.set('qq');
-    this.set('introduction');
+    this.teacherInfoData['content'] =  CKEDITOR.instances.content.getData();
+   // this.set('introduction');
     this.set('skype');
     this.set('password');
     this.set('account');
+    this.set('birthday');
 }
 
 /**
@@ -72,8 +75,7 @@ TeacherInfoDlg.addSubmit = function() {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/teacher/add", function(data){
         Feng.success("添加成功!");
-        window.parent.Teacher.table.refresh();
-        TeacherInfoDlg.close();
+        window.location=Feng.ctxPath + '/teacher';
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
@@ -86,15 +88,16 @@ TeacherInfoDlg.addSubmit = function() {
  * 提交修改
  */
 TeacherInfoDlg.editSubmit = function() {
+	debugger;
 
     this.clearData();
     this.collectData();
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/teacher/update", function(data){
+    	debugger;
         Feng.success("修改成功!");
-        window.parent.Teacher.table.refresh();
-        TeacherInfoDlg.close();
+        window.location=Feng.ctxPath + '/teacher';
     },function(data){
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
@@ -105,6 +108,8 @@ TeacherInfoDlg.editSubmit = function() {
 
 
 $(function() {
+	 var avatarUp = new $WebUpload("picture");
+	    avatarUp.init();
 	//初始化性别选项
     $("#sex").val($("#sexValue").val());
 
