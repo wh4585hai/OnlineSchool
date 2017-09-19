@@ -4,27 +4,27 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="">
+            
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                	<#select id="studentid" name="学生">
-						<option value="1">男</option>
-						<option value="2">女</option>
-					</#select>
-					
+					<#input id="studentid" name="学生" type="studentid"/>
 					<#select id="teacherid" name="教师">
-						<option value="1">男</option>
-						<option value="2">女</option>
+						@for(userIdname in dicMap.useridname){
+						<option value="${userIdname.id}">${userIdname.name}</option>
+						@}
 					</#select>
 					<#input id="date" name="开始日期" underline="false" type="date"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>	
 					<#select id="coursetime" name="课程时长">
-						<option value="1">男</option>
-						<option value="2">女</option>
+					@for(classTime in dicMap.calsstime){
+						<option value="${classTime.num}">${classTime.name}</option>
+						@}
 					</#select>
 						<#select id="materialid" name="教材">
-						<option value="1">男</option>
-						<option value="2">女</option>
+						@for(meterialName in dicMap.meterialname){
+						<option value="${meterialName.id}">${meterialName.name}</option>
+						@}
 					</#select>
                
 				<#input id="starttime" name="开始时间" underline="false" type="time"/>

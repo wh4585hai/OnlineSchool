@@ -15,16 +15,17 @@ Classschedule.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '学生', field: 'name',  align: 'center', valign: 'middle',sortable: true},
-        {title: '教师', field: 'countryName',  align: 'center', valign: 'middle'},
-        {title: '上课日期', field: 'language',  align: 'center', valign: 'middle'},
-        {title: '开始时间', field: 'sexName', align: 'center', valign: 'middle', sortable: true},
-        {title: '课程时长', field: 'picture',  visible: false,align: 'center', valign: 'middle'},
-        {title: '教材', field: 'age',  align: 'center', valign: 'middle'},
-        {title: '文件', field: 'phone',  align: 'center', valign: 'middle'},
-        {title: '状态', field: 'content', visible: true, align: 'center', valign: 'middle'},
+        {title: '学生', field: 'studentid',  align: 'center', valign: 'middle',sortable: true},
+        {title: '教师', field: 'teacherid',  align: 'center', valign: 'middle'},
+        {title: '上课日期', field: 'date',  align: 'center', valign: 'middle'},
+        {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
+        {title: '课程时长', field: 'coursetime',  visible: false,align: 'center', valign: 'middle'},
+        {title: '教材', field: 'materialid',  align: 'center', valign: 'middle'},
+        {title: '文件', field: 'file',  align: 'center', valign: 'middle'},
+        {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle'},
         {title: '是都延期', field: 'isdelay', visible: true, align: 'center', valign: 'middle'},
-        {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'}       
+        {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
+        {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 

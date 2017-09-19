@@ -33,6 +33,8 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	
 	private String delayreason;
 	
+	private String remark;
+	
 	
 	@Override
 	protected Serializable pkVal() {
@@ -156,6 +158,18 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	public void setDelayreason(String delayreason) {
 		this.delayreason = delayreason;
 	}
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	
+	
 
 
 	

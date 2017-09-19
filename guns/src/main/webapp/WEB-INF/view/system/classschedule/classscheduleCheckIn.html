@@ -4,37 +4,57 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="${classSchedule.id}">
+            <input type="hidden" id="teacheridvalue" value="${classSchedule.teacherid}">
+            <input type="hidden" id="coursetimevalue" value="${classSchedule.coursetime}">
+            <input type="hidden" id="materialidvalue" value="${classSchedule.materialid}">
+            <input type="hidden" id="isdelayvalue" value="${classSchedule.isdelay}">
+            <input type="hidden" id="statusvalue" value="${classSchedule.status}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                <#input id="studentid" name="学生" value="${classSchedule.studentid}" disabled="disabled"/>
-                <#input id="teacherid" name="教师" value="${classSchedule.teacherid}" disabled="disabled"/>
-                <#input id="date" name="开始日期" value="${classSchedule.date}" disabled="disabled"/>
-                <#input id="starttime" name="开始时间" value="${classSchedule.starttime}" disabled="disabled"/>
-                <#input id="coursetime" name="课程时长" value="${classSchedule.coursetime}" disabled="disabled"/>
+	                <#input id="studentid" name="student" value="${classSchedule.studentid}" disabled="disabled"/>
+	                <#select id="teacherid" name="teacher" disabled="disabled">
+								@for(userIdname in dicMap.useridname){
+								<option value="${userIdname.id}">${userIdname.name}</option>
+								@}
+					</#select>
+	                <#input id="date" name="class date" value="${classSchedule.date}" disabled="disabled"/>
+	                <#input id="starttime" name="start time" value="${classSchedule.starttime}" disabled="disabled"/>
+	                <#select id="coursetime" name="course time" disabled="disabled">
+							@for(classTime in dicMap.calsstime){
+								<option value="${classTime.num}">${classTime.name}</option>
+								@}
+					</#select>
                 
 
                 </div>
 
                 <div class="col-sm-6">
-                <#input id="materialid" name="教材" value="${classSchedule.materialid}" disabled="disabled"/>
-               
-                <!-- <#input id="file" name="文件" value="${classSchedule.file}"/> -->
-                <#input id="status" name="状态" value="${classSchedule.status}" disabled="disabled"/>
-						<#select id="isdelay" name="是否延期" disabled="disabled">
-						<option value="1">是</option>
-						<option value="0">否</option>
-				</#select>
-               <#input id="delayreason" name="延期原因" value="${classSchedule.delayreason}" disabled="disabled"/>
-                <#avatar id="file" name="文件" underline="true" avatarImg=""/>
+	                <#select id="materialid" name="material" disabled="disabled">
+							@for(meterialName in dicMap.meterialname){
+							<option value="${meterialName.id}">${meterialName.name}</option>
+							@}
+					</#select>
+	                <#select id="status" name="class status" disabled="disabled">
+							@for(calssStatus in dicMap.calssstatus){
+							<option value="${calssStatus.num}">${calssStatus.name}</option>
+							@}
+					</#select>
+					<#select id="isdelay" name="is delay" disabled="disabled">
+							<option value="1">yes</option>
+							<option value="0">no</option>
+					</#select>
+	                <#input id="delayreason" name="delay reason" value="${classSchedule.delayreason}" disabled="disabled"/>
+	                <#avatar id="file" name="文件" underline="true" avatarImg=""/>
+	                <#input id="remark" name="备注" value="${classSchedule.remark}"/>
 
                 </div>
             </div>
 
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ClassscheduleInfoDlg.editSubmit()"/>
-                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ClassscheduleInfoDlg.close()"/>
+                    <#button btnCss="info" name="submit" id="ensure" icon="fa-check" clickFun="ClassscheduleInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="cancel" id="cancel" icon="fa-eraser" clickFun="ClassscheduleInfoDlg.close()"/>
                 </div>
             </div>
         </div>

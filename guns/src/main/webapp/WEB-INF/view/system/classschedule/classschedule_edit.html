@@ -4,28 +4,52 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="${classSchedule.id}">
+            <input type="hidden" id="teacheridvalue" value="${classSchedule.teacherid}">
+            <input type="hidden" id="coursetimevalue" value="${classSchedule.coursetime}">
+            <input type="hidden" id="materialidvalue" value="${classSchedule.materialid}">
+            <input type="hidden" id="isdelayvalue" value="${classSchedule.isdelay}">
+            <input type="hidden" id="statusvalue" value="${classSchedule.status}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                <#input id="studentid" name="学生" value="${classSchedule.studentid}"/>
-                <#input id="teacherid" name="教师" value="${classSchedule.teacherid}"/>
-                <#input id="date" name="开始日期" value="${classSchedule.date}"/>
-                <#input id="starttime" name="开始时间" value="${classSchedule.starttime}"/>
-                <#input id="coursetime" name="课程时长" value="${classSchedule.coursetime}"/>
+                
+	                <#input id="studentid" name="学生" value="${classSchedule.studentid}"/>
+	                
+	                <#select id="teacherid" name="教师">
+							@for(userIdname in dicMap.useridname){
+							<option value="${userIdname.id}">${userIdname.name}</option>
+							@}
+					</#select>
+	                <#input id="date" name="开始日期" value="${classSchedule.date}"/>
+	                <#input id="starttime" name="开始时间" value="${classSchedule.starttime}"/>
+	                <#select id="coursetime" name="课程时长">
+						@for(classTime in dicMap.calsstime){
+							<option value="${classTime.num}">${classTime.name}</option>
+							@}
+					</#select>
                 
 
                 </div>
 
                 <div class="col-sm-6">
-                <#input id="materialid" name="教材" value="${classSchedule.materialid}"/>
+               		<#select id="materialid" name="教材">
+						@for(meterialName in dicMap.meterialname){
+						<option value="${meterialName.id}">${meterialName.name}</option>
+						@}
+					</#select>
 
-                <#input id="status" name="状态" value="${classSchedule.status}"/>
-						<#select id="isdelay" name="是否延期">
+               		<#select id="status" name="课程状态">
+							@for(calssStatus in dicMap.calssstatus){
+							<option value="${calssStatus.num}">${calssStatus.name}</option>
+							@}
+					</#select>
+					<#select id="isdelay" name="是否延期">
 						<option value="1">是</option>
 						<option value="0">否</option>
-				</#select>
-               <#input id="delayreason" name="延期原因" value="${classSchedule.delayreason}"/>
-                <#avatar id="file" name="文件" underline="true" avatarImg=""/>
+					</#select>
+               		<#input id="delayreason" name="延期原因" value="${classSchedule.delayreason}"/>
+                	<#avatar id="file" name="文件" underline="true" avatarImg=""/>
+                	<#input id="remark" name="备注" value="${classSchedule.remark}"/>
 
                 </div>
             </div>

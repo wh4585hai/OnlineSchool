@@ -10,13 +10,19 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-3">
-                                <#NameCon id="studentname" name="学会姓名" />
+                                <#NameCon id="studentname" name="学会账号" />
+                            </div>
+                            <div class="col-sm-3">                             
+                                 <#select id="teachername" name="教师">
+									@for(userIdname in dicMap.useridname){
+									<option value="${userIdname.id}">${userIdname.name}</option>
+									@}
+								</#select>
                             </div>
                             <div class="col-sm-3">
-                                <#NameCon id="teachername" name="教师姓名" />
-                            </div>
-                            <div class="col-sm-3">
-                                <#NameCon id="classdata" name="日期" />
+                              <#input id="date" name="课程日期" underline="false" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                                
                             </div>
                             
                             <div class="col-sm-3">

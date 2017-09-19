@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -11,6 +12,7 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
+import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.ClassScheduleWrapper;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,13 +53,15 @@ public class ClassscheduleController extends BaseController {
     @Resource
     private ClassscheduleDao classscheduleDao;
     @Resource
+    private DicUtilDao dicUtilDao;
+    @Resource
     private ClassScheduleMapper classScheduleMapper;
 
     /**
      * 跳转到课程表首页
      */
     @RequestMapping("")
-    public String index() {
+    public String index(Model model) {
         return PREFIX + "classschedule.html";
     }
 
@@ -64,7 +69,10 @@ public class ClassscheduleController extends BaseController {
      * 跳转到课程表首页
      */
     @RequestMapping("/manager")
-    public String classScheduleManager() {
+    public String classScheduleManager(Model model) {
+    	Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	model.addAttribute("dicMap",dicMap);
         return PREFIX + "classschedulemanager.html";
     }
     /**
@@ -72,6 +80,13 @@ public class ClassscheduleController extends BaseController {
      */
     @RequestMapping("/classschedule_add")
     public String classscheduleAdd(Model model) {
+    	
+    	
+    	Map dicMap = new HashMap();
+    	dicMap.put("calsstime", ConstantFactory.me().getDictList("课时价格"));
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("meterialname", dicUtilDao.getMeterialName());
+        model.addAttribute("dicMap",dicMap); 
         return PREFIX + "classschedule_add.html";
     }
 
@@ -85,6 +100,12 @@ public class ClassscheduleController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
     	ClassSchedule classSchedule = this.classScheduleMapper.selectById(id);
+    	Map dicMap = new HashMap();
+    	dicMap.put("calsstime", ConstantFactory.me().getDictList("课时价格"));
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("calssstatus", ConstantFactory.me().getDictList("课程状态"));
+    	dicMap.put("meterialname", dicUtilDao.getMeterialName());
+        model.addAttribute("dicMap",dicMap);
         model.addAttribute(classSchedule);      
         LogObjectHolder.me().set(classSchedule);
     	
@@ -102,6 +123,12 @@ public class ClassscheduleController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
     	ClassSchedule classSchedule = this.classScheduleMapper.selectById(id);
+    	Map dicMap = new HashMap();
+    	dicMap.put("calsstime", ConstantFactory.me().getDictList("课时价格"));
+    	dicMap.put("calssstatus", ConstantFactory.me().getDictList("课程状态"));
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("meterialname", dicUtilDao.getMeterialName());
+        model.addAttribute("dicMap",dicMap);
         model.addAttribute(classSchedule);      
         LogObjectHolder.me().set(classSchedule);
     	
@@ -114,10 +141,21 @@ public class ClassscheduleController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String studentname,String teachername,String classdata) {
+    public Object list(String studentname,Integer teachername,String date) {
     	
     	
-    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, classdata);
+    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, date);
+         return super.warpObject(new ClassScheduleWrapper(list));
+    }
+    /**
+     * 教师获取课程表列表
+     */
+    @RequestMapping(value = "/listforteacher")
+    @ResponseBody
+    public Object listForTeacher(String studentname,String date) {
+    	
+    	 int teachername = ShiroKit.getUser().getId();
+    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, date);
          return super.warpObject(new ClassScheduleWrapper(list));
     }
 
@@ -129,6 +167,7 @@ public class ClassscheduleController extends BaseController {
     public Object add(@Valid ClassScheduleModel classScheduleModel,BindingResult result) {
     	
     	ClassSchedule classSchedule = new ClassSchedule();
+    	
     	classSchedule.setStudentid(classScheduleModel.getStudentid());
     	classSchedule.setTeacherid(classScheduleModel.getTeacherid());
     	classSchedule.setStarttime(classScheduleModel.getStarttime());

@@ -139,5 +139,11 @@ ClassscheduleInfoDlg.editSubmit = function() {
 }
 
 $(function() {
+	$("#teacherid").val($("#teacheridvalue").val());
+	$("#coursetime").val($("#coursetimevalue").val());
+	$("#materialid").val($("#materialidvalue").val());
+	$("#status").val($("#isdelayvalue").val());
+	$("#isdelay").val($("#statusvalue").val());
+	
 
 });
