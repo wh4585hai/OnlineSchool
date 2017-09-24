@@ -126,6 +126,9 @@ $(function() {
 	 var avatarUp = new $WebUpload("picture");
 	    avatarUp.init();
 	//初始化性别选项
-    $("#sex").val($("#sexValue").val());
+   $("#teacherid").val($("#teacheridvalue").val());
+   $("#country").val($("#countryvalue").val());
+   $("#language").val($("#languagevalue").val());
+   
 
 });
