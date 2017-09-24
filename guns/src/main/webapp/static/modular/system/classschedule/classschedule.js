@@ -15,15 +15,17 @@ Classschedule.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '学生', field: 'studentid',  align: 'center', valign: 'middle',sortable: true},
-        {title: '教师', field: 'teacherid',  align: 'center', valign: 'middle'},
+        {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
+        {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
         {title: '上课日期', field: 'date',  align: 'center', valign: 'middle'},
         {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
         {title: '课程时长', field: 'coursetime',  visible: false,align: 'center', valign: 'middle'},
-        {title: '教材', field: 'materialid',  align: 'center', valign: 'middle'},
+        {title: '教材', field: 'meterialName',  align: 'center', valign: 'middle'},
+        {title: '上课方式', field: 'classapproach',  align: 'center', valign: 'middle'},
+        {title: '联系方式', field: 'classnumber',  align: 'center', valign: 'middle'},
         {title: '文件', field: 'file',  align: 'center', valign: 'middle'},
-        {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle'},
-        {title: '是都延期', field: 'isdelay', visible: true, align: 'center', valign: 'middle'},
+        {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'},
+        {title: '是都延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
         {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
         {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
         
@@ -53,7 +55,7 @@ Classschedule.search = function () {
     var queryData = {};
     queryData['studentname'] = $("#studentname").val();
     queryData['teachername'] = $("#teachername").val();
-    queryData['classdata'] = $("#classdata").val();
+    queryData['date'] = $("#classdata").val();
     Classschedule.table.refresh({query: queryData});
 };
 

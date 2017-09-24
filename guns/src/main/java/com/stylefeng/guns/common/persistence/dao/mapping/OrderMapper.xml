@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.common.persistence.dao.OrderMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.stylefeng.guns.common.persistence.model.Orders">
+		<id column="id" property="id" />
+		<result column="studentid" property="studentid" />
+		<result column="teacherid" property="teacherid" />
+		<result column="materialid" property="materialid" />
+		<result column="months" property="months" />
+		<result column="coursetime" property="coursetime" />
+		<result column="timesperweek" property="timesperweek" />
+		<result column="amount" property="amount" />
+		<result column="subjectid" property="subjectid" />		
+		<result column="createdate" property="createdate" />
+		<result column="status" property="status" />
+		<result column="classapproach" property="classapproach" />
+		<result column="classnumber" property="classnumber" />			
+	</resultMap>
+
+</mapper>

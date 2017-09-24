@@ -31,7 +31,10 @@ public class ConstantFactory implements IConstantFactory {
     private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
     private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
+    private StudentMapper studentMapper = SpringContextHolder.getBean(StudentMapper.class);
     private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
+    private MaterialMapper materialMapper = SpringContextHolder.getBean(MaterialMapper.class);
+    private OrderMapper orderMapper = SpringContextHolder.getBean(OrderMapper.class);
 
     public static IConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -315,6 +318,68 @@ public class ConstantFactory implements IConstantFactory {
            dicts = dictMapper.selectList(wrapper);
         }
         return dicts;
+    }
+    
+    /**
+     * 获取学生名称
+     */
+    @Override
+    public String getStudentName(Integer studentId) {
+        Student student = studentMapper.selectById(studentId);
+        if (ToolUtil.isNotEmpty(student) && ToolUtil.isNotEmpty(student.getRealname())) {
+            return student.getRealname();
+        }
+        return "";
+    }
+    /**
+     * 获取学生名称
+     */
+    @Override
+    public Integer getStudentId(Student student ) {
+
+        student = studentMapper.selectOne(student);
+        if (ToolUtil.isNotEmpty(student) && ToolUtil.isNotEmpty(student.getId())) {
+            return student.getId();
+        }
+        return null;
+    }
+    
+    
+  
+    /**
+     * 获取教材名称
+     */
+    @Override
+    public String getMeterialName(Integer materialId) {
+    	Material material = materialMapper.selectById(materialId);
+        if (ToolUtil.isNotEmpty(material) && ToolUtil.isNotEmpty(material.getName())) {
+            return material.getName();
+        }
+        return "";
+    }
+    
+    /**
+     * 获取上课方式
+     */
+    @Override
+    public Integer getClassApproach(Integer orderid) {
+    	Orders orders = orderMapper.selectById(orderid);
+        if (ToolUtil.isNotEmpty(orders) && ToolUtil.isNotEmpty(orders.getClassapproach())) {
+            return orders.getClassapproach();
+        }
+        return null;
+    }
+    
+    /**
+     * 获取上课方式号码
+     */
+    @Override
+    public String getClassNumber(Integer orderid) {
+    	Orders orders = orderMapper.selectById(orderid);
+        if (ToolUtil.isNotEmpty(orders) && ToolUtil.isNotEmpty(orders.getClassnumber())) {
+            return orders.getClassnumber();
+        }
+        return "";
     }
 
 }

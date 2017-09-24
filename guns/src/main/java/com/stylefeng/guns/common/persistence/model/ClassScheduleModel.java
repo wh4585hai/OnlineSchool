@@ -29,6 +29,8 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 	private int months;
 		
 	private String weeks;
+
+	private int orderid;
 	
 	@Override
 	protected Serializable pkVal() {
@@ -107,6 +109,16 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 	public void setCoursetime(String coursetime) {
 		this.coursetime = coursetime;
 	}
+
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
+
 
 	
 	

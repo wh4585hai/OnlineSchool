@@ -7,6 +7,7 @@ import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.ClassScheduleMapper;
 import com.stylefeng.guns.common.persistence.model.ClassSchedule;
 import com.stylefeng.guns.common.persistence.model.ClassScheduleModel;
+import com.stylefeng.guns.common.persistence.model.Student;
 import com.stylefeng.guns.common.persistence.model.Teacher;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
@@ -165,6 +166,13 @@ public class ClassscheduleController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(@Valid ClassScheduleModel classScheduleModel,BindingResult result) {
+    	/*Student student = new Student();
+    	student.setNickname(classScheduleModel.getStudentName());
+    	Integer studentId = ConstantFactory.me().getStudentId(student);
+    	if(studentId==null) {
+    	return	super.ERROR;
+    		
+    	}*/
     	
     	ClassSchedule classSchedule = new ClassSchedule();
     	
@@ -173,6 +181,7 @@ public class ClassscheduleController extends BaseController {
     	classSchedule.setStarttime(classScheduleModel.getStarttime());
     	classSchedule.setCoursetime(classScheduleModel.getCoursetime());
     	classSchedule.setMaterialid(classScheduleModel.getMaterialid());
+    	classSchedule.setOrderid(classScheduleModel.getOrderid());
     	classSchedule.setStatus(0);
   	
     	int months = classScheduleModel.getMaterialid();

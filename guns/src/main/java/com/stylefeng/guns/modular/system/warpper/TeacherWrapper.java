@@ -15,9 +15,10 @@ public class TeacherWrapper extends BaseControllerWarpper{
 	protected void warpTheMap(Map<String, Object> map) {
 
 		  Integer creater = (Integer) map.get("userId");
-	        map.put("createrName", ConstantFactory.me().getUserNameById(creater));
-	        map.put("sexName", ConstantFactory.me().getSexName((Integer) map.get("sex")));
 	        map.put("countryName", ConstantFactory.me().getCountryName((Integer) map.get("country")));
+	        map.put("teacherName", ConstantFactory.me().getUserNameById((Integer) map.get("userid")));
+	        map.put("languageName", ConstantFactory.me().getDictsByName("语言",(Integer) map.get("language")));
+	       
 	        map.put("isshowName", ConstantFactory.me().getIsShowName((Integer) map.get("isshow")));
 		
 	}

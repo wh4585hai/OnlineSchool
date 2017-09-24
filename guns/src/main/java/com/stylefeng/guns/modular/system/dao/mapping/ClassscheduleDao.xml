@@ -3,10 +3,19 @@
 <mapper namespace="com.stylefeng.guns.modular.system.dao.ClassscheduleDao">
 
 <select id="list" resultType="map">
-		select * from class_schedule
+		select class_schedule.* from class_schedule,student
+		where class_schedule.studentid=student.id
 		<if test="studentname != null and studentname != ''">
-			where studentid like CONCAT('%',#{studentname},'%')
+			and student.realname like CONCAT('%',#{studentname},'%')
 		</if>
-		order by id DESC
+		<if test="teachername != null and teachername != 0">
+			and (class_schedule.teacherid = #{teachername})
+			
+		</if>
+		<if test="classdata != null and classdata != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date = #{classdata}
+		</if>
+		order by class_schedule.id DESC
 	</select>
 </mapper>

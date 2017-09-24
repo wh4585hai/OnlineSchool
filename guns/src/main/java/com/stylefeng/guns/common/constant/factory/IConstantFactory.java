@@ -3,6 +3,8 @@ package com.stylefeng.guns.common.constant.factory;
 import com.stylefeng.guns.common.constant.cache.Cache;
 import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.common.persistence.model.Student;
+
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
@@ -119,5 +121,15 @@ public interface IConstantFactory {
     String getCacheObject(String para);
 
 	String getIsShowName(Integer isshow);
+	
+	public String getStudentName(Integer deptId);
+	
+	public String getMeterialName(Integer materialId);
+	
+	public Integer getClassApproach(Integer orderid);
+	
+	public String getClassNumber(Integer orderid);
+	
+	public Integer getStudentId(Student student );
 
 }

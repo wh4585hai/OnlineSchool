@@ -35,6 +35,10 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	
 	private String remark;
 	
+	private int orderid;
+	
+	
+	
 	
 	@Override
 	protected Serializable pkVal() {
@@ -167,6 +171,16 @@ public class ClassSchedule extends Model<ClassSchedule>{
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+
+	public int getOrderid() {
+		return orderid;
+	}
+
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 	
 	

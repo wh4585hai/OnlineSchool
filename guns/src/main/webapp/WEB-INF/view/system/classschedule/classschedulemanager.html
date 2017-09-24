@@ -14,13 +14,14 @@
                             </div>
                             <div class="col-sm-3">                             
                                  <#select id="teachername" name="教师">
+                                 <option value="">所有</option>
 									@for(userIdname in dicMap.useridname){
 									<option value="${userIdname.id}">${userIdname.name}</option>
 									@}
 								</#select>
                             </div>
                             <div class="col-sm-3">
-                              <#input id="date" name="课程日期" underline="false" type="date"
+                              <#input id="classdata" name="课程日期" underline="false" type="classdata"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
                                 
                             </div>

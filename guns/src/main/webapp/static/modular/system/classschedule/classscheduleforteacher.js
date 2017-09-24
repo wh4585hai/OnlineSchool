@@ -51,7 +51,6 @@ Classschedule.search = function () {
 	debugger;
     var queryData = {};
     queryData['studentname'] = $("#studentname").val();
-    queryData['teachername'] = $("#teachername").val();
     queryData['classdata'] = $("#classdata").val();
     Classschedule.table.refresh({query: queryData});
 };
@@ -76,7 +75,7 @@ Classschedule.openClassscheduleDetail = function () {
 
 $(function () {
     var defaultColunms = Classschedule.initColumn();
-    var table = new BSTable(Classschedule.id, "/classschedule/list", defaultColunms);
+    var table = new BSTable(Classschedule.id, "/classschedule/listforteacher", defaultColunms);
     table.setPaginationType("client");
     Classschedule.table = table.init();
 });

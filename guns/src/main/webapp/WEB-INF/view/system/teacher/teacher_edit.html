@@ -4,30 +4,35 @@
         <div class="form-horizontal">
 
             <input type="hidden" id="id" value="${teacher.id}">
-            <input type="hidden" id="sexValue" value="${teacher.sex}">
-
+             <input type="hidden" id="teacheridvalue" value="${teacher.userId}">
+            <input type="hidden" id="countryvalue" value="${teacher.country}">
+            <input type="hidden" id="languagevalue" value="${teacher.language}">      
             <div class="row">
             <div class="col-sm-6 b-r">
-					<#input id="account" name="账户" value="${teacher.account}"/>
-
-					<#select id="sex" name="性别">
-						<option value="1">男</option>
-						<option value="2">女</option>
+            <#select id="teacherid" name="教师">
+						@for(userIdname in dicMap.useridname){
+						<option value="${userIdname.id}">${userIdname.name}</option>
+						@}
 					</#select>
-					<#input id="country" name="国籍" value="${teacher.country}"/>
+					<#select id="country" name="国籍">
+						@for(countryName in dicMap.country){
+						<option value="${countryName.num}">${countryName.name}</option>
+						@}
+						</#select>
 					<#input id="qq" name="QQ" value="${teacher.qq}" />
-					<#input id="password" name="密码"  type="password" value="${teacher.password}"/>	
-					<#input id="rePassword" name="确认密码" type="password" value="${teacher.password}"/>				
-					<#input id="email" name="邮箱" underline="picture" type="email" value="${teacher.email}"/>	
+	
 								
 				</div>
 				<div class="col-sm-6">
 					<div id="driverInfoContent">
-						<#input id="name" name="姓名"  value="${teacher.name}"/>
+
 						<#input id="age" name="年龄"  value="${teacher.age}"/>
-						<#input id="language" name="语言"  value="${teacher.language}"/>
+						<#select id="language" name="语言">
+						@for(languageName in dicMap.language){
+						<option value="${languageName.num}">${languageName.name}</option>
+						@}
+					</#select>
 						<#input id="skype" name="skype" value="${teacher.skype}"/>
-						<#input id="phone" name="电话" value="${teacher.phone}"/>
 						<#input id="birthday" name="出生日期" underline="true" type="date"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${teacher.birthday}"/>																		
 					</div>

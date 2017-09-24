@@ -56,6 +56,7 @@ ClassscheduleInfoDlg.collectData = function() {
     this.set('studentid');
     this.set('teacherid');
     this.set('date');
+    this.set('orderid');
     this.set('coursetime');
     this.set('materialid');
     this.set('starttime');

@@ -12,17 +12,11 @@
 		<result column="picture" property="picture" />
 		<result column="age" property="age" />
 		<result column="content" property="content" />
-		<result column="phone" property="phone" />
-		<result column="email" property="email" />
 		<result column="isshow" property="isshow" />
 		<result column="qq" property="qq" />
 		<result column="skype" property="skype" />
-		<result column="createdate" property="createDate" />
 		<result column="updateDate" property="updateDate" />
 		<result column="salt" property="salt" />
-		<result column="sex" property="sex" />
-		<result column="account" property="account" />
-		<result column="password" property="password" />
 		<result column="birthday" property="birthday" />
 	</resultMap>
 
