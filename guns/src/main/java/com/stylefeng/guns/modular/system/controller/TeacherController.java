@@ -8,17 +8,26 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.TeacherMapper;
+import com.stylefeng.guns.common.persistence.model.Shuffling;
 import com.stylefeng.guns.common.persistence.model.Teacher;
+import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.util.FileUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
+
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -26,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +51,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class TeacherController extends BaseController {
 
     private String PREFIX = "/system/teacher/";
+    @Resource
+    private GunsProperties gunsProperties;
     @Resource
     private TeacherDao teacherDao;
     
@@ -63,7 +75,19 @@ public class TeacherController extends BaseController {
     	Map countryMap = new HashMap();    	 	
         return PREFIX + "teacher_add.html";
     }
-
+    /**
+     * 跳转到添加teacher
+     */
+    @RequestMapping("/teacher_upload/{id}")
+    public String teacherUpload(@PathVariable Integer id,Model model) {
+    	if (ToolUtil.isEmpty(id)) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+    	Teacher teacher = this.teacherMapper.selectById(id);
+        model.addAttribute(teacher);      
+        LogObjectHolder.me().set(teacher);
+        return PREFIX + "teacher_upload.html";
+    }
     /**
      * 跳转到修改teacher
      */
@@ -90,7 +114,79 @@ public class TeacherController extends BaseController {
     	 List<Map<String, Object>> list = this.teacherDao.list(condition);
          return super.warpObject(new TeacherWrapper(list));
     }
-
+    /**
+     * 新增teacher
+     */
+    @RequestMapping(value = "/upload")
+    @Permission
+    @ResponseBody
+    @BussinessLog(value = "上传教师视频",key = "video",dict = Dict.TeacherMap)
+    public Object upload(@RequestParam(value = "file", required = false) MultipartFile file,
+    		@RequestParam(value = "file1", required = false) MultipartFile file1,
+    		@RequestParam(value = "file2", required = false) MultipartFile file2,
+    		@RequestParam(value = "file3", required = false) MultipartFile file3,HttpServletRequest request) {
+    	String teacherId=request.getParameter("id");
+    	Teacher teacher = teacherMapper.selectById(Integer.parseInt(teacherId));
+    	if(file!=null){
+      		 String picName = UUID.randomUUID().toString() + ".jpg";
+          	 String path = "";
+               try {
+                   String fileSavePath = gunsProperties.getFileUploadPath();
+                   path= fileSavePath+"teacher/"+picName;
+                   file.transferTo(new File(path));
+               } catch (Exception e) {
+              	 e.printStackTrace();
+                   throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+               }
+          	path ="teacher/"+picName;
+          	teacher.setPicture(path);
+      	 }
+    	if(file1!=null){
+   		 String videoName = UUID.randomUUID().toString() + ".mp4";
+       	 String path = "";
+            try {
+                String fileSavePath = gunsProperties.getFileUploadPath();
+                path= fileSavePath+"teacher/"+videoName;
+                file1.transferTo(new File(path));
+            } catch (Exception e) {
+           	 e.printStackTrace();
+                throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+            }
+       	path ="teacher/"+videoName;
+       	teacher.setPath1(path);
+   	 }
+    	if(file2!=null){
+      		 String videoName = UUID.randomUUID().toString() + ".mp4";
+          	 String path = "";
+               try {
+                   String fileSavePath = gunsProperties.getFileUploadPath();
+                   path= fileSavePath+"teacher/"+videoName;
+                   file2.transferTo(new File(path));
+               } catch (Exception e) {
+              	 e.printStackTrace();
+                   throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+               }
+          	path ="teacher/"+videoName;
+          	teacher.setPath2(path);
+      	 }
+    	if(file3!=null){
+      		 String videoName = UUID.randomUUID().toString() + ".mp4";
+          	 String path = "";
+               try {
+                   String fileSavePath = gunsProperties.getFileUploadPath();
+                   path= fileSavePath+"teacher/"+videoName;
+                   file3.transferTo(new File(path));
+               } catch (Exception e) {
+              	 e.printStackTrace();
+                   throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+               }
+          	path ="teacher/"+videoName;
+          	teacher.setPath3(path);
+      	 }
+    	teacherMapper.updateById(teacher);
+    	
+        return super.SUCCESS_TIP;
+    }
     /**
      * 新增teacher
      */
@@ -156,5 +252,23 @@ public class TeacherController extends BaseController {
     @ResponseBody
     public Object detail() {
         return null;
+    }
+    
+    /**
+     * 返回图片
+     *
+     * @author stylefeng
+     * @Date 2017/5/24 23:00
+     */
+    @RequestMapping("/{filename:.+}")
+    public void renderPicture(@PathVariable("filename") String filename, HttpServletResponse response) {
+        String path = gunsProperties.getFileUploadPath() +"teacher/"+filename;
+        try {
+            byte[] bytes = FileUtil.toByteArray(path);
+            response.getOutputStream().write(bytes);
+        }catch (Exception e){
+            //如果找不到图片就返回一个默认图片
+        	e.printStackTrace();
+        }
     }
 }

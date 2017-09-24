@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.constant.tips.SuccessTip;
 import com.stylefeng.guns.common.page.PageInfoBT;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
@@ -26,7 +27,6 @@ public class BaseController {
     protected static String FORWARD = "forward:";
 
     protected static SuccessTip SUCCESS_TIP = new SuccessTip();
-
     protected HttpServletRequest getHttpServletRequest() {
         return HttpKit.getRequest();
     }

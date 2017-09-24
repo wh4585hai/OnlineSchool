@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.stylefeng.guns.common.persistence.model.Course;
+import com.stylefeng.guns.common.persistence.model.Material;
+
 /**
  * courseDao
  *
@@ -13,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface CourseDao {
 	List<Map<String, Object>> list(@Param("condition") String condition);
+	List<Course> listForFront();
+	List<Course> listForAll();
 }

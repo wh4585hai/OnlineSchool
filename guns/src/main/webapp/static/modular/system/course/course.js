@@ -1,5 +1,5 @@
 /**
- * course管理初始化
+ * Course管理初始化
  */
 var Course = {
     id: "CourseTable",	//表格id
@@ -15,10 +15,11 @@ Course.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '标题', field: 'title', align: 'center', valign: 'middle', sortable: true},
-        {title: '内容', field: 'content', align: 'center', valign: 'middle', sortable: true},
-        {title: '发布者', field: 'createrName', align: 'center', valign: 'middle', sortable: true},
-        {title: '创建时间', field: 'createTime', align: 'center', valign: 'middle', sortable: true}
+        {title: '课程名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
+        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: '简介', field: 'summary', align: 'center', valign: 'middle', sortable: true},
+        {title: '描述', field: 'description', align: 'center', valign: 'middle', sortable: true},
+        {title: '教材图片', field: 'img_path', align: 'center', valign: 'middle', sortable: true},
     ];
 };
 
@@ -37,46 +38,43 @@ Course.check = function () {
 };
 
 /**
- * 点击添加course
+ * 点击添加Course
  */
 Course.openAddCourse = function () {
 	window.location=Feng.ctxPath + '/course/course_add';
 //    var index = layer.open({
 //        type: 2,
-//        title: '添加course',
+//        title: '添加Course',
 //        area: ['800px', '420px'], //宽高
 //        fix: false, //不固定
-//       // maxmin: true,
-//        iframe : {
-//			src : Feng.ctxPath + '/course/course_add'
-//		}
-////        content: Feng.ctxPath + '/course/course_add'
+//        maxmin: true,
+//        content: Feng.ctxPath + '/Course/Course_add'
 //    });
 //    this.layerIndex = index;
 };
 
 /**
- * 打开查看course详情
+ * 打开查看Course详情
  */
 Course.openCourseDetail = function () {
 	 if (this.check()) {
-	window.location=Feng.ctxPath + '/course/course_update/'+Course.seItem.id;
-	}
+			window.location=Feng.ctxPath +  '/course/course_update/' + Course.seItem.id
+			}
 //    if (this.check()) {
 //        var index = layer.open({
 //            type: 2,
-//            title: 'course详情',
+//            title: 'Course详情',
 //            area: ['800px', '420px'], //宽高
 //            fix: false, //不固定
 //            maxmin: true,
-//            content: Feng.ctxPath + '/course/course_update/' + Course.seItem.id
+//            content: Feng.ctxPath + '/Course/Course_update/' + Course.seItem.id
 //        });
 //        this.layerIndex = index;
 //    }
 };
 
 /**
- * 删除course
+ * 删除Course
  */
 Course.delete = function () {
     if (this.check()) {
@@ -92,7 +90,7 @@ Course.delete = function () {
 };
 
 /**
- * 查询course列表
+ * 查询Course列表
  */
 Course.search = function () {
     var queryData = {};

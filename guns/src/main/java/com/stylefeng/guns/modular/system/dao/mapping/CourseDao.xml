@@ -4,9 +4,17 @@
 <select id="list" resultType="map">
 		select * from course
 		<if test="condition != null and condition != ''">
-			where title like CONCAT('%',#{condition},'%')
+			where name like CONCAT('%',#{condition},'%')
 		</if>
 		order by id DESC
 	</select>
+	<select id="listForFront" resultType="com.stylefeng.guns.common.persistence.model.Course">
+		select * from course
+		order by num ASC limit 0,3
+	</select>
 	
+		<select id="listForAll" resultType="com.stylefeng.guns.common.persistence.model.Course">
+		select * from course
+		order by num ASC
+	</select>
 </mapper>

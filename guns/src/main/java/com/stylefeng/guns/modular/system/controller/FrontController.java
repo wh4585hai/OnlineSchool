@@ -19,17 +19,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.constant.tips.ValTip;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.common.persistence.dao.CourseMapper;
 import com.stylefeng.guns.common.persistence.dao.MaterialMapper;
 import com.stylefeng.guns.common.persistence.dao.ShufflingMapper;
 import com.stylefeng.guns.common.persistence.dao.StudentMapper;
+import com.stylefeng.guns.common.persistence.model.Course;
 import com.stylefeng.guns.common.persistence.model.Material;
 import com.stylefeng.guns.common.persistence.model.Shuffling;
 import com.stylefeng.guns.common.persistence.model.Student;
+import com.stylefeng.guns.common.persistence.model.Teacher;
 import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
@@ -37,9 +41,11 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.shiro.UsernamePasswordUsertypeToken;
 import com.stylefeng.guns.core.shiro.factory.ShiroFactroy;
+import com.stylefeng.guns.modular.system.dao.CourseDao;
 import com.stylefeng.guns.modular.system.dao.MaterialDao;
 import com.stylefeng.guns.modular.system.dao.ShufflingDao;
 import com.stylefeng.guns.modular.system.dao.StudentDao;
+import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
 
 @Controller
@@ -60,6 +66,12 @@ public class FrontController extends BaseController {
 	private StudentDao studentDao;
 	@Resource
 	private UserMgrDao userDao;
+	@Resource
+	private TeacherDao teacherDao;
+	@Resource
+	private CourseDao courseDao;
+	@Resource
+	private CourseMapper courseMapper;
 	
 
 	private String PREFIX = "/front/";
@@ -86,12 +98,16 @@ public class FrontController extends BaseController {
 	public String index(Model model) {
 		List<Shuffling> shuffling_list = shufflingDao.listforFront();
 		List<Material> material_list = materialDao.listForFront();
+		List<Teacher> teacher_list=teacherDao.listforFront();
+		List<Course> course_list=courseDao.listForFront();
 		for (Material m : material_list) {
 			System.out.println("this=" + m.getImgPath());
 		}
 		setStudentForRequest(model);
 		super.setAttr("shuffling_list", shuffling_list);
+		super.setAttr("teacher_list", teacher_list);
 		super.setAttr("material_list", material_list);
+		super.setAttr("course_list", course_list);
 		return PREFIX + "index.html";
 	}
 	 @RequestMapping("/existStudent")
@@ -105,6 +121,33 @@ public class FrontController extends BaseController {
 	    	}
 	        return vTip;
 	    }
+	 @RequestMapping("/to_modify_pwd")
+	 public String to_update_pwd(String id,Model model){
+		 super.setAttr("id", id);
+		 return PREFIX +  "passWord.html";
+	 }
+	 @RequestMapping("/resetPWD")
+	 @ResponseBody
+	 public Tip update_pwd(String id,String oldpassword,String password,Model model){
+		 System.out.println(id);
+		 Student student = studentMapper.selectById(id);
+		 Subject currentUser = ShiroKit.getSubject();
+		 UsernamePasswordUsertypeToken token = new UsernamePasswordUsertypeToken(student.getAccount(), oldpassword,"student");
+		 token.setRememberMe(true);
+	        try {
+	        	currentUser.login(token);
+	        	// 完善账号信息
+	            student.setSalt(ShiroKit.getRandomSalt(5));
+	            student.setPassword(ShiroKit.md5(password, student.getSalt()));
+	            this.studentMapper.updateById(student);
+	        	
+			} catch (AuthenticationException e) {
+				// TODO: handle exception
+				return new ErrorTip(500, "AuthenticationException");
+			}
+		System.out.println(token);
+		return SUCCESS_TIP;
+	 }
 	@RequestMapping("/acivityDetail/{shufflingId}")
 	public String acivityDetail(@PathVariable("shufflingId") Integer shufflingId,Model model) {
 		Shuffling shuffling = shufflingMapper.selectById(shufflingId);
@@ -122,7 +165,15 @@ public class FrontController extends BaseController {
 		super.setAttr("material_list", material_list);
 		return PREFIX + "materialDetail.html";
 	}
-
+	@RequestMapping("/courseDetail/{courseId}")
+	public String courseDetail(@PathVariable("courseId") Integer courseId,Model model) {
+		List<Course> course_list = courseDao.listForAll();
+		Course course = courseMapper.selectById(courseId);
+		setStudentForRequest(model);
+		super.setAttr("course", course);
+		super.setAttr("course_list", course_list);
+		return PREFIX + "courseDetail.html";
+	}
 	@RequestMapping("/sign")
 	public String sign(Model model) {
 		return PREFIX + "sign.html";

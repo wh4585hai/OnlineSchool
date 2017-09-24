@@ -101,27 +101,15 @@
 			<h4>教师</h4>
 		</div>
 		<div class="col-xs-12" style="padding: 0px;">
-			<div class="col-xs-4" style="width: 32%;">
-				<a href="detail.html"><img src="images/slider1.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">张某某</h4>
+		@for(teacher in teacher_list){
+		<div class="col-xs-4" style="width: 32%;">
+				<a href="detail.html"><img src="${teacher.picture }" style="width:100%;height: 300px;" /></a>
+				<h4 class="text-center">${teacher.name}</h4>
 				<div class="col-xs-12 text-center" style="word-break:break-word">
-				  据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
+				  ${teacher.content}
 				</div>
 			</div>
-			<div class="col-xs-4" style="width: 32%;">
-				<a href="detail.html"><img src="images/slider2.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">张某某</h4>
-			<div class="col-xs-12 text-center" style="word-break:break-word">
-				  据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
-				</div>
-			</div>
-			<div class="col-xs-4"style="width: 32%;">
-				<a href="detail.html"><img src="images/slider3.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">张某某</h4>
-			<div class="col-xs-12 text-center" style="word-break:break-word">
-				  据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
-				</div>
-			</div>
+		@}
 			<div class="col-xs-1" style="width: 14px;margin-top: 5%;">
 				<a href="detail.html">查看更多</a>
 			</div>
@@ -137,27 +125,16 @@
 			<h4>课程</h4>
 		</div>
 		<div class="col-xs-12" style="padding: 0px;">
-			<div class="col-xs-4" style="width: 32%;">
-				<a href="lessonDetail.html"><img src="images/slider1.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">朗文国际英语教程</h4>
+		
+		@for(course in course_list){
+		<div class="col-xs-4" style="width: 32%;">
+				<a href="front/courseDetail/${course.id}"><img src="${course.imgPath}" style="width:100%;height: 300px;" /></a>
+				<h4 class="text-center">${course.name}</h4>
 				<div class="col-xs-12 text-center" style="word-break:break-word">
-				据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
+				${course.summary}
 				</div>
 			</div>
-			<div class="col-xs-4" style="width: 32%;">
-				<a href="lessonDetail.html"><img src="images/slider2.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">朗文国际英语教程</h4>
-			<div class="col-xs-12 text-center" style="word-break:break-word">
-				 据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
-				</div>
-			</div>
-			<div class="col-xs-4" style="width: 32%;">
-				<a href="lessonDetail.html"><img src="images/slider3.jpg" style="width:100%;height: 300px;" /></a>
-				<h4 class="text-center">朗文国际英语教程</h4>
-			<div class="col-xs-12 text-center" style="word-break:break-word">
-				  据圣经故事，记载说，起初的时候神创造天地。”紧接着又陈列了七天创造的工作，前六天创造了组成万物的各种要素，第七天安..
-				</div>
-			</div>
+		@}
 			<div class="col-xs-1" style="width: 14px;margin-top: 5%;">
 				<a href="detail.html">查看更多</a>
 			</div>

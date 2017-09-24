@@ -83,7 +83,22 @@ TeacherInfoDlg.addSubmit = function() {
     ajax.set(this.teacherInfoData);
     ajax.start();
 }
-
+/**
+ * 提交添加
+ */
+TeacherInfoDlg.upload = function() {
+	var options = {
+		    success: function(data) {
+		    	 Feng.success("上传成功!");
+		    	 window.location=Feng.ctxPath + '/teacher';   
+		    },
+		    error: function(data){
+	    		 Feng.error("上传失败!" + data.responseJSON.message + "!");
+	    		 window.location=Feng.ctxPath + '/teacher';
+	    		}
+	};
+    $('#teacherUpload').ajaxSubmit(options); 
+}
 /**
  * 提交修改
  */

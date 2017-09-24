@@ -1,18 +1,8 @@
 /**
- * 初始化course详情对话框
+ * 初始化Course详情对话框
  */
 var CourseInfoDlg = {
-    courseInfoData : {},
-    content: null,
-    validateFields: {
-        title: {
-            validators: {
-                notEmpty: {
-                    message: '标题不能为空'
-                }
-            }
-        }
-    }
+    courseInfoData : {}
 };
 
 /**
@@ -47,78 +37,81 @@ CourseInfoDlg.get = function(key) {
  * 关闭此对话框
  */
 CourseInfoDlg.close = function() {
-	 window.location=Feng.ctxPath + '/course';
-//    parent.layer.close(window.parent.Course.layerIndex);
+    parent.layer.close(window.parent.Course.layerIndex);
 }
-/**
- * 验证数据是否为空
- */
-CourseInfoDlg.validate = function () {
-    $('#courseInfoForm').data("bootstrapValidator").resetForm();
-    $('#courseInfoForm').bootstrapValidator('validate');
-    return $("#courseInfoForm").data('bootstrapValidator').isValid();
-};
+
 /**
  * 收集数据
  */
 CourseInfoDlg.collectData = function() {
     this.set('id');
-    this.set('title');
-    this.courseInfoData['content'] =  CKEDITOR.instances.content.getData();
-    if ($("#isHome").is(":checked")) {
-    	  this.courseInfoData['isHome']=1;
-    }else{
-    	  this.courseInfoData['isHome']=0;
-    }
-   // this.set('isHome');
 }
 
 /**
  * 提交添加
  */
 CourseInfoDlg.addSubmit = function() {
-
-    this.clearData();
-    this.collectData();
-    if (!this.validate()) {
-        return;
-    }
-    //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/course/add", function(data){
-        Feng.success("添加成功!");
+//
+//    this.clearData();
+//    this.collectData();
+//
+//    //提交信息
+//    var ajax = new $ax(Feng.ctxPath + "/Course/add", function(data){
+//        Feng.success("添加成功!");
 //        window.parent.Course.table.refresh();
-      //  CourseInfoDlg.close();
-        window.location=Feng.ctxPath + '/course';
-    },function(data){
-        Feng.error("添加失败!" + data.responseJSON.message + "!");
-    });
-    console.log(this.courseInfoData)
-    ajax.set(this.courseInfoData);
-    ajax.start();
+//        CourseInfoDlg.close();
+//    },function(data){
+//        Feng.error("添加失败!" + data.responseJSON.message + "!");
+//    });
+//    ajax.set(this.CourseInfoData);
+//    ajax.start();
+	CKupdate();
+	var options = {
+		    success: function(data) {
+		    	 Feng.success("添加成功!");
+		    	 window.location=Feng.ctxPath + '/course';
+		    },
+		    error: function(data){
+	    		 Feng.error("添加失败!" + data.responseJSON.message + "!");
+	    		}
+	};
+    $('#courseAdd').ajaxSubmit(options);  
 }
 
 /**
  * 提交修改
  */
 CourseInfoDlg.editSubmit = function() {
+	CKupdate();
+	var options = {
+		    success: function(data) {
+		    	 Feng.success("修改成功!");
+		    	 window.location=Feng.ctxPath + '/course';
+		    },
+		    error: function(data){
+	    		 Feng.error("修改失败!" + data.responseJSON.message + "!");
+	    		}
+	};
+    $('#courseUpdate').ajaxSubmit(options);  
 
-    this.clearData();
-    this.collectData();
-
-    //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/course/update", function(data){
-        Feng.success("修改成功!");
-        window.location=Feng.ctxPath + '/course';
+//    this.clearData();
+//    this.collectData();
+//
+//    //提交信息
+//    var ajax = new $ax(Feng.ctxPath + "/Course/update", function(data){
+//        Feng.success("修改成功!");
 //        window.parent.Course.table.refresh();
 //        CourseInfoDlg.close();
-    },function(data){
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.courseInfoData);
-    ajax.start();
+//    },function(data){
+//        Feng.error("修改失败!" + data.responseJSON.message + "!");
+//    });
+//    ajax.set(this.CourseInfoData);
+//    ajax.start();
 }
-
+function CKupdate() {
+    for (instance in CKEDITOR.instances)
+        CKEDITOR.instances[instance].updateElement();
+}
 $(function() {
-	 Feng.initValidator("courseInfoForm", CourseInfoDlg.validateFields);
-
+	 CKEDITOR.replace('content');
 });

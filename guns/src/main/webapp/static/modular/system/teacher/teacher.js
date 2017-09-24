@@ -72,7 +72,15 @@ Teacher.openTeacherDetail = function () {
        
     }
 };
-
+/**
+ * 打开查看teacher详情
+ */
+Teacher.upload = function () {
+    if (this.check()) {
+    	window.location=Feng.ctxPath + '/teacher/teacher_upload/'+Teacher.seItem.id;
+       
+    }
+};
 /**
  * 删除teacher
  */

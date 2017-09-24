@@ -12,8 +12,6 @@ public class CourseWarpper extends BaseControllerWarpper{
 	@Override
 	protected void warpTheMap(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		  Integer creater = (Integer) map.get("userId");
-	        map.put("createrName", ConstantFactory.me().getUserNameById(creater));
 	}
 
 }

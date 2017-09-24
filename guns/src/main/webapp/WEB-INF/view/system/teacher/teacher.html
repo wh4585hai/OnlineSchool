@@ -26,6 +26,9 @@
                             @if(shiro.hasPermission("/teacher/delete")){
                                 <#button name="删除" icon="fa-plus" clickFun="Teacher.delete()" space="true"/>
                             @}
+                            @if(shiro.hasPermission("/teacher/upload")){
+									<#button name="老师相关文件上传" icon="fa-refresh" clickFun="Teacher.upload()" space="true"/>
+									@}
                         </div>
                         <#table id="TeacherTable"/>
                     </div>
