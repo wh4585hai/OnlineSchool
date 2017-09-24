@@ -8,13 +8,13 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.TeacherMapper;
-import com.stylefeng.guns.common.persistence.model.Shuffling;
 import com.stylefeng.guns.common.persistence.model.Teacher;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.FileUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
+import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 
@@ -55,6 +55,8 @@ public class TeacherController extends BaseController {
     private GunsProperties gunsProperties;
     @Resource
     private TeacherDao teacherDao;
+    @Resource
+    private DicUtilDao dicUtilDao;
     
     @Resource
     private TeacherMapper teacherMapper;
@@ -72,7 +74,11 @@ public class TeacherController extends BaseController {
      */
     @RequestMapping("/teacher_add")
     public String teacherAdd(Model model) {
-    	Map countryMap = new HashMap();    	 	
+    	Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("country", ConstantFactory.me().getDictList("国籍"));
+    	dicMap.put("language", ConstantFactory.me().getDictList("语言"));
+    	model.addAttribute("dicMap",dicMap);
         return PREFIX + "teacher_add.html";
     }
     /**
@@ -86,6 +92,11 @@ public class TeacherController extends BaseController {
     	Teacher teacher = this.teacherMapper.selectById(id);
         model.addAttribute(teacher);      
         LogObjectHolder.me().set(teacher);
+        Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("country", ConstantFactory.me().getDictList("国籍"));
+    	dicMap.put("language", ConstantFactory.me().getDictList("语言"));
+    	model.addAttribute("dicMap",dicMap);
         return PREFIX + "teacher_upload.html";
     }
     /**
@@ -198,15 +209,10 @@ public class TeacherController extends BaseController {
     	   if (result.hasErrors()) {
                throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
            }
-    	if (ToolUtil.isOneEmpty(teacher, teacher.getName())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
-        }
     	//String introduction = request.getParameter("introduction");
     
     	teacher.setSalt(ShiroKit.getRandomSalt(5));
-    	teacher.setPassword(ShiroKit.md5(teacher.getPassword(), teacher.getSalt()));         	
     	teacher.setUserId(ShiroKit.getUser().getId());
-    	teacher.setCreateDate(new Date());
     	teacher.insert();   
         return super.SUCCESS_TIP;
     }
@@ -236,9 +242,6 @@ public class TeacherController extends BaseController {
     	  if (result.hasErrors()) {
               throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
           }
-    	 if (ToolUtil.isOneEmpty(teacher, teacher.getName())) {
-             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
-         }
     	 Teacher nTeacher = new Teacher();
     	 BeanUtils.copyProperties(teacher,nTeacher);                       
     	 nTeacher.updateById();

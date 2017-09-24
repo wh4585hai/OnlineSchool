@@ -47,20 +47,14 @@ TeacherInfoDlg.close = function() {
  */
 TeacherInfoDlg.collectData = function() {
     this.set('id');
-    this.set('name');
-    this.set('age');
-    this.set('sex');
-    this.set('phone');
+    this.set('age'); 
     this.set('country');
     this.set('language');
     this.set('picture');
-    this.set('email');
     this.set('qq');
     this.teacherInfoData['content'] =  CKEDITOR.instances.content.getData();
    // this.set('introduction');
     this.set('skype');
-    this.set('password');
-    this.set('account');
     this.set('birthday');
 }
 

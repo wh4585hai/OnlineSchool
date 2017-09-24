@@ -15,19 +15,13 @@ Teacher.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '姓名', field: 'name',  align: 'center', valign: 'middle',sortable: true},
+        {title: '姓名', field: 'teacherName',  align: 'center', valign: 'middle',sortable: true},
         {title: '国家', field: 'countryName',  align: 'center', valign: 'middle'},
-        {title: '语言', field: 'language',  align: 'center', valign: 'middle'},
-        {title: '性别', field: 'sexName', align: 'center', valign: 'middle', sortable: true},
-        {title: '图片', field: 'picture',  visible: false,align: 'center', valign: 'middle'},
+        {title: '语言', field: 'languageName',  align: 'center', valign: 'middle'},    
         {title: '年龄', field: 'age',  align: 'center', valign: 'middle'},
-        {title: '简介', field: 'content', visible: false, align: 'center', valign: 'middle'},
-        {title: '电话', field: 'phone',  align: 'center', valign: 'middle'},
-        {title: '邮箱', field: 'email',  align: 'center', valign: 'middle'},
         {title: '是否展现', field: 'isshowName',  align: 'center', valign: 'middle'},
         {title: 'QQ', field: 'qq',  align: 'center', valign: 'middle'},
         {title: 'skype', field: 'skype',  align: 'center', valign: 'middle'},
-        {title: '创建日期', field: 'createdate', visible: false, align: 'center', valign: 'middle'},
         {title: '上次修改时间', field: 'updatedate', visible: false, align: 'center', valign: 'middle'}
     ];
 };
