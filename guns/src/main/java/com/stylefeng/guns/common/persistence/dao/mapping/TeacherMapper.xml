@@ -5,7 +5,6 @@
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.stylefeng.guns.common.persistence.model.Teacher">
 		<id column="id" property="id" />
-		<result column="name" property="name" />
 		<result column="userid" property="userId" />
 		<result column="country" property="country" />
 		<result column="language" property="language" />

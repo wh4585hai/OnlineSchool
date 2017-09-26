@@ -47,7 +47,8 @@ TeacherInfoDlg.close = function() {
  */
 TeacherInfoDlg.collectData = function() {
     this.set('id');
-    this.set('age'); 
+    this.set('age');
+    this.set('userId');
     this.set('country');
     this.set('language');
     this.set('picture');

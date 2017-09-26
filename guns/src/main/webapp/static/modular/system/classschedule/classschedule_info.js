@@ -73,11 +73,14 @@ ClassscheduleInfoDlg.collectUpdateData = function() {
 	this.set('id');
     this.set('studentid');
     this.set('teacherid');
+    this.set('orderid');
     this.set('date');
     this.set('coursetime');
     this.set('materialid');
     this.set('starttime');
     this.set('status');
+    this.set('isdelay');
+    this.set('remark');
     this.set('delayreason');
   
     
@@ -139,12 +142,37 @@ ClassscheduleInfoDlg.editSubmit = function() {
     
 }
 
+/**
+ * 签到修改
+ */
+ClassscheduleInfoDlg.checkInSubmit = function() {
+	debugger;
+
+    this.clearData();
+    this.collectUpdateData();
+    console.log(this.classscheduleInfoData);
+
+    //提交信息
+    var ajax = new $ax(Feng.ctxPath + "/classschedule/checkin", function(data){
+        Feng.success("修改成功!");
+        window.parent.Classschedule.table.refresh();
+        ClassscheduleInfoDlg.close();
+    },function(data){
+        Feng.error("修改失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set(this.classscheduleInfoData);
+    ajax.start();
+    
+}
+
 $(function() {
+	var avatarUp = new $WebUpload("file");
+    avatarUp.init();
 	$("#teacherid").val($("#teacheridvalue").val());
 	$("#coursetime").val($("#coursetimevalue").val());
 	$("#materialid").val($("#materialidvalue").val());
-	$("#status").val($("#isdelayvalue").val());
-	$("#isdelay").val($("#statusvalue").val());
+	$("#status").val($("#statusvalue").val());
+	$("#isdelay").val($("#isdelayvalue").val());
 	
 
 });

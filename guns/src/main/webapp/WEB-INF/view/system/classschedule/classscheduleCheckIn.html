@@ -9,6 +9,7 @@
             <input type="hidden" id="materialidvalue" value="${classSchedule.materialid}">
             <input type="hidden" id="isdelayvalue" value="${classSchedule.isdelay}">
             <input type="hidden" id="statusvalue" value="${classSchedule.status}">
+            <input type="hidden" id="orderid" value="${classSchedule.orderid}"/>
 
             <div class="row">
                 <div class="col-sm-6 b-r">
@@ -46,14 +47,14 @@
 					</#select>
 	                <#input id="delayreason" name="delay reason" value="${classSchedule.delayreason}" disabled="disabled"/>
 	                <#avatar id="file" name="文件" underline="true" avatarImg=""/>
-	                <#input id="remark" name="备注" value="${classSchedule.remark}"/>
 
                 </div>
             </div>
+            <#input id="remark" name="备注" value="${classSchedule.remark}"/>
 
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
-                    <#button btnCss="info" name="submit" id="ensure" icon="fa-check" clickFun="ClassscheduleInfoDlg.editSubmit()"/>
+                    <#button btnCss="info" name="submit" id="ensure" icon="fa-check" clickFun="ClassscheduleInfoDlg.checkInSubmit()"/>
                     <#button btnCss="danger" name="cancel" id="cancel" icon="fa-eraser" clickFun="ClassscheduleInfoDlg.close()"/>
                 </div>
             </div>

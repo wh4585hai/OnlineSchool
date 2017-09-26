@@ -25,7 +25,7 @@ Classschedule.initColumn = function () {
         {title: '联系方式', field: 'classnumber',  align: 'center', valign: 'middle'},
         {title: '文件', field: 'file',  align: 'center', valign: 'middle'},
         {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'},
-        {title: '是都延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
+        {title: '时否延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
         {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
         {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
         

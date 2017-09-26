@@ -92,11 +92,7 @@ public class TeacherController extends BaseController {
     	Teacher teacher = this.teacherMapper.selectById(id);
         model.addAttribute(teacher);      
         LogObjectHolder.me().set(teacher);
-        Map dicMap = new HashMap();
-    	dicMap.put("useridname", dicUtilDao.getTeacherName());
-    	dicMap.put("country", ConstantFactory.me().getDictList("国籍"));
-    	dicMap.put("language", ConstantFactory.me().getDictList("语言"));
-    	model.addAttribute("dicMap",dicMap);
+       
         return PREFIX + "teacher_upload.html";
     }
     /**
@@ -112,7 +108,11 @@ public class TeacherController extends BaseController {
     	Teacher teacher = this.teacherMapper.selectById(id);
         model.addAttribute(teacher);      
         LogObjectHolder.me().set(teacher);
-    	
+        Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	dicMap.put("country", ConstantFactory.me().getDictList("国籍"));
+    	dicMap.put("language", ConstantFactory.me().getDictList("语言"));
+    	model.addAttribute("dicMap",dicMap);
         return PREFIX + "teacher_edit.html";
     }
 
@@ -210,9 +210,7 @@ public class TeacherController extends BaseController {
                throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
            }
     	//String introduction = request.getParameter("introduction");
-    
-    	teacher.setSalt(ShiroKit.getRandomSalt(5));
-    	teacher.setUserId(ShiroKit.getUser().getId());
+   
     	teacher.insert();   
         return super.SUCCESS_TIP;
     }

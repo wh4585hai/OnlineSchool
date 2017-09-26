@@ -182,7 +182,7 @@ public class ClassscheduleController extends BaseController {
     	classSchedule.setCoursetime(classScheduleModel.getCoursetime());
     	classSchedule.setMaterialid(classScheduleModel.getMaterialid());
     	classSchedule.setOrderid(classScheduleModel.getOrderid());
-    	classSchedule.setStatus(0);
+    	classSchedule.setStatus(1);
   	
     	int months = classScheduleModel.getMaterialid();
     	Date startDate = classScheduleModel.getDate();
@@ -273,6 +273,27 @@ public class ClassscheduleController extends BaseController {
    	 if (ToolUtil.isOneEmpty(classSchedule, classSchedule.getId())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+   	ClassSchedule nClassSchedule = new ClassSchedule();
+   	 BeanUtils.copyProperties(classSchedule,nClassSchedule);                       
+   	nClassSchedule.updateById();
+        return SUCCESS_TIP;
+    }
+    
+    /**
+     * 修改课程表
+     */
+    @RequestMapping(value = "/checkin")
+    @ResponseBody
+    public Object checkIn(@Valid ClassSchedule classSchedule, BindingResult result) {
+    	 if (result.hasErrors()) {
+             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+         }
+   	 if (ToolUtil.isOneEmpty(classSchedule, classSchedule.getId())) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+   	 if(classSchedule.getFile()!=null&&classSchedule.getFile()!="") {
+   		classSchedule.setStatus(1);
+   	 }
    	ClassSchedule nClassSchedule = new ClassSchedule();
    	 BeanUtils.copyProperties(classSchedule,nClassSchedule);                       
    	nClassSchedule.updateById();

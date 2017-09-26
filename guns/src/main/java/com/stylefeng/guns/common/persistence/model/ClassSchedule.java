@@ -99,10 +99,6 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	}
 
 
-	public void setStudentid(int studentid) {
-		this.studentid = studentid;
-	}
-
 
 	public String getCoursetime() {
 		return coursetime;
