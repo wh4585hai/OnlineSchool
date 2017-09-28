@@ -5,3 +5,48 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+#nav-menu{
+	  line-height:40px;
+	  padding:0px 10px 0px 10px;
+	  position:fixed;
+	  top:0px;
+	  left:0px;
+	    z-index: 100;
+	  background:#ffffff;
+	}
+	#nav-menu a{
+	    font-size:14px;
+	    padding:10px 10px;
+            cursor:pointer;
+	    color:#000000;
+	    font-weight:700;
+	    text-decoration:none;
+	}
+	#nav-menu a:hover{
+	      background-color: #e84c3d;
+    		color: white;
+	}
+
+	#myCarousel{
+	    margin-top: 60px;
+	}
+	#down-menu{
+	    position:absolute;
+	    right:140px;
+	    top:42px;
+	    list-style:none;
+	    display:none;
+	}
+	#down-menu li{
+	    line-height:30px;
+	    background:#ffffff;
+	    padding:5px;10px;
+	    
+	}
+	#down-menu li:hover{
+		background-color: #e84c3d;
+    		color: white;
+	}
+       	a{
+	 text-decoration:none;
+	}

@@ -18,5 +18,5 @@ public interface TeacherDao {
 	List<Map<String, Object>> list(@Param("condition") String condition);
 	
 	List<Map<String, Object>> listforFront();
-
+	List<Map<String, Object>> listforAll();
 }

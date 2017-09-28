@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.constant.tips.Tip;
@@ -30,6 +31,7 @@ import com.stylefeng.guns.common.persistence.dao.CourseMapper;
 import com.stylefeng.guns.common.persistence.dao.MaterialMapper;
 import com.stylefeng.guns.common.persistence.dao.ShufflingMapper;
 import com.stylefeng.guns.common.persistence.dao.StudentMapper;
+import com.stylefeng.guns.common.persistence.dao.TeacherMapper;
 import com.stylefeng.guns.common.persistence.model.Course;
 import com.stylefeng.guns.common.persistence.model.Material;
 import com.stylefeng.guns.common.persistence.model.Shuffling;
@@ -70,6 +72,8 @@ public class FrontController extends BaseController {
 	private UserMgrDao userDao;
 	@Resource
 	private TeacherDao teacherDao;
+	@Resource
+	private TeacherMapper teacherMapper;
 	@Resource
 	private CourseDao courseDao;
 	@Resource
@@ -179,6 +183,21 @@ public class FrontController extends BaseController {
 		super.setAttr("course_list", course_list);
 		return PREFIX + "courseDetail.html";
 	}
+	
+	@RequestMapping("/teacherDetail/{teacherId}")
+	public String teacherDetail(@PathVariable("teacherId") Integer teacherId,Model model) {
+		List<Map<String, Object>> list = teacherDao.listforAll();
+		Teacher teacher = teacherMapper.selectById(teacherId);
+		setStudentForRequest(model);
+		super.setAttr("teacher", teacher);
+		super.setAttr("teacherName", ConstantFactory.me().getUserNameById(teacher.getUserId()));
+		super.setAttr("languageName", ConstantFactory.me().getDictsByName("语言",teacher.getLanguage()));
+		super.setAttr("teacher_list", new TeacherWrapper(list).warp());
+		return PREFIX + "teacherDetail.html";
+	}
+	
+	
+	
 	@RequestMapping("/sign")
 	public String sign(Model model) {
 		return PREFIX + "sign.html";
@@ -270,4 +289,17 @@ public class FrontController extends BaseController {
         ShiroKit.getSubject().logout();
         return REDIRECT + "/front/login_s";
     }
+    
+    @RequestMapping("/to_new_order")
+	 public String to_new_order(String id,Model model){
+		 super.setAttr("id", id);
+		 setStudentForRequest(model);
+		 return PREFIX +  "order.html";
+	 }
+	 @RequestMapping("/to_my_order")
+	 public String to_my_order(String id,Model model){
+		 super.setAttr("id", id);
+		 setStudentForRequest(model);
+		 return PREFIX +  "orderList.html";
+	 }
 }

@@ -12,4 +12,7 @@
 		select * from teacher
 		order by isshow DESC limit 0,3
 	</select>
+	<select id="listforAll" resultType="map">
+		select * from teacher
+	</select>
 </mapper>
