@@ -17,6 +17,6 @@ import com.stylefeng.guns.common.persistence.model.Teacher;
 public interface TeacherDao {
 	List<Map<String, Object>> list(@Param("condition") String condition);
 	
-	List<Teacher> listforFront();
+	List<Map<String, Object>> listforFront();
 
 }

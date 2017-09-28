@@ -8,7 +8,7 @@
 		</if>
 		order by id DESC
 	</select>
-	<select id="listforFront" resultType="com.stylefeng.guns.common.persistence.model.Teacher">
+	<select id="listforFront" resultType="map">
 		select * from teacher
 		order by isshow DESC limit 0,3
 	</select>

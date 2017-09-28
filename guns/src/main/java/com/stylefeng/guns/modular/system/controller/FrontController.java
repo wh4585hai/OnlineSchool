@@ -4,6 +4,7 @@ import static com.stylefeng.guns.core.support.HttpKit.getIp;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -47,6 +48,7 @@ import com.stylefeng.guns.modular.system.dao.ShufflingDao;
 import com.stylefeng.guns.modular.system.dao.StudentDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 
 @Controller
 @RequestMapping("/front")
@@ -98,14 +100,17 @@ public class FrontController extends BaseController {
 	public String index(Model model) {
 		List<Shuffling> shuffling_list = shufflingDao.listforFront();
 		List<Material> material_list = materialDao.listForFront();
-		List<Teacher> teacher_list=teacherDao.listforFront();
+		
+		List<Map<String, Object>> list = this.teacherDao.listforFront();
+		
+		
 		List<Course> course_list=courseDao.listForFront();
 		for (Material m : material_list) {
 			System.out.println("this=" + m.getImgPath());
 		}
 		setStudentForRequest(model);
 		super.setAttr("shuffling_list", shuffling_list);
-		super.setAttr("teacher_list", teacher_list);
+		super.setAttr("teacher_list", new TeacherWrapper(list).warp());
 		super.setAttr("material_list", material_list);
 		super.setAttr("course_list", course_list);
 		return PREFIX + "index.html";
