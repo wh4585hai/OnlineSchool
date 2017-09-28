@@ -131,16 +131,6 @@ public class FrontController extends BaseController {
 		 super.setAttr("id", id);
 		 return PREFIX +  "passWord.html";
 	 }
-	 @RequestMapping("/to_new_order")
-	 public String to_new_order(String id,Model model){
-		 super.setAttr("id", id);
-		 return PREFIX +  "order.html";
-	 }
-	 @RequestMapping("/to_my_order")
-	 public String to_my_order(String id,Model model){
-		 super.setAttr("id", id);
-		 return PREFIX +  "orderList.html";
-	 }
 	 @RequestMapping("/resetPWD")
 	 @ResponseBody
 	 public Tip update_pwd(String id,String oldpassword,String password,Model model){
