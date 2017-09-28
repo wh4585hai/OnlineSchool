@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<link rel="stylesheet" href="${ctxPath}/static/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="${ctxPath}/static/css/style1.css">
+		<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css" /> -->
+		<style>
+			i{
+				position:absolute!important;right: 20px!important;top: 12.5px!important;
+			}
+			.monthPoint{
+				position: absolute;
+			    right: 16px;
+			    top: 0px;
+			    height: 38px;
+			    margin-top: 1px;
+			    padding-top: 8px;
+			    background: #f5f5f5;
+			}
+			.erweimaDiv{
+				    position: absolute;
+				    top: 0px;
+				    left: 0px;
+				    width: 60%;
+				    text-align: center;
+				    height: 50%;
+				    background: #f5f5f5;
+				    padding: 60px;
+				    display: none;
+				    margin-left: 20%;
+			}
+			.erweimaDiv img{
+				width: 100%;
+				height: 100%;
+				max-width: 100%!important;
+			}
+		</style>
+		<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    	<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+		<!-- <script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script> -->
+		<script>
+		$(function(){
+			$(".pay").each(function(){
+				$(this).click(function(){
+					$(".erweimaDiv").show();
+				})
+			})
+			$("#close").bind("click",function(){
+				$(".erweimaDiv").hide();
+			})
+		})
+		</script>
+	</head>
+	<body>
+	@layout("header.html"){
+@}
+		<div class="col-xs-12">
+			<div class="col-xs-2" style="background: #F5F5F5;height: 600px;">
+				
+			</div>
+			<div class="col-xs-8" style="margin-top: 30px;">
+				<h4>我的订单</h4>
+				<div class="col-xs-12" style="border: 1px solid#f5f5f5;padding: 15px;margin-bottom: 10px;">
+					<div>
+						<span>课程名称:小学课程</span>
+						<span class="pull-right">2017-09-24</span>
+					</div>
+					<div>
+						<span>课程期限：6个月</span><br />
+						<span>上课时间:星期一，星期二，星期三</span><br />
+						<span>教材：小学教材</span>
+					</div>
+					<div>
+						<span>开始日期:2017-10-09</span>
+						<span>上课方式：QQ</span>
+					</div>
+					<a class="btn btn-default pay pull-right">支付</a>
+				</div>
+				<div class="col-xs-12" style="border: 1px solid#f5f5f5;padding: 15px;margin-bottom: 10px;">
+					<div>
+						<span>课程名称:小学课程</span>
+						<span class="pull-right">2017-09-24</span>
+					</div>
+					<div>
+						<span>课程期限：6个月</span><br />
+						<span>上课时间:星期一，星期二，星期三</span><br />
+						<span>教材：小学教材</span>
+					</div>
+					<div>
+						<span>开始日期:2017-10-09</span>
+						<span>上课方式：QQ</span>
+					</div>
+					<a class="btn btn-default pull-right" style="background: #0cce23;border: none;cursor: auto;">已支付</a>
+				</div>
+				<div class="col-xs-12" style="border: 1px solid#f5f5f5;padding: 15px;margin-bottom: 10px;">
+					<div>
+						<span>课程名称:小学课程</span>
+						<span class="pull-right">2017-09-24</span>
+					</div>
+					<div>
+						<span>课程期限：6个月</span><br />
+						<span>上课时间:星期一，星期二，星期三</span><br />
+						<span>教材：小学教材</span>
+					</div>
+					<div>
+						<span>开始日期:2017-10-09</span>
+						<span>上课方式：QQ</span>
+					</div>
+					<a class="btn btn-default pay pull-right">支付</a>
+				</div>
+				<div class="col-xs-12" style="border: 1px solid#f5f5f5;padding: 15px;margin-bottom: 10px;">
+					<div>
+						<span>课程名称:小学课程</span>
+						<span class="pull-right">2017-09-24</span>
+					</div>
+					<div>
+						<span>课程期限：6个月</span><br />
+						<span>上课时间:星期一，星期二，星期三</span><br />
+						<span>教材：小学教材</span>
+					</div>
+					<div>
+						<span>开始日期:2017-10-09</span>
+						<span>上课方式：QQ</span>
+					</div>
+					<a class="btn btn-default pay pull-right">支付</a>
+				</div>
+				<div class="erweimaDiv">
+					<img src="images/erweima.jpg" />
+					<a id="close" class="btn btn-default">关闭</a>
+				</div>
+			</div>
+			<div class="col-xs-2" style="background: #F5F5F5;height: 600px">
+				
+			</div>
+		</div>
+		@layout("footer.html"){
+@}
+	</body>
+</html>

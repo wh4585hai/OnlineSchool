@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="${ctxPath}/static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="${ctxPath}/static/css/style1.css">
+		<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css" /> -->
+		<style>
+			i{
+				position:absolute!important;right: 20px!important;top: 12.5px!important;
+			}
+			.monthPoint{
+				position: absolute;
+			    right: 16px;
+			    top: 0px;
+			    height: 38px;
+			    margin-top: 1px;
+			    padding-top: 8px;
+			    background: #f5f5f5;
+			}
+			.erweimaDiv{
+				    position: absolute;
+				    top: 0px;
+				    left: 0px;
+				    width: 100%;
+				    text-align: center;
+				    height: 100%;
+				    background: #f5f5f5;
+				    padding: 60px;
+				    display: none;
+			}
+			.erweimaDiv img{
+				width: 100%;
+				height: 100%;
+				max-width: 100%!important;
+			}
+		</style>
+		<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    	<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+		<!-- <script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script> -->
+		<script>
+		$(function(){
+			$("#lessionType").bind("change",function(){
+				if($("#lessionType :checked").val()=="1"){
+					$("#QQDiv").show();
+					$("#SkipDiv").hide();
+				}else if($("#lessionType :checked").val()=="2"){
+					$("#QQDiv").hide();
+					$("#SkipDiv").show();
+				}
+			})
+			$("#close").bind("click",function(){
+				$(".erweimaDiv").hide();
+			})
+		})
+		function Buy(){
+			$(".erweimaDiv").show();
+		}
+		</script>
+	</head>
+	<body>
+	@layout("header.html"){
+@}
+		<div class="page-wrapper">
+
+		<!-- main-container start -->
+		<!-- ================ -->
+		<section class="main-container light-translucent-bg" style="padding-top: 20px;">
+
+			<div class="container">
+				<div class="row">
+
+					<!-- main start -->
+					<!-- ================ -->
+					<div class="main col-md-8 col-md-offset-2">
+
+						<div class="object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+							<div class="form-block center-block">
+								<h2 class="title">新建订单</h2>
+								<hr>
+								<div class="form-horizontal">
+									<div class="form-group has-feedback">
+										<label for="inputName" class="col-sm-3 control-label">课程名称
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>小学课程</option>
+												<option>小学课程</option>
+												<option>小学课程</option>
+											</select>
+												
+										</div>
+								
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputPassword" class="col-sm-3 control-label">课程期限
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="number" class="form-control" placeholder="" required="">
+											<div class="monthPoint">个月</div>
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputLastName" class="col-sm-3 control-label">上课时间
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="checkbox" name="check" />星期一
+											<input type="checkbox" name="check" />星期二
+											<input type="checkbox" name="check" />星期三
+											<input type="checkbox" name="check" />星期四
+											<input type="checkbox" name="check" />星期五
+											<input type="checkbox" name="check" />星期六
+											<input type="checkbox" name="check" />星期日
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">教材
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<select class="form-control">
+												<option>小学教材</option>
+												<option>小学教材</option>
+												<option>小学教材</option>
+											</select>
+												
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">开始日期
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="date" />
+												
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputPassword" class="col-sm-3 control-label">上课方式
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<select class="form-control" id="lessionType">
+												<option value="1">QQ</option>
+												<option value="2">skip</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group has-feedback" id="QQDiv">
+										<label for="inputPassword" class="col-sm-3 control-label">QQ账号
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="number" class="form-control" id="QQNumber" />
+										</div>
+									</div>
+									<div class="form-group has-feedback" style="display: none;" id="SkipDiv">
+										<label for="inputPassword" class="col-sm-3 control-label">Skip账号
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input type="number" class="form-control" id="QQNumber" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-8">
+											<a onclick="Buy()" class="btn btn-default">购买</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="erweimaDiv">
+								<img src="images/erweima.jpg" />
+								<a id="close" class="btn btn-default">关闭</a>
+							</div>
+						</div>
+
+					</div>
+					<!-- main end -->
+
+				</div>
+			</div>
+
+		</section>
+		<!-- main-container end -->
+
+	</div>
+	@layout("footer.html"){
+@}
+	</body>
+</html>
