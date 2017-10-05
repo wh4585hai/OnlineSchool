@@ -17,7 +17,7 @@ public class MaterialWarpper extends BaseControllerWarpper{
 		if (ToolUtil.isEmpty(pdf_path) || pdf_path.equals("")) {
             map.put("pdf_path", pdf_path);
         } else {
-        	String url = "http://localhost:8080/guns/"+pdf_path;
+        	String url = "http://47.94.96.156:8080/guns-1.0.0-SNAPSHOT/"+pdf_path;
         	String pdf = "<a target='_blank' href='/generic/web/viewer.html?file="+url+"'>点击查看PDF</a>";
             map.put("pdf_path", pdf);
         }
