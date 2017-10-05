@@ -178,8 +178,10 @@ StudentFrontInfoDlg.addSubmit = function() {
     }
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/front/registerStudnet", function(data){
-        Feng.success("添加成功!");
-        window.location=Feng.ctxPath + "/front/login_s.html";
+        Feng.success("注册成功!3秒后自动跳转");
+        setTimeout(function(){
+        	window.location=Feng.ctxPath + "/front/login_s.html";
+        },3000);//延时3秒 
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
