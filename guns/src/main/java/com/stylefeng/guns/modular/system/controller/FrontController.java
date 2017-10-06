@@ -326,5 +326,23 @@ public class FrontController extends BaseController {
 		 return PREFIX +  "orderList.html";
 	 }
 	 
-	
+	 @RequestMapping("/")
+	 public String indexTo(Model model) {
+	 List<Shuffling> shuffling_list = shufflingDao.listforFront();
+	 List<Material> material_list = materialDao.listForFront();
+
+	 List<Map<String, Object>> list = this.teacherDao.listforFront();
+
+
+	 List<Course> course_list=courseDao.listForFront();
+	 for (Material m : material_list) {
+	 System.out.println("this=" + m.getImgPath());
+	 }
+	 setStudentForRequest(model);
+	 super.setAttr("shuffling_list", shuffling_list);
+	 super.setAttr("teacher_list", new TeacherWrapper(list).warp());
+	 super.setAttr("material_list", material_list);
+	 super.setAttr("course_list", course_list);
+	 return PREFIX + "index.html";
+	 }
 }
