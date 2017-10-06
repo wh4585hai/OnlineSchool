@@ -132,5 +132,6 @@ public interface IConstantFactory {
 	
 	public Integer getStudentId(Student student );
 	public String getCourselName(Integer courseId);
+	public String getclassCoont(Integer coursetime,Integer status);
 
 }

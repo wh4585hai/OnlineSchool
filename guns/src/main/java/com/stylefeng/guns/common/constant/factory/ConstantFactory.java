@@ -392,6 +392,22 @@ public class ConstantFactory implements IConstantFactory {
         }
         return "";
     }
+    /**
+     * 获取课程金额
+     */
+    @Override
+    public String getclassCoont(Integer coursetime,Integer status) {
+    	String count =null;
+    	  if(status==0) {
+    		  count=coursetime.toString();
+          }
+        if(status==2) {
+        	Double countd =(Double.parseDouble(coursetime.toString()))/2;
+        	count=  countd.toString();       			        	
+    	
+        }    	    	                
+       return count;
+    }
     
 
 }

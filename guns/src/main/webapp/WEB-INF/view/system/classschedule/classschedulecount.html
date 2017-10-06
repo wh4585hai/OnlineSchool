@@ -8,13 +8,16 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
-                      <div class="row">
-                            <div class="col-sm-3">
-                                <#NameCon id="studentname" name="学生姓名" />
+                        <div class="row">
+                            <div class="col-sm-3">                             
+                                 <#select id="teachername" name="教师">
+                                 <option value="">所有</option>
+									@for(userIdname in dicMap.useridname){
+									<option value="${userIdname.id}">${userIdname.name}</option>
+									@}
+								</#select>
                             </div>
-                            
-                          
-                              <div class="col-sm-3">
+                            <div class="col-sm-3">
                               <#input id="classdatafrom" name="课程日期从" underline="false" type="classdata"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
                                 
@@ -25,14 +28,12 @@
                                 
                             </div>
                             <div class="col-sm-3">
-                                <#button name="搜索" icon="fa-search" clickFun="Classschedule.search()"/>
+                                <#button name="结算" icon="fa-search" clickFun="Classschedule.search()"/>
                             </div>
                         </div>
                         <div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
-                            @if(shiro.hasPermission("/classschedule/checkin")){
-                                <#button name="签到" icon="fa-plus" clickFun="Classschedule.openClassscheduleDetail()"/>
-                            @}
-                          
+                                        
+                        
                         </div>
                         <#table id="ClassscheduleTable"/>
                     </div>
@@ -41,5 +42,5 @@
         </div>
     </div>
 </div>
-<script src="${ctxPath}/static/modular/system/classschedule/classscheduleforteacher.js"></script>
+<script src="${ctxPath}/static/modular/system/classschedule/classschedulecount.js"></script>
 @}

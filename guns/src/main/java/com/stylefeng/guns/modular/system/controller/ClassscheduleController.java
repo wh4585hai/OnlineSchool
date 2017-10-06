@@ -77,6 +77,16 @@ public class ClassscheduleController extends BaseController {
         return PREFIX + "classschedulemanager.html";
     }
     /**
+     * 跳转到课程表首页
+     */
+    @RequestMapping("/count")
+    public String classScheduleCount(Model model) {
+    	Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	model.addAttribute("dicMap",dicMap);
+        return PREFIX + "classschedulecount.html";
+    }
+    /**
      * 跳转到添加课程表
      */
     @RequestMapping("/classschedule_add")
@@ -142,21 +152,47 @@ public class ClassscheduleController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String studentname,Integer teachername,String date) {
+    public Object list(String studentname,Integer teachername,String datefrom,String dateto) {
     	
     	
-    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, date);
+    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom,dateto);
          return super.warpObject(new ClassScheduleWrapper(list));
+    }
+    /**
+     * 获取课程表列表
+     */
+    @RequestMapping(value = "/listforcount")
+    @ResponseBody
+    public Object listForCount(Integer teachername,String datefrom,String dateto,Model model) {
+    	
+    	double count = 0.0;
+    	
+    	 List<Map<String, Object>> list = this.classscheduleDao.listforcount( teachername, datefrom,dateto);
+    	 for(Map<String,Object> a:list) {
+    		 int status =(int) a.get("status");
+    		 if(status==0) {
+    			 count = count+ Double.parseDouble(a.get("coursetime").toString());
+    		 }if(status==2) {
+    			 
+    			 count = count+ (Double.parseDouble(a.get("coursetime").toString()))/2;
+    		 }
+    		 
+    	 }
+    	 model.addAttribute("count",count);
+    	 Object object = super.warpObject(new ClassScheduleWrapper(list));
+         return object;
     }
     /**
      * 教师获取课程表列表
      */
     @RequestMapping(value = "/listforteacher")
     @ResponseBody
-    public Object listForTeacher(String studentname,String date) {
+    public Object listForTeacher(String studentname,String datefrom,String dateto) {
     	
     	 int teachername = ShiroKit.getUser().getId();
-    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, date);
+    	 List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom,dateto);
+    	 
+    
          return super.warpObject(new ClassScheduleWrapper(list));
     }
 

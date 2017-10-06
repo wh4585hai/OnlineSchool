@@ -12,10 +12,33 @@
 			and (class_schedule.teacherid = #{teachername})
 			
 		</if>
-		<if test="classdata != null and classdata != ''">
+		<if test="datefrom != null and datefrom != ''">
 			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
-			 and class_schedule.date = #{classdata}
+			 and class_schedule.date  &gt;= #{datefrom}
 		</if>
-		order by class_schedule.id DESC
+		<if test="dateto != null and dateto != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date &lt;= #{dateto}
+		</if>
+		order by class_schedule.date DESC
+	</select>
+	
+	<select id="listforcount" resultType="map">
+		select class_schedule.* from class_schedule
+		where class_schedule.status !='1'
+		
+		<if test="teachername != null and teachername != 0">
+			and (class_schedule.teacherid = #{teachername})
+			
+		</if>
+		<if test="datefrom != null and datefrom != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date  &gt;= #{datefrom}
+		</if>
+		<if test="dateto != null and dateto != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date &lt;= #{dateto}
+		</if>
+		order by class_schedule.date DESC
 	</select>
 </mapper>

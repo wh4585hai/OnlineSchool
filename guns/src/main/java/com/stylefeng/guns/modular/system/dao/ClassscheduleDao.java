@@ -13,5 +13,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ClassscheduleDao {
 
-	List<Map<String, Object>> list(@Param("studentname") String studentname, @Param("teachername") Integer teachername, @Param("classdata") String classdata);
+	List<Map<String, Object>> list(@Param("studentname") String studentname, @Param("teachername") Integer teachername, @Param("datefrom") String datefrom,@Param("dateto") String dateto);
+	List<Map<String, Object>> listforcount(@Param("teachername") Integer teachername, @Param("datefrom") String datefrom,@Param("dateto") String dateto);
 }

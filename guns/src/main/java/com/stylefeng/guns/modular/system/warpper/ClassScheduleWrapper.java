@@ -25,7 +25,8 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 	        map.put("courseTimeName", ConstantFactory.me().getDictsByName("课时价格",(Integer) map.get("coursetime")));
 	        map.put("classapproach",ConstantFactory.me().getDictsByName("上课方式",ConstantFactory.me().getClassApproach((Integer) map.get("orderid"))));
 	        map.put("classnumber", ConstantFactory.me().getClassNumber((Integer) map.get("orderid")));
-
+	        map.put("count", ConstantFactory.me().getclassCoont((Integer) map.get("coursetime"),(Integer) map.get("status")));
+	     
 	       
 	}
 }

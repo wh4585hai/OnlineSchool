@@ -53,7 +53,8 @@ Classschedule.search = function () {
 	debugger;
     var queryData = {};
     queryData['studentname'] = $("#studentname").val();
-    queryData['classdata'] = $("#classdata").val();
+    queryData['datefrom'] = $("#classdatafrom").val();
+    queryData['dateto'] = $("#classdatato").val();
     Classschedule.table.refresh({query: queryData});
 };
 
