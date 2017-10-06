@@ -16,6 +16,7 @@ import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
 import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.ClassScheduleWrapper;
+import com.stylefeng.guns.modular.system.warpper.OrderWrapper;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 
 import java.text.ParseException;
@@ -84,6 +85,11 @@ public class ClassscheduleController extends BaseController {
     	Map dicMap = new HashMap();
     	dicMap.put("useridname", dicUtilDao.getTeacherName());
     	model.addAttribute("dicMap",dicMap);
+    	model.addAttribute("teachername","");
+    	model.addAttribute("datefrom","");
+    	model.addAttribute("dateto","");
+    	 model.addAttribute("totalaccount","");
+         model.addAttribute("classschedules",null);
         return PREFIX + "classschedulecount.html";
     }
     /**
@@ -101,6 +107,7 @@ public class ClassscheduleController extends BaseController {
         return PREFIX + "classschedule_add.html";
     }
 
+    
     /**
      * 跳转到修改课程表
      */
@@ -161,27 +168,34 @@ public class ClassscheduleController extends BaseController {
     /**
      * 获取课程表列表
      */
-    @RequestMapping(value = "/listforcount")
-    @ResponseBody
-    public Object listForCount(Integer teachername,String datefrom,String dateto,Model model) {
+    @RequestMapping("/listforcount")
+    public String listForCount(String teachername,String datefrom,String dateto,Model model) {
+    	Map dicMap = new HashMap();
+    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+    	model.addAttribute("dicMap",dicMap);
+    	model.addAttribute("teachername",teachername);
+    	model.addAttribute("datefrom",datefrom);
+    	model.addAttribute("dateto",dateto);
+    	List<Map<String, Object>> list = this.classscheduleDao.listforcount( Integer.valueOf(teachername), datefrom,dateto);
+        List<Map<String, Object>> classschedules=  (List<Map<String, Object>>) super.warpObject(new ClassScheduleWrapper(list));
+        double count = 0.0;
     	
-    	double count = 0.0;
-    	
-    	 List<Map<String, Object>> list = this.classscheduleDao.listforcount( teachername, datefrom,dateto);
-    	 for(Map<String,Object> a:list) {
-    		 int status =(int) a.get("status");
-    		 if(status==0) {
-    			 count = count+ Double.parseDouble(a.get("coursetime").toString());
-    		 }if(status==2) {
-    			 
-    			 count = count+ (Double.parseDouble(a.get("coursetime").toString()))/2;
-    		 }
-    		 
-    	 }
-    	 model.addAttribute("count",count);
-    	 Object object = super.warpObject(new ClassScheduleWrapper(list));
-         return object;
+   	
+   	 for(Map<String,Object> a:list) {
+   		 int status =(int) a.get("status");
+   		 if(status==0) {
+   			 count = count+ Double.parseDouble(a.get("coursetime").toString());
+   		 }if(status==2) {
+   			 
+   			 count = count+ (Double.parseDouble(a.get("coursetime").toString()))/2;
+   		 }
+   		 
+   	 }
+   	 model.addAttribute("totalaccount",count);
+        model.addAttribute("classschedules",classschedules);
+        return PREFIX + "classschedulecount.html";
     }
+
     /**
      * 教师获取课程表列表
      */

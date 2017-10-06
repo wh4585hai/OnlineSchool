@@ -8,6 +8,7 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
+                    <input type="hidden" id="teachernameValue" value="${teachername}"/>
                         <div class="row">
                             <div class="col-sm-3">                             
                                  <#select id="teachername" name="教师">
@@ -19,26 +20,63 @@
                             </div>
                             <div class="col-sm-3">
                               <#input id="classdatafrom" name="课程日期从" underline="false" type="classdata"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${datefrom}"/>
                                 
                             </div>
                             <div class="col-sm-3">
                               <#input id="classdatato" name="到" underline="false" type="classdata"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${dateto}"/>
                                 
                             </div>
                             <div class="col-sm-3">
-                                <#button name="结算" icon="fa-search" clickFun="Classschedule.search()"/>
+                                <#button name="结算" icon="fa-search" clickFun="ClassscheduleInfoDlg.search()"/>
                             </div>
                         </div>
-                         <div class="row">
-                         <div class="col-sm-3">
-                                <#NameCon id="totalcount" name="总金额" value="${count}" />
-                            </div>
-                         </div>
+                        <div class="row">
+                        <div class="col-sm-3">
+                        <#input id="totalaccount" name="总金额" type="totalaccount" value="${totalaccount}"  disabled="disabled"/>
+                        </div>
+                        </div>
+                 
                         <div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
                                         
                         
+                        </div>
+                         <div class="row">
+                         <div class="col-sm-12">
+                        <table  border="1">
+                       
+                       
+                         <tr>                  
+                        <th>id</th>
+                        <th>上课日期</th>
+                        <th>学生姓名</th>
+                        <th>课程状态</th>
+                        <th>备注</th>
+                        <th>课程时长</th>
+                        <th>单价</th>
+                        <th>金额</th>                       
+                       </tr>
+                        
+                         
+                         @if(classschedules !=null&&classschedules !='null'){
+                         @for(classchedule in classschedules){
+                         <tr>
+                         <td>${classchedule.id}</td>
+                         <td>${classchedule.date}</td>
+                         <td>${classchedule.studentName}</td>
+                         <td>${classchedule.statusName}</td>
+                         <td>${classchedule.remark}</td>
+                         <td>${classchedule.courseTimeName}</td>
+                         <td>${classchedule.coursetime}</td>
+                         <td>${classchedule.count}</td>                        
+                         </tr>
+                         	@}
+                         	@}
+                        
+                        
+                        </table>
+                        </div>
                         </div>
                         <#table id="ClassscheduleTable"/>
                     </div>

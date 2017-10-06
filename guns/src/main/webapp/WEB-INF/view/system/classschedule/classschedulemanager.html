@@ -42,6 +42,9 @@
                              @if(shiro.hasPermission("/classschedule/delay")){
                                 <#button name="删除" icon="fa-plus" clickFun="Classschedule.delete()" space="true"/>
                             @}
+                               @if(shiro.hasPermission("/classschedule/delay")){
+                                <#button name="结算" icon="fa-plus" clickFun="Classschedule.openClassscheduleDetail()" space="true"/>
+                            @}
                         
                         </div>
                         <#table id="ClassscheduleTable"/>
