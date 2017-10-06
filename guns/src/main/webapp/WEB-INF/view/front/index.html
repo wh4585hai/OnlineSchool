@@ -76,7 +76,7 @@
 	active
 	@}
 	">
-		<a href="front/acivityDetail/${shuffling.id}"><img src="${shuffling.path }" style="width:80%;height:420px" alt="${shuffling.title }"></a>
+		<a href="${ctxPath}/front/acivityDetail/${shuffling.id}"><img src="${shuffling.path }" style="width:80%;height:420px" alt="${shuffling.title }"></a>
 		</div>
 	@}
 	</div>
@@ -102,8 +102,9 @@
 		</div>
 		<div class="col-xs-12" style="padding: 0px;">
 		@for(teacher in teacher_list){
+		
 		<div class="col-xs-4" style="width: 32%;">
-				<a href="front/teacherDetail/${teacher.id}"><img src="${teacher.picture }" style="width:100%;height: 300px;" /></a>
+				<a href="${ctxPath}/front/teacherDetail/${teacher.id}"><img src="${teacher.picture }" style="width:100%;height: 300px;" /></a>
 				<h4 class="text-center">${teacher.teacherName}</h4>
 				<div class="col-xs-12 text-center" style="word-break:break-word">
 				  ${teacher.content}
@@ -111,7 +112,7 @@
 			</div>
 		@}
 			<div class="col-xs-1" style="width: 14px;margin-top: 5%;">
-				<a href="detail.html">查看更多</a>
+				<a href="${ctxPath}/front/teacherDetail/${teacher_list[0].id}">查看更多</a>
 			</div>
 		</div>
 	</div>
@@ -128,7 +129,7 @@
 		
 		@for(course in course_list){
 		<div class="col-xs-4" style="width: 32%;">
-				<a href="front/courseDetail/${course.id}"><img src="${course.imgPath}" style="width:100%;height: 300px;" /></a>
+				<a href="${ctxPath}/front/courseDetail/${course.id}"><img src="${course.imgPath}" style="width:100%;height: 300px;" /></a>
 				<h4 class="text-center">${course.name}</h4>
 				<div class="col-xs-12 text-center" style="word-break:break-word">
 				${course.summary}
@@ -136,7 +137,7 @@
 			</div>
 		@}
 			<div class="col-xs-1" style="width: 14px;margin-top: 5%;">
-				<a href="detail.html">查看更多</a>
+				<a href="${ctxPath}/front/courseDetail/${course_list[0].id}">查看更多</a>
 			</div>
 		</div>
 	</div>
@@ -152,12 +153,12 @@
 	<div class="col-xs-12" style="padding: 0px;">
 	@for(material in material_list){
 	<div class="col-xs-4" style="width: 32%;">
-			<a href="front/materialDetail/${material.id}"><img src="${material.imgPath}" style="width:100%;height: 300px;" /></a>
+			<a href="${ctxPath}/front/materialDetail/${material.id}"><img src="${material.imgPath}" style="width:100%;height: 300px;" /></a>
 			<h4 class="text-center">${material.name}</h4>
 		</div>
 	@}
 	<div class="col-xs-1" style="width: 14px;margin-top: 5%;">
-			<a href="detail.html">查看更多</a>
+			<a href="${ctxPath}/front/materialDetail/${material_list[0].id}">查看更多</a>
 		</div>
 	</div>
 	</div>
@@ -174,13 +175,5 @@
 </div>
 @layout("footer.html"){
 @}
-<script>
-	function showMenu(){
-	   $("#down-menu").show();
-	}
-	function hideMenu(){
-	   $("#down-menu").hide();
-	}
-</script>
 </body>
 </html>
