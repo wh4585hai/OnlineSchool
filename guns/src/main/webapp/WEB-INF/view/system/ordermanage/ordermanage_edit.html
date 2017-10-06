@@ -3,14 +3,80 @@
     <div class="ibox-content">
         <div class="form-horizontal">
 
-            <input type="hidden" id="id" value="${ordermanage.id}">
+            <input type="hidden" id="id" value="${orders.id}">
+            <input type="hidden" id="courseidValue" value="${orders.courseid}"> 
+            <input type="hidden" id="coursetimeValue" value="${orders.coursetime}"> 
+            <input type="hidden" id="materialidValue" value="${orders.materialid}"> 
+            <input type="hidden" id="classapproachValue" value="${orders.classapproach}">
+            <input type="hidden" id="weeksValue" value="${orders.weeks}">
+            <input type="hidden" id="sexValue" value="${orders.sex}">
+            <input type="hidden" id="statusValue" value="${orders.status}">   
 
             <div class="row">
                 <div class="col-sm-6 b-r">
+                <#input id="studentid" name="学生Id" type="studentid" value="${orders.studentid}"/>
+                <#select id="courseid" name="课程名称" >
+						@for(courseName in dicMap.coursename){
+						<option value="${courseName.id}">${courseName.name}</option>
+						@}
+					</#select>
+					 <#input id="months" name="课程期限" type="studentid" value="${orders.months}"/>
+					 
+					<#select id="coursetime" name="课程时长">
+						@for(classTime in dicMap.calsstime){
+						<option value="${classTime.num}">${classTime.name}</option>
+						@}
+					</#select>
+					<#select id="materialid" name="教材 " >
+						@for(meterialName in dicMap.meterialname){
+						<option value="${meterialName.id}">${meterialName.name}</option>
+						@}
+					</#select>
+					<#input id="date" name="开始日期" underline="false" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${orders.date}"/>
+
+				<#input id="starttime" name="开始时间" underline="false" type="time"  value="${orders.starttime}"/>	
+				
+               
+                <#select id="classapproach" name="上课方式" >
+						<option value="1">QQ</option>
+						<option value="2">skype</option>
+					</#select>
+					
+					<#input id="classnumber" name="联系账号" underline="false" type="classnumber" value="${orders.classnumber}"/>	
+					
+				
+                
+                <#input id="birthday" name="出生日期" underline="false" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${orders.birthday}"/>
+								
+						<#select id="sex" name="性别">
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</#select>	
+					<#select id="status" name="上课方式" >
+						@for(statusName in dicMap.statusname){
+						<option value="${statusName.num}">${statusName.name}</option>
+						@}
+					</#select>	
 
                 </div>
 
                 <div class="col-sm-6">
+                
+                
+              	  选择上课星期<br /><br /> 
+				<label><input name="weeks" type="checkbox" value="1" />星期一 </label> 
+				<label><input name="weeks" type="checkbox" value="2" />星期二 </label> 
+				<label><input name="weeks" type="checkbox" value="3" />星期三 </label> 
+				<label><input name="weeks" type="checkbox" value="4" />星期四</label>
+				<label><input name="weeks" type="checkbox" value="5" />星期五</label>
+				<label><input name="weeks" type="checkbox" value="6" />星期六</label>
+				<label><input name="weeks" type="checkbox" value="7" />星期日</label> 
+				<br /><br /> 
+                
+
+                
 
                 </div>
             </div>

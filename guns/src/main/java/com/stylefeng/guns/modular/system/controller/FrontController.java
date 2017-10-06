@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import static com.stylefeng.guns.core.support.HttpKit.getIp;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,11 +46,15 @@ import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.shiro.UsernamePasswordUsertypeToken;
 import com.stylefeng.guns.core.shiro.factory.ShiroFactroy;
 import com.stylefeng.guns.modular.system.dao.CourseDao;
+import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.MaterialDao;
+import com.stylefeng.guns.modular.system.dao.OrdermanageDao;
 import com.stylefeng.guns.modular.system.dao.ShufflingDao;
 import com.stylefeng.guns.modular.system.dao.StudentDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.warpper.ClassScheduleWrapper;
+import com.stylefeng.guns.modular.system.warpper.OrderWrapper;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 
 @Controller
@@ -78,7 +83,11 @@ public class FrontController extends BaseController {
 	private CourseDao courseDao;
 	@Resource
 	private CourseMapper courseMapper;
+	@Resource
+    private DicUtilDao dicUtilDao;
 	
+	@Resource
+	private OrdermanageDao ordermanageDao;
 
 	private String PREFIX = "/front/";
 	private void setStudentForRequest(Model model){
@@ -293,13 +302,29 @@ public class FrontController extends BaseController {
     @RequestMapping("/to_new_order")
 	 public String to_new_order(String id,Model model){
 		 super.setAttr("id", id);
+		 Map dicMap = new HashMap();
+		 dicMap.put("meterialname", dicUtilDao.getMeterialName());
+		 dicMap.put("coursename", dicUtilDao.getCourseName());
+		 dicMap.put("calsstime", ConstantFactory.me().getDictList("课时价格"));
+		 model.addAttribute("dicMap",dicMap); 
 		 setStudentForRequest(model);
 		 return PREFIX +  "order.html";
 	 }
 	 @RequestMapping("/to_my_order")
-	 public String to_my_order(String id,Model model){
-		 super.setAttr("id", id);
-		 setStudentForRequest(model);
+	 public String to_my_order(String id,String date,Model model){
+		 super.setAttr("id", id);		 
+		
+		/* Map dicMap = new HashMap();
+	    	dicMap.put("calsstime", ConstantFactory.me().getDictList("课时价格"));
+	    	dicMap.put("useridname", dicUtilDao.getTeacherName());
+	    	dicMap.put("meterialname", dicUtilDao.getMeterialName());
+	        model.addAttribute("dicMap",dicMap);*/ 
+	        List<Map<String, Object>> list = this.ordermanageDao.list(id, date);
+	        List<Map<String, Object>> orders=  (List<Map<String, Object>>) super.warpObject(new OrderWrapper(list));
+	        model.addAttribute("orders",orders);
+	        setStudentForRequest(model);
 		 return PREFIX +  "orderList.html";
 	 }
+	 
+	
 }

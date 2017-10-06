@@ -19,7 +19,7 @@ Classschedule.initColumn = function () {
          {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
          {title: '上课日期', field: 'date',  align: 'center', valign: 'middle'},
          {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
-         {title: '课程时长', field: 'coursetime',  visible: false,align: 'center', valign: 'middle'},
+         {title: '课程时长', field: 'courseTimeName',align: 'center', valign: 'middle'},
          {title: '教材', field: 'meterialName',  align: 'center', valign: 'middle'},
          {title: '上课方式', field: 'classapproach',  align: 'center', valign: 'middle'},
          {title: '联系方式', field: 'classnumber',  align: 'center', valign: 'middle'},

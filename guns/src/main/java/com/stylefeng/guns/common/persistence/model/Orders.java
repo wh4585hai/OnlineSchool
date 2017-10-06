@@ -3,6 +3,8 @@ package com.stylefeng.guns.common.persistence.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -17,20 +19,23 @@ public class Orders extends Model<Orders>{
 	
 	private int studentid;
 	
-	private int teacherid;
-	
 	private int materialid;
+	
+	private int courseid;
 	
 	private int months;
 	
-	private String coursetime;
+	private int coursetime;
 	
-	private int timesperweek;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date date;
+	
+	private String starttime;
+	
+	private String weeks;
 	
 	private String amount;
-	
-	private int subjectid;
-	
+		
 	@TableField("createdate")
 	private Date createDate;
 	
@@ -40,12 +45,24 @@ public class Orders extends Model<Orders>{
 	
 	private String classnumber;
 	
+	private int sex;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date birthday;
+	
 	@Override
 	protected Serializable pkVal() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.id;
 	}
 
+	public int getCourseid() {
+		return courseid;
+	}
+
+	public void setCourseid(int courseid) {
+		this.courseid = courseid;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -60,14 +77,6 @@ public class Orders extends Model<Orders>{
 
 	public void setStudentid(int studentid) {
 		this.studentid = studentid;
-	}
-
-	public int getTeacherid() {
-		return teacherid;
-	}
-
-	public void setTeacherid(int teacherid) {
-		this.teacherid = teacherid;
 	}
 
 	public int getMaterialid() {
@@ -86,20 +95,15 @@ public class Orders extends Model<Orders>{
 		this.months = months;
 	}
 
-	public String getCoursetime() {
+
+
+
+	public int getCoursetime() {
 		return coursetime;
 	}
 
-	public void setCoursetime(String coursetime) {
+	public void setCoursetime(int coursetime) {
 		this.coursetime = coursetime;
-	}
-
-	public int getTimesperweek() {
-		return timesperweek;
-	}
-
-	public void setTimesperweek(int timesperweek) {
-		this.timesperweek = timesperweek;
 	}
 
 	public String getAmount() {
@@ -110,13 +114,6 @@ public class Orders extends Model<Orders>{
 		this.amount = amount;
 	}
 
-	public int getSubjectid() {
-		return subjectid;
-	}
-
-	public void setSubjectid(int subjectid) {
-		this.subjectid = subjectid;
-	}
 
 	public Date getCreateDate() {
 		return createDate;
@@ -148,6 +145,46 @@ public class Orders extends Model<Orders>{
 
 	public void setClassnumber(String classnumber) {
 		this.classnumber = classnumber;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getWeeks() {
+		return weeks;
+	}
+
+	public void setWeeks(String weeks) {
+		this.weeks = weeks;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 	
 	

@@ -39,22 +39,32 @@
 		</style>
 		<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
     	<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    	<script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+		<script src="${ctxPath}/static/js/common/ajax-object.js"></script>
+		<script src="${ctxPath}/static/js/plugins/layer/layer.min.js"></script>
+		<script src="${ctxPath}/static/js/common/Feng.js"></script>
+		<script type="text/javascript">
+			Feng.addCtx("${ctxPath}");
+			Feng.sessionTimeoutRegistry();
+		</script>
 		<!-- <script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script> -->
 		<script>
 		$(function(){
-			$("#lessionType").bind("change",function(){
-				if($("#lessionType :checked").val()=="1"){
+			$("#classapproach").bind("change",function(){
+				if($("#classapproach :checked").val()=="1"){
 					$("#QQDiv").show();
 					$("#SkipDiv").hide();
-				}else if($("#lessionType :checked").val()=="2"){
+				}else if($("#classapproach :checked").val()=="2"){
 					$("#QQDiv").hide();
 					$("#SkipDiv").show();
 				}
 			})
-			$("#close").bind("click",function(){
-				$(".erweimaDiv").hide();
-			})
+		 /* 	$("#close").bind("click",function(){
+				
+				var id=$("#id");
+				 window.location=Feng.ctxPath + '/front/to_my_order?id='+id;
+			})  */
 		})
 		function Buy(){
 			$(".erweimaDiv").show();
@@ -81,18 +91,19 @@
 							<div class="form-block center-block">
 								<h2 class="title">新建订单</h2>
 								<hr>
+								<input type="hidden" name="id" id="studentid" value="${id}"/>
 								<div class="form-horizontal">
 									<div class="form-group has-feedback">
-										<label for="inputName" class="col-sm-3 control-label">课程名称
+										 <label for="inputName" class="col-sm-3 control-label">课程名称
 											<span class="text-danger small">*</span>
-										</label>
+										</label> 
 										<div class="col-sm-8">
-											<select class="form-control">
-												<option>小学课程</option>
-												<option>小学课程</option>
-												<option>小学课程</option>
-											</select>
-												
+										<select id="courseid" class="form-control">
+											@for(courseName in dicMap.coursename){
+											<option value="${courseName.id}">${courseName.name}</option>
+											@}
+										</select>
+																																						
 										</div>
 								
 									</div>
@@ -101,34 +112,50 @@
 											<span class="text-danger small">*</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="number" class="form-control" placeholder="" required="">
+											<input id="months" type="number" class="form-control" placeholder="" required="">
 											<div class="monthPoint">个月</div>
 										</div>
 									</div>
 									<div class="form-group has-feedback">
-										<label for="inputLastName" class="col-sm-3 control-label">上课时间
+										 <label for="inputName" class="col-sm-3 control-label">课程时长
+											<span class="text-danger small">*</span>
+										</label> 
+										<div class="col-sm-8">
+										<select id="coursetime" id="coursetime" class="form-control">
+												@for(classTime in dicMap.calsstime){
+													<option value="${classTime.num}">${classTime.name}</option>
+												@}
+										</select>
+																																						
+										</div>
+								
+									</div>
+									
+									<div class="form-group has-feedback">
+										<label for="inputLastName" class="col-sm-3 control-label">上课星期
 											<span class="text-danger small">*</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="checkbox" name="check" />星期一
-											<input type="checkbox" name="check" />星期二
-											<input type="checkbox" name="check" />星期三
-											<input type="checkbox" name="check" />星期四
-											<input type="checkbox" name="check" />星期五
-											<input type="checkbox" name="check" />星期六
-											<input type="checkbox" name="check" />星期日
+											<input type="checkbox" name="weeks" value="1"/>星期一
+											<input type="checkbox" name="weeks" value="2"/>星期二
+											<input type="checkbox" name="weeks" value="3"/>星期三
+											<input type="checkbox" name="weeks" value="4"/>星期四
+											<input type="checkbox" name="weeks" value="5"/>星期五
+											<input type="checkbox" name="weeks" value="6"/>星期六
+											<input type="checkbox" name="weeks" value="7"/>星期日
 										</div>
 									</div>
 									<div class="form-group has-feedback">
-										<label for="inputUserName" class="col-sm-3 control-label">教材
+									    <label for="inputUserName" class="col-sm-3 control-label">教材
 											<span class="text-danger small">*</span>
-										</label>
+										</label> 
 										<div class="col-sm-8">
-											<select class="form-control">
-												<option>小学教材</option>
-												<option>小学教材</option>
-												<option>小学教材</option>
-											</select>
+										<select id="materialid" name="教材" class="form-control">
+											@for(meterialName in dicMap.meterialname){
+											<option value="${meterialName.id}">${meterialName.name}</option>
+											@}
+										</select>
+											
 												
 										</div>
 									</div>
@@ -137,18 +164,29 @@
 											<span class="text-danger small">*</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="date" />
+											<input type="date" id="date"/>
 												
 										</div>
 									</div>
+									
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">上开时间
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<input id="starttime" type="time"/>
+												
+										</div>
+									</div>																	
+									
 									<div class="form-group has-feedback">
 										<label for="inputPassword" class="col-sm-3 control-label">上课方式
 											<span class="text-danger small">*</span>
 										</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="lessionType">
+											<select class="form-control"  id="classapproach">
 												<option value="1">QQ</option>
-												<option value="2">skip</option>
+												<option value="2">skype</option>
 											</select>
 										</div>
 									</div>
@@ -161,23 +199,51 @@
 										</div>
 									</div>
 									<div class="form-group has-feedback" style="display: none;" id="SkipDiv">
-										<label for="inputPassword" class="col-sm-3 control-label">Skip账号
+										<label for="inputPassword" class="col-sm-3 control-label">Skyp账号
 											<span class="text-danger small">*</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="number" class="form-control" id="QQNumber" />
+											<input type="number" class="form-control" id="skypNumber" />
+										</div>
+									</div>
+									
+									<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">出生日期
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8" >
+											<input type="date" id="birthday"/>											
+										</div>
+									</div>
+									<div class="form-group has-feedback">
+										<label for="inputPassword" class="col-sm-3 control-label">性别
+											<span class="text-danger small">*</span>
+										</label>
+										<div class="col-sm-8">
+											<select class="form-control" id="sex">
+												<option value="1">男</option>
+												<option value="2">女</option>
+											</select>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-8">
-											<a onclick="Buy()" class="btn btn-default">购买</a>
+											<a onclick="OrdermanageInfoDlg.addSubmit()" class="btn btn-default">购买</a>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="erweimaDiv">
 								<img src="images/erweima.jpg" />
-								<a id="close" class="btn btn-default">关闭</a>
+								<div class="form-group has-feedback">
+										<label for="inputUserName" class="col-sm-3 control-label">请支付金额：
+											<span class="text-danger small"></span>
+										</label>
+										<div class="col-sm-3" id="birthday">
+											<input type="number" class="form-control" id="amount" disabled="disabled"/>											
+										</div>
+									</div>
+								<a id="close" class="btn btn-default" onclick="OrdermanageInfoDlg.closePay()">关闭</a>
 							</div>
 						</div>
 
@@ -194,4 +260,5 @@
 	@layout("footer.html"){
 @}
 	</body>
+	<script src="${ctxPath}/static/modular/system/ordermanage/ordermanage_info.js"></script>
 </html>

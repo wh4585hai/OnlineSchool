@@ -11,7 +11,9 @@
 	<select id="getMeterialName" resultType="map">
 		select id,name from material
 	</select>
-	
+	<select id="getCourseName" resultType="map">
+		select id,name from course
+	</select>
 	
 </mapper>
 

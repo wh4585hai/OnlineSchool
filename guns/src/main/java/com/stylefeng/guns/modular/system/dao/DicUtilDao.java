@@ -6,5 +6,6 @@ import java.util.Map;
 public interface DicUtilDao {
 	List<Map<String, Object>> getTeacherName();
 	List<Map<String, Object>> getMeterialName();
+	List<Map<String, Object>> getCourseName();
 
 }

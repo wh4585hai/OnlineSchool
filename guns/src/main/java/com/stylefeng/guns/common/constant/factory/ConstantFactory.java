@@ -35,7 +35,7 @@ public class ConstantFactory implements IConstantFactory {
     private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
     private MaterialMapper materialMapper = SpringContextHolder.getBean(MaterialMapper.class);
     private OrderMapper orderMapper = SpringContextHolder.getBean(OrderMapper.class);
-
+    private CourseMapper courseMapper = SpringContextHolder.getBean(CourseMapper.class);
     public static IConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
     }
@@ -381,5 +381,17 @@ public class ConstantFactory implements IConstantFactory {
         }
         return "";
     }
+    /**
+     * 获取课程名称
+     */
+    @Override
+    public String getCourselName(Integer courseId) {
+    	Course course = courseMapper.selectById(courseId);
+        if (ToolUtil.isNotEmpty(course) && ToolUtil.isNotEmpty(course.getName())) {
+            return course.getName();
+        }
+        return "";
+    }
+    
 
 }

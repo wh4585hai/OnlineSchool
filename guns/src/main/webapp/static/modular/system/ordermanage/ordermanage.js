@@ -14,7 +14,23 @@ var Ordermanage = {
 Ordermanage.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'}
+        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: '学生姓名', field: 'studentName', visible: true, align: 'center', valign: 'middle'},
+        {title: '教材名称', field: 'meterialName', visible: true, align: 'center', valign: 'middle'},
+        {title: '课程名称', field: 'courseName', visible: true, align: 'center', valign: 'middle'},
+        {title: '购买期限', field: 'months', visible: true, align: 'center', valign: 'middle'},
+        {title: '课程时长', field: 'courseTimeName', visible: true, align: 'center', valign: 'middle'},
+        {title: '开始日期', field: 'date', visible: true, align: 'center', valign: 'middle'},
+        {title: '开始时间', field: 'starttime', visible: true, align: 'center', valign: 'middle'},
+        {title: '上课星期', field: 'weeks', visible: true, align: 'center', valign: 'middle'},
+        {title: '订单金额', field: 'amount', visible: true, align: 'center', valign: 'middle'},
+        {title: '创建日期', field: 'createdate', visible: true, align: 'center', valign: 'middle'},
+        {title: '上课方式', field: 'classapproachName', visible: true, align: 'center', valign: 'middle'},
+        {title: '上课号码', field: 'classnumber', visible: true, align: 'center', valign: 'middle'},
+        {title: '生日', field: 'birthday', visible: true, align: 'center', valign: 'middle'},
+        {title: '性别', field: 'sexName', visible: true, align: 'center', valign: 'middle'},
+        {title: '支付状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'}
+        
     ];
 };
 
@@ -36,32 +52,20 @@ Ordermanage.check = function () {
  * 点击添加订单管理
  */
 Ordermanage.openAddOrdermanage = function () {
-    var index = layer.open({
-        type: 2,
-        title: '添加订单管理',
-        area: ['800px', '420px'], //宽高
-        fix: false, //不固定
-        maxmin: true,
-        content: Feng.ctxPath + '/ordermanage/ordermanage_add'
-    });
-    this.layerIndex = index;
+	window.location=Feng.ctxPath + '/ordermanage/ordermanage_add';
+   
 };
 
 /**
  * 打开查看订单管理详情
  */
 Ordermanage.openOrdermanageDetail = function () {
-    if (this.check()) {
-        var index = layer.open({
-            type: 2,
-            title: '订单管理详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/ordermanage/ordermanage_update/' + Ordermanage.seItem.id
-        });
-        this.layerIndex = index;
+	
+	if (this.check()) {
+    	window.location=Feng.ctxPath + '/ordermanage/ordermanage_update/' + Ordermanage.seItem.id;
+       
     }
+	
 };
 
 /**
@@ -75,7 +79,7 @@ Ordermanage.delete = function () {
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("ordermanageId",this.seItem.id);
+        ajax.set("id",this.seItem.id);
         ajax.start();
     }
 };
@@ -85,7 +89,8 @@ Ordermanage.delete = function () {
  */
 Ordermanage.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['studentid'] = $("#studentid").val();
+    queryData['date'] = $("#date").val();
     Ordermanage.table.refresh({query: queryData});
 };
 

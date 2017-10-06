@@ -10,7 +10,12 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-3">
-                                <#NameCon id="condition" name="名称" />
+                                <#NameCon id="studentid" name="学会ID" />
+                            </div>
+                            <div class="col-sm-3">
+                              <#input id="date" name="课程日期" underline="false" type="classdata"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                                
                             </div>
                             <div class="col-sm-3">
                                 <#button name="搜索" icon="fa-search" clickFun="Ordermanage.search()"/>

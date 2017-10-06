@@ -21,7 +21,7 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	
 	private String starttime;
 	
-	private String coursetime;
+	private int coursetime;
 	
 	private int materialid; 
 	
@@ -56,15 +56,14 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	}
 
 
-	public Integer getStudentid() {
+	public int getStudentid() {
 		return studentid;
 	}
 
 
-	public void setStudentid(Integer studentid) {
+	public void setStudentid(int studentid) {
 		this.studentid = studentid;
 	}
-
 
 
 	public Date getDate() {
@@ -100,14 +99,18 @@ public class ClassSchedule extends Model<ClassSchedule>{
 
 
 
-	public String getCoursetime() {
+
+	public int getCoursetime() {
 		return coursetime;
 	}
 
 
-	public void setCoursetime(String coursetime) {
+	public void setCoursetime(int coursetime) {
 		this.coursetime = coursetime;
 	}
+
+
+
 
 
 	public int getMaterialid() {

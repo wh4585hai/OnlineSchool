@@ -22,7 +22,7 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 	
 	private String starttime;
 	
-	private String coursetime;
+	private int coursetime;
 	
 	private int materialid; 
 	
@@ -102,11 +102,13 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 		this.studentid = studentid;
 	}
 
-	public String getCoursetime() {
+
+
+	public int getCoursetime() {
 		return coursetime;
 	}
 
-	public void setCoursetime(String coursetime) {
+	public void setCoursetime(int coursetime) {
 		this.coursetime = coursetime;
 	}
 

@@ -19,9 +19,10 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 
 	        map.put("studentName", ConstantFactory.me().getStudentName((Integer) map.get("studentid")));
 	        map.put("teacherName", ConstantFactory.me().getUserNameById((Integer) map.get("teacherid")));
-	        map.put("meterialName", ConstantFactory.me().getUserNameById((Integer) map.get("materialid")));
+	        map.put("meterialName", ConstantFactory.me().getMeterialName((Integer) map.get("materialid")));
 	        map.put("statusName", ConstantFactory.me().getDictsByName("课程状态",(Integer) map.get("status")));
 	        map.put("isdelayName", ConstantFactory.me().getDictsByName("是否延期",(Integer) map.get("isdelay")));
+	        map.put("courseTimeName", ConstantFactory.me().getDictsByName("课时价格",(Integer) map.get("coursetime")));
 	        map.put("classapproach",ConstantFactory.me().getDictsByName("上课方式",ConstantFactory.me().getClassApproach((Integer) map.get("orderid"))));
 	        map.put("classnumber", ConstantFactory.me().getClassNumber((Integer) map.get("orderid")));
 

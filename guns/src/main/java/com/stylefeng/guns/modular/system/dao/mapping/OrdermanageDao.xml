@@ -2,4 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stylefeng.guns.modular.system.dao.OrdermanageDao">
 
+<select id="list" resultType="map">
+		select orders.* from orders
+		where orders.id !=""
+		<if test="studentid != null and studentid != ''">
+			and orders.studentid = #{studentid}
+		</if>
+		
+		<if test="createDate != null and createDate != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and orders.createdate = #{createDate}
+		</if>
+		order by orders.createdate DESC
+	</select>
+
 </mapper>
