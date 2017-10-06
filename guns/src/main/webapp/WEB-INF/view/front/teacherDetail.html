@@ -94,27 +94,31 @@
 			</div>
 	</div>
 
-<div class="col-xs-10">
+<div class="col-xs-12">
 		<div class="col-xs-12">
 			<h4>视频介绍</h4>
 		</div>
-	<div class="col-xs-12" style="padding: 0px;">
-	<div class="col-xs-4" style="padding:5px;width: 32%;">
-	<video width="240" height="160" controls="controls" >  
+@if(teacher.path1!=null){
+<div class="col-xs-4" style="width: 32%;">
+  <video style="width:100%; height:100%; object-fit: fill" controls="controls" >  
     <source src="../../${teacher.path1}" type="video/mp4">
 </video> 
-		</div>
-			<div class="col-xs-4" style="padding:5px;width: 32%;">
-	<video width="240" height="160" controls="controls">  
+  </div>
+  @}
+  @if(teacher.path2!=null){
+<div class="col-xs-4" style="width: 32%;">
+  <video style="width:100%; height:100%; object-fit: fill" controls="controls">  
     <source src="../../${teacher.path2}" type="video/mp4">
 </video> 
-		</div>
-			<div class="col-xs-4" style="padding:5px;width: 32%;">
-	<video  width="240" height="160" controls="controls">  
+  </div>
+  @}
+  @if(teacher.path3!=null){
+<div class="col-xs-4" style="width: 32%;">
+  <video  style="width:100%; height:100%; object-fit: fill" controls="controls">  
     <source src="../../${teacher.path3}" type="video/mp4">
 </video> 
-		</div>
-	</div>
+  </div>
+  @}
 	</div>
 
 
