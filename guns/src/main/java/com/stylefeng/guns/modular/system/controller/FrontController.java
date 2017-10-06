@@ -179,6 +179,9 @@ public class FrontController extends BaseController {
 		List<Material> material_list = materialDao.listForAll();
 		Material material = materialMapper.selectById(materialId);
 		setStudentForRequest(model);
+		String url = "http://47.94.96.156/onlineSchool-1.5.3.RELEASE/"+material.getPdfPath();
+		String pdf = "<a target='_blank' href='/generic/web/viewer.html?file="+url+"'>PDF预览</a>";
+		super.setAttr("pdf", pdf);
 		super.setAttr("material", material);
 		super.setAttr("material_list", material_list);
 		return PREFIX + "materialDetail.html";
