@@ -45,6 +45,7 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.shiro.UsernamePasswordUsertypeToken;
 import com.stylefeng.guns.core.shiro.factory.ShiroFactroy;
+import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
 import com.stylefeng.guns.modular.system.dao.CourseDao;
 import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.MaterialDao;
@@ -85,7 +86,8 @@ public class FrontController extends BaseController {
 	private CourseMapper courseMapper;
 	@Resource
     private DicUtilDao dicUtilDao;
-	
+	@Resource
+    private ClassscheduleDao classscheduleDao;
 	@Resource
 	private OrdermanageDao ordermanageDao;
 
@@ -347,5 +349,16 @@ public class FrontController extends BaseController {
 	 super.setAttr("material_list", material_list);
 	 super.setAttr("course_list", course_list);
 	 return PREFIX + "index.html";
+	 }
+	 @RequestMapping("/to_my_lesson")	
+	 public String to_my_lesson(String id,Model model){	
+		 super.setAttr("id", id);
+		// Map dicMap = new HashMap();
+	    	/*dicMap.put("useridname", dicUtilDao.getTeacherName());
+	    	model.addAttribute("dicMap",dicMap);*/
+	    	model.addAttribute("studentid",id);
+	    	 setStudentForRequest(model);
+	        return PREFIX + "myLesson.html";
+		 
 	 }
 }

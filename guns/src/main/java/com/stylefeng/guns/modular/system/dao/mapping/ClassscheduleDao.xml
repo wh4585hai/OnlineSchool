@@ -41,4 +41,22 @@
 		</if>
 		order by class_schedule.date DESC
 	</select>
+	<select id="listForStudent" resultType="map">
+		select class_schedule.* from class_schedule
+		where class_schedule.status !=null
+		
+		<if test="studentid != null and studentid != 0">
+			and class_schedule.studentid = #{studentid}
+			
+		</if>
+		<if test="datefrom != null and datefrom != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date  &gt;= #{datefrom}
+		</if>
+		<if test="dateto != null and dateto != ''">
+			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
+			 and class_schedule.date &lt;= #{dateto}
+		</if>
+		order by class_schedule.date DESC
+	</select>
 </mapper>

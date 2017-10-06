@@ -15,4 +15,5 @@ public interface ClassscheduleDao {
 
 	List<Map<String, Object>> list(@Param("studentname") String studentname, @Param("teachername") Integer teachername, @Param("datefrom") String datefrom,@Param("dateto") String dateto);
 	List<Map<String, Object>> listforcount(@Param("teachername") Integer teachername, @Param("datefrom") String datefrom,@Param("dateto") String dateto);
+	List<Map<String, Object>> listForStudent(@Param("studentname") Integer studentid, @Param("datefrom") String datefrom,@Param("dateto") String dateto);
 }
