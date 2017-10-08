@@ -1,3 +1,4 @@
+
 <div class="col-xs-12 text-right" id="nav-menu">
 	<img src="${ctxPath}/static/img/logo.jpeg" style="width:60px;height:40px;margin-top:5px;margin-left: 35px;" class="pull-left" />
 	<a href="${ctxPath}/front">首页</a>
@@ -17,7 +18,7 @@
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_modify_pwd.html?id=${student.id}">修改密码</a>
 		</li>
 		<li role="presentation">
-			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_new_order.html?id=${student.id}">我的课程</a>
+			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_my_lesson.html?id=${student.id}">我的课程</a>
 		</li>
 		<li role="presentation">
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_new_order.html?id=${student.id}">新建订单</a>
@@ -26,11 +27,12 @@
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_my_order.html?id=${student.id}">我的订单</a>
 		</li>
 	</ul>
-	<a href="#" onclick="">联系我们</a>
+	 <a href="#connect" onclick="">联系我们</a> 
 	<a href="${ctxPath}/front/logout.html">退出</a>
 	@}
 	@}
 </div>
+
 <script>
 	function showMenu(){
 	   $("#down-menu").show();
@@ -38,4 +40,8 @@
 	function hideMenu(){
 	   $("#down-menu").hide();
 	}
+	
+	
+	
+	
 </script>
