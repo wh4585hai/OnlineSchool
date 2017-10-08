@@ -7,7 +7,10 @@
 <div class="form-group">
     <label class="col-sm-3 control-label">${name}</label>
     <div class="col-sm-9">
-        <select class="form-control" id="${id}" disabled="${disabled }">
+        <select class="form-control" id="${id}" 
+        @if(disabled!=null&&isNotEmpty(disabled)){
+        disabled="${disabled }"
+        @}>
             ${tagBody!}
         </select>
         @if(isNotEmpty(hidden)){
