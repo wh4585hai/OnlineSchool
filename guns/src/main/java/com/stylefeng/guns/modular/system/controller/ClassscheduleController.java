@@ -373,9 +373,9 @@ public class ClassscheduleController extends BaseController {
 			path = "classschedule/" + pictureName;
 			classSchedule.setFile(path);
 		}
-		if (classSchedule.getFile() != null && classSchedule.getFile() != "") {
-			classSchedule.setStatus(1);
-		}
+//		if (classSchedule.getFile() != null && classSchedule.getFile() != "") {
+//			classSchedule.setStatus(1);
+//		}
 		ClassSchedule nClassSchedule = new ClassSchedule();
 		BeanUtils.copyProperties(classSchedule, nClassSchedule);
 		nClassSchedule.updateById();
