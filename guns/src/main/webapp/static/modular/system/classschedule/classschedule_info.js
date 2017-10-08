@@ -147,22 +147,35 @@ ClassscheduleInfoDlg.editSubmit = function() {
  * 签到修改
  */
 ClassscheduleInfoDlg.checkInSubmit = function() {
-	debugger;
-
-    this.clearData();
-    this.collectUpdateData();
-    console.log(this.classscheduleInfoData);
-
-    //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/classschedule/checkin", function(data){
-        Feng.success("修改成功!");
-        window.parent.Classschedule.table.refresh();
-        ClassscheduleInfoDlg.close();
-    },function(data){
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.classscheduleInfoData);
-    ajax.start();
+	
+	var options = {
+		    success: function(data) {
+		    	 Feng.success("修改成功!");
+	    	        window.parent.Classschedule.table.refresh();
+	    	        ClassscheduleInfoDlg.close();    
+		    },
+		    error: function(data){
+	    		 Feng.error("修改失败!" + data.responseJSON.message + "!");
+	    		}
+	};
+    $('#checkInUpdate').ajaxSubmit(options);  
+	
+//	debugger;
+//
+//    this.clearData();
+//    this.collectUpdateData();
+//    console.log(this.classscheduleInfoData);
+//
+//    //提交信息
+//    var ajax = new $ax(Feng.ctxPath + "/classschedule/checkin", function(data){
+//        Feng.success("修改成功!");
+//        window.parent.Classschedule.table.refresh();
+//        ClassscheduleInfoDlg.close();
+//    },function(data){
+//        Feng.error("修改失败!" + data.responseJSON.message + "!");
+//    });
+//    ajax.set(this.classscheduleInfoData);
+//    ajax.start();
     
 }
 

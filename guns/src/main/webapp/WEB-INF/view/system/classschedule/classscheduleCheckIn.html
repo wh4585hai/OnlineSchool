@@ -1,9 +1,10 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
     <div class="ibox-content">
+    
         <div class="form-horizontal">
-
-            <input type="hidden" id="id" value="${classSchedule.id}">
+<form action="${ctxPath}/classschedule/checkin" method="post" id="checkInUpdate" enctype="multipart/form-data">
+            <input type="hidden" id="id" value="${classSchedule.id}" name="id">
             <input type="hidden" id="teacheridvalue" value="${classSchedule.teacherid}">
             <input type="hidden" id="coursetimevalue" value="${classSchedule.coursetime}">
             <input type="hidden" id="materialidvalue" value="${classSchedule.materialid}">
@@ -66,8 +67,14 @@
                     <#button btnCss="danger" name="cancel" id="cancel" icon="fa-eraser" clickFun="ClassscheduleInfoDlg.close()"/>
                 </div>
             </div>
+            </form>
         </div>
 
+    
+    
+    
+    
+    
     </div>
 </div>
 <script src="${ctxPath}/static/modular/system/classschedule/classschedule_info.js"></script>
