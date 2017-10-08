@@ -53,6 +53,7 @@ TeacherInfoDlg.collectData = function() {
     this.set('language');
     this.set('picture');
     this.set('qq');
+    this.set('isshow');
     this.teacherInfoData['content'] =  CKEDITOR.instances.content.getData();
    // this.set('introduction');
     this.set('skype');
@@ -124,6 +125,7 @@ $(function() {
    $("#teacherid").val($("#teacheridvalue").val());
    $("#country").val($("#countryvalue").val());
    $("#language").val($("#languagevalue").val());
+   $("#isshow").val($("#isshowvalue").val());
     
    
 

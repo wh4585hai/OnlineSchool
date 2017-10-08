@@ -34,20 +34,15 @@
 					</#select>
 						<#input id="skype" name="skype" value="${teacher.skype}"/>
 						<#input id="birthday" name="出生日期" underline="true" type="date"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${teacher.birthday}"/>																		
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${teacher.birthday}"/>
+					<#select id="isshow" name="是否展示" underline="true">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</#select>																			
 					</div>
             </div>
             </div>
             <div class="row">			
-				<!-- <div class="form-group">
-					<label class="col-sm-2 control-label">照片</label>
-					<div class="col-sm-10">
-					  <#avatar id="picture" name="头像" underline="true" avatarImg="${teacher.picture}"  value="${teacher.picture}"/>
-						
-					</div>
-				</div> -->
-				
-				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">introduction</label>
 					<div class="col-sm-10">

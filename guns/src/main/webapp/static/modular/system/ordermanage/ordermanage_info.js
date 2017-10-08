@@ -138,9 +138,7 @@ OrdermanageInfoDlg.addSubmit = function() {
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ordermanage/add	", function(data){
-        Feng.success("预约成功!");
-        $(".erweimaDiv").show();
-        
+        Feng.success("预约成功!");        
         /*window.parent.Ordermanage.table.refresh();
         OrdermanageInfoDlg.close();*/
     },function(data){
