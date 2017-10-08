@@ -138,13 +138,13 @@ OrdermanageInfoDlg.addSubmit = function() {
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ordermanage/add	", function(data){
-        Feng.success("下单成功!");
+        Feng.success("预约成功!");
         $(".erweimaDiv").show();
         
         /*window.parent.Ordermanage.table.refresh();
         OrdermanageInfoDlg.close();*/
     },function(data){
-        Feng.error("下单失败!" + data.responseJSON.message + "!");
+        Feng.error("预约失败!" + data.responseJSON.message + "!");
     });
     ajax.set(this.ordermanageInfoData);
     ajax.start();
