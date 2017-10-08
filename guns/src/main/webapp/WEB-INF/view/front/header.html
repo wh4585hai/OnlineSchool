@@ -27,10 +27,11 @@
 	}
 	#down-menu{
 	    position:absolute;
-	    right:300px;
 	    top:42px;
+	    left:0;
 	    list-style:none;
 	    display:none;
+	    width:120px;
 	}
 	#down-menu li{
 	    line-height:30px;
@@ -55,6 +56,7 @@
 	欢迎您，${student.nickname}
 	@}
 	<a href="${ctxPath}/front">首页</a>
+	<div style="display:inline;position:relative;">
 	@if(has(user)){
 	您登陆的是后台账号
 	<a href="${ctxPath}/admin">点击跳转后台</a>
@@ -65,7 +67,7 @@
 	<a href="${ctxPath}/front/sign.html">注册</a>
 	 @}else{
 	<a onmouseover="showMenu()">个人中心<span class="caret"></span></a>
-	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()">
+	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()" style="display:none;padding-left:0;">
 		<li role="presentation">
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_modify_pwd.html?id=${student.id}">修改密码</a>
 		</li>
@@ -85,7 +87,7 @@
 	@}
 	</div>
 </div>
-
+</div>
 <script>
 	function showMenu(){
 	   $("#down-menu").show();
