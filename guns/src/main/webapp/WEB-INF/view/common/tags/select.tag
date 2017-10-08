@@ -8,9 +8,10 @@
     <label class="col-sm-3 control-label">${name}</label>
     <div class="col-sm-9">
         <select class="form-control" id="${id}" 
-        @if(disabled!=null&&isNotEmpty(disabled)){
+        @if(has(disabled)){
         disabled="${disabled }"
-        @}>
+        @}
+        >
             ${tagBody!}
         </select>
         @if(isNotEmpty(hidden)){
