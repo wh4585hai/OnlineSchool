@@ -1,6 +1,56 @@
+<style>
+	#nav-menu{
+	  line-height:40px;
+	  padding:0px 10px 0px 10px;
+	  position:fixed;
+	  top:0px;
+	  left:0px;
+	    z-index: 100;
+	  background:#ffffff;
+	}
+	#nav-menu a{
+	    font-size:16px;
+	    padding:10px 10px;
+            cursor:pointer;
+	    color:#000000;
+	    font-weight:700;
+	    text-decoration:none;
+	}
+	#nav-menu a:hover{
+	      background-color: #e84c3d;
+    		color: white;
+	}
 
+	#myCarousel{
+	    margin-top: 60px;
+	    padding: 0px;
+	}
+	#down-menu{
+	    position:absolute;
+	    right:300px;
+	    top:42px;
+	    list-style:none;
+	    display:none;
+	}
+	#down-menu li{
+	    line-height:30px;
+	    background:#ffffff;
+	    padding:5px;10px;
+	    
+	}
+	#down-menu li:hover{
+		background-color: #e84c3d;
+    		color: white;
+	}
+    a{
+	 		text-decoration:none;
+	}
+	</style>
 <div class="col-xs-12 text-right" id="nav-menu">
+<div class="col-xs-4">
 	<img src="${ctxPath}/static/img/logo.jpeg" style="width:60px;height:40px;margin-top:5px;margin-left: 35px;" class="pull-left" />
+	</div>
+	<div class="col-xs-6 text-left">
 	<a href="${ctxPath}/front">首页</a>
 	@if(has(user)){
 	您登陆的是后台账号
@@ -31,6 +81,7 @@
 	<a href="${ctxPath}/front/logout.html">退出</a>
 	@}
 	@}
+	</div>
 </div>
 
 <script>
