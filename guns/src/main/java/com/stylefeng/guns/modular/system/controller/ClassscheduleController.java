@@ -209,15 +209,6 @@ public class ClassscheduleController extends BaseController {
     
          return super.warpObject(new ClassScheduleWrapper(list));
     }
-    @RequestMapping(value = "/listforstudent")
-    @ResponseBody
-    public Object listForStudent(String studentid,String datefrom,String dateto) {
-    	
-    	 List<Map<String, Object>> list = this.classscheduleDao.listForStudent(Integer.valueOf(studentid), datefrom,dateto);
-    	 
-    
-         return super.warpObject(new ClassScheduleWrapper(list));
-    }
 
     /**
      * 新增课程表
