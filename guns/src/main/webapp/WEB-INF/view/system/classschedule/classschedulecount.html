@@ -44,9 +44,9 @@
                         </div>
                          <div class="row">
                          <div class="col-sm-12">
-                        <table  border="1">
+                        <table class="table  table-striped">
                        
-                       
+                       <thead>
                          <tr>                  
                         <th>id</th>
                         <th>上课日期</th>
@@ -57,8 +57,8 @@
                         <th>单价</th>
                         <th>金额</th>                       
                        </tr>
-                        
-                         
+                        </thead>
+                         <tbody>
                          @if(classschedules !=null&&classschedules !='null'){
                          @for(classchedule in classschedules){
                          <tr>
@@ -74,7 +74,7 @@
                          	@}
                          	@}
                         
-                        
+                        </tbody>
                         </table>
                         </div>
                         </div>

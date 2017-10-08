@@ -121,21 +121,21 @@
                             </div>
                         </div>
 			<div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
-			 <table  border="1">
+			 <table class="table  table-striped">
                        
                        
-                         <tr>                                        
-                      
+                         <thead>                                        
+                      <tr>
                         <th>上课日期</th>                      
                         <th>开始时间</th>
                         <th>课程时长</th>
                         <th>上课方式</th>
                         <th>教师姓名</th> 
                         <th>课程状态</th>
-                        <th>备注</th>                      
-                       </tr>
+                        <th>备注</th>  </tr>                    
+                       </thead>
                         
-                         
+                          <tbody>
                          @if(classschedules !=null&&classschedules !='null'){
                          @for(classchedule in classschedules){
                          <tr>
@@ -151,7 +151,7 @@
                          	@}
                          	@}
                         
-                        
+                        </tbody>
                         </table>
 			</div>
 			
