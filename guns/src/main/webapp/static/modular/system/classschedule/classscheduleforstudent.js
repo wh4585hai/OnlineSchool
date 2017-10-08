@@ -1,68 +1,67 @@
 /**
- * 课程表管理初始化
+ * 初始化课程表详情对话框
  */
-var Classschedule = {
-    id: "ClassscheduleTable",	//表格id
-    seItem: null,		//选中的条目
-    table: null,
-    layerIndex: -1
+var ClassscheduleInfoDlg = {
+    classscheduleInfoData : {}
 };
 
 /**
- * 初始化表格的列
+ * 清除数据
  */
-Classschedule.initColumn = function () {
-    return [
-    	 {field: 'selectItem', radio: true},
-         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-         {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
-         {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
-         {title: '上课日期', field: 'date',  align: 'center', valign: 'middle'},
-         {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
-         {title: '课程时长', field: 'courseTimeName',align: 'center', valign: 'middle'},
-         {title: '教材', field: 'meterialName',  align: 'center', valign: 'middle'},
-         {title: '上课方式', field: 'classapproach',  align: 'center', valign: 'middle'},
-         {title: '联系方式', field: 'classnumber',  align: 'center', valign: 'middle'},
-         {title: '文件', field: 'file',  align: 'center', valign: 'middle'},
-         {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'},
-         {title: '时否延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
-         {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
-         {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
-    ];
-};
+ClassscheduleInfoDlg.clearData = function() {
+    this.classscheduleInfoData = {};
+}
 
 /**
- * 检查是否选中
+ * 设置对话框中的数据
+ *
+ * @param key 数据的名称
+ * @param val 数据的具体值
  */
-Classschedule.check = function () {
-    var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if(selected.length == 0){
-        Feng.info("请先选中表格中的某一记录！");
-        return false;
-    }else{
-        Classschedule.seItem = selected[0];
-        return true;
-    }
-};
+ClassscheduleInfoDlg.set = function(key, val) {
+    this.classscheduleInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
+    return this;
+}
+
+/**
+ * 设置对话框中的数据
+ *
+ * @param key 数据的名称
+ * @param val 数据的具体值
+ */
+ClassscheduleInfoDlg.get = function(key) {
+    return $("#" + key).val();
+}
+
+/**
+ * 关闭此对话框
+ */
+ClassscheduleInfoDlg.close = function() {
+    parent.layer.close(window.parent.Classschedule.layerIndex);
+}
+
+
+
 
 
 /**
- * 查询课程表列表
+ * 提交添加
  */
-Classschedule.search = function () {
-	debugger;
-    var queryData = {};
-    queryData['studentid'] = $("#studentid").val();
-    queryData['datefrom'] = $("#classdatafrom").val();
-    queryData['dateto'] = $("#classdatato").val();
-    Classschedule.table.refresh({query: queryData});
-};
+ClassscheduleInfoDlg.search = function() {
+	var teachername =$("#studentid").val();
+	var classdatafrom =$("#classdatafrom").val();
+	var classdatato =$("#classdatato").val();
+	window.location=Feng.ctxPath + '/front/to_my_lesson.html?id='+teachername+'&datefrom='+classdatafrom+'&dateto='+classdatato; 
+}
 
 
 
-$(function () {
-    var defaultColunms = Classschedule.initColumn();
-    var table = new BSTable(Classschedule.id, "/classschedule/listforstudent", defaultColunms);
-    table.setPaginationType("client");
-    Classschedule.table = table.init();
+
+$(function() {
+	var avatarUp = new $WebUpload("file");
+    avatarUp.init();
+	$("#teachername").val($("#teachernameValue").val());
+
+	
+
 });

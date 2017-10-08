@@ -43,7 +43,7 @@
 	</select>
 	<select id="listForStudent" resultType="map">
 		select class_schedule.* from class_schedule
-		where class_schedule.status !=null
+		where class_schedule.id !=0
 		
 		<if test="studentid != null and studentid != 0">
 			and class_schedule.studentid = #{studentid}

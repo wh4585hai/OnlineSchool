@@ -351,12 +351,17 @@ public class FrontController extends BaseController {
 	 return PREFIX + "index.html";
 	 }
 	 @RequestMapping("/to_my_lesson")	
-	 public String to_my_lesson(String id,Model model){	
+	 public String to_my_lesson(String id,String datefrom,String dateto,Model model){	
 		 super.setAttr("id", id);
 		// Map dicMap = new HashMap();
 	    	/*dicMap.put("useridname", dicUtilDao.getTeacherName());
 	    	model.addAttribute("dicMap",dicMap);*/
 	    	model.addAttribute("studentid",id);
+	    	model.addAttribute("datefrom",datefrom);
+	    	model.addAttribute("dateto",dateto);
+	    	List<Map<String, Object>> list = this.classscheduleDao.listForStudent(Integer.valueOf(id), datefrom,dateto);
+	    	List<Map<String, Object>> classschedules=  (List<Map<String, Object>>) super.warpObject(new ClassScheduleWrapper(list));
+	    	 model.addAttribute("classschedules",classschedules);
 	    	 setStudentForRequest(model);
 	        return PREFIX + "myLesson.html";
 		 

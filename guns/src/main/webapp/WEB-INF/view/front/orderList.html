@@ -90,12 +90,12 @@
 						<span>上课方式：${order.classapproachName}</span>
 						<span>金额：${order.amount}</span>
 					</div>
-					<!-- @if( order.status == 0){
-					<a class="btn btn-default pay pull-right" onclick="OrdermanageInfoDlg.showPay(${order.amount})">支付</a>
+					@if( order.status == 0){
+					<a class="btn btn-default pay pull-right" >未支付</a>
 					@}
 					@if(order.status == 1){
 					<a class="btn btn-default pull-right" style="background: #0cce23;border: none;cursor: auto;" >已支付</a>
-					@} -->
+					@} 
 				</div>
 				@}
 				<div class="erweimaDiv">

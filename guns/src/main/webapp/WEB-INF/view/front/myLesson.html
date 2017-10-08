@@ -108,20 +108,51 @@
                                                
                             <div class="col-sm-3">
                               <#input id="classdatafrom" name="课程日期从" underline="false" type="classdata"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${datefrom}"/>
                                 
                             </div>
                             <div class="col-sm-3">
                               <#input id="classdatato" name="到" underline="false" type="classdata"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${dateto}"/>
                                 
                             </div>
                             <div class="col-sm-3">
-                                <#button name="搜索" icon="fa-search" clickFun="Classschedule.search()"/>
+                                <#button name="搜索" icon="fa-search" clickFun="ClassscheduleInfoDlg.search()"/>
                             </div>
                         </div>
 			<div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
-			 <#table id="ClassscheduleTable"/>
+			 <table  border="1">
+                       
+                       
+                         <tr>                                        
+                      
+                        <th>上课日期</th>                      
+                        <th>开始时间</th>
+                        <th>课程时长</th>
+                        <th>上课方式</th>
+                        <th>教师姓名</th> 
+                        <th>课程状态</th>
+                        <th>备注</th>                      
+                       </tr>
+                        
+                         
+                         @if(classschedules !=null&&classschedules !='null'){
+                         @for(classchedule in classschedules){
+                         <tr>
+                         <td>${classchedule.date}</td>
+                         <td>${classchedule.starttime}</td>
+                         <td>${classchedule.courseTimeName}</td>
+                         <td>${classchedule.classapproach}</td>
+                         <td>${classchedule.teacherName}</td>
+                         <td>${classchedule.statusName}</td>
+                         <td>${classchedule.remark}</td>
+                       
+                         </tr>
+                         	@}
+                         	@}
+                        
+                        
+                        </table>
 			</div>
 			
 			
