@@ -8,12 +8,22 @@
 	    z-index: 100;
 	  background:#ffffff;
 	}
+	#small-menu{
+	 
+	  padding:30px 0px 0px 0px;
+	
+	}
+	.big_menu{
+	 
+	  padding:0px 20px 0px 20px;
+	
+	}
 	#nav-menu a{
 	    font-size:16px;
 	    padding:10px 10px;
             cursor:pointer;
 	    color:#000000;
-	    font-weight:700;
+	    font-weight:500;
 	    text-decoration:none;
 	}
 	#nav-menu a:hover{
@@ -51,22 +61,22 @@
 <div class="col-xs-4">
 	<img src="${ctxPath}/static/img/logo1.jpg" style="width:160px;height:80px;margin-top:5px;margin-left: 35px;" class="pull-left" />
 	</div>
-	<div class="col-xs-6 text-left">
+	<div class="col-xs-6 text-left" id="small-menu">
 	@if(has(student)){
 	欢迎您，${student.nickname}
 	@}
-	<a href="${ctxPath}/front">首页</a>
+	<a href="${ctxPath}/front"  padding-left="30px">首页</a>
 	<div style="display:inline;position:relative;">
 	@if(has(user)){
 	您登陆的是后台账号
-	<a href="${ctxPath}/admin">点击跳转后台</a>
-	<a href="${ctxPath}/front/logout">或者退出</a>
+	<a href="${ctxPath}/admin" >点击跳转后台</a>
+	<a href="${ctxPath}/front/logout"   padding-left="30px">或者退出</a>
 	@}else{
 	@if(!has(student)){
-	<a href="${ctxPath}/front/login_s.html">登录</a>
-	<a href="${ctxPath}/front/sign.html">注册</a>
+	<a href="${ctxPath}/front/login_s.html"  padding-left="30px">登录</a>
+	<a href="${ctxPath}/front/sign.html"  padding-left="30px">注册</a>
 	 @}else{
-	<a onmouseover="showMenu()">个人中心<span class="caret"></span></a>
+	<a onmouseover="showMenu()">个人中心<span class="caret" class="big_menu" padding="0px 20px 0px 20px"></span></a>
 	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()" style="display:none;padding-left:0;">
 		<li role="presentation">
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_modify_pwd.html?id=${student.id}">修改密码</a>
@@ -81,8 +91,8 @@
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_my_order.html?id=${student.id}">我的预约</a>
 		</li>
 	</ul>
-	 <a href="#connect" onclick="">联系我们</a> 
-	<a href="${ctxPath}/front/logout.html">退出</a>
+	 <a href="#connect" onclick=""  padding-left="30px">联系我们</a> 
+	<a href="${ctxPath}/front/logout.html"  padding-left="30px">退出</a>
 	@}
 	@}
 	</div>
