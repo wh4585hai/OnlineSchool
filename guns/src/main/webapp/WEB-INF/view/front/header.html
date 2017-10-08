@@ -51,6 +51,9 @@
 	<img src="${ctxPath}/static/img/logo.jpeg" style="width:60px;height:40px;margin-top:5px;margin-left: 35px;" class="pull-left" />
 	</div>
 	<div class="col-xs-6 text-left">
+	@if(has(student)){
+	欢迎您，${student.nickname}
+	@}
 	<a href="${ctxPath}/front">首页</a>
 	@if(has(user)){
 	您登陆的是后台账号
@@ -61,7 +64,6 @@
 	<a href="${ctxPath}/front/login_s.html">登录</a>
 	<a href="${ctxPath}/front/sign.html">注册</a>
 	 @}else{
-	欢迎您，${student.nickname}
 	<a onmouseover="showMenu()">个人中心<span class="caret"></span></a>
 	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()">
 		<li role="presentation">
