@@ -61,6 +61,7 @@ ClassscheduleInfoDlg.collectData = function() {
     this.set('materialid');
     this.set('starttime');
     this.set('months');
+    this.set('file');
     this.classscheduleInfoData['weeks'] = weeks;
     
    

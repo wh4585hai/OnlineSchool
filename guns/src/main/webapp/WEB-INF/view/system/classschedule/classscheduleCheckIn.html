@@ -36,7 +36,7 @@
 							<option value="${meterialName.id}">${meterialName.name}</option>
 							@}
 					</#select>
-	                <#select id="status" name="class status" disabled="disabled">
+	                <#select id="status" name="class status">
 							@for(calssStatus in dicMap.calssstatus){
 							<option value="${calssStatus.num}">${calssStatus.name}</option>
 							@}
@@ -46,7 +46,15 @@
 							<option value="0">no</option>
 					</#select>
 	                <#input id="delayreason" name="delay reason" value="${classSchedule.delayreason}" disabled="disabled"/>
-	                <#avatar id="file" name="文件" underline="true" avatarImg=""/>
+	               
+						<input type="file" class="form-control" id="file" name="file">
+						<span class="help-block m-b-none">
+							@if(classSchedule.file!=null){
+							<img src="../../${classSchedule.file}"  style="width:300px;height: 300px;">
+							@}
+						</span>
+					
+
 
                 </div>
             </div>

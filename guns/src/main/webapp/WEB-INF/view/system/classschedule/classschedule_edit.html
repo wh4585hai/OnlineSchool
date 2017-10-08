@@ -53,6 +53,12 @@
                		<#input id="delayreason" name="延期原因" value="${classSchedule.delayreason}"/>
                 	<#avatar id="file" name="文件" underline="true" avatarImg=""/>
                 	<#input id="remark" name="备注" value="${classSchedule.remark}"/>
+                	<input type="file" class="form-control" id="file" name="file">
+						<span class="help-block m-b-none">
+							@if(classSchedule.file!=null){
+							<img src="../../${classSchedule.file}"  style="width:300px;height: 300px;">
+							@}
+						</span>
 
                 </div>
             </div>

@@ -51,7 +51,7 @@ ClassscheduleInfoDlg.search = function() {
 	var teachername =$("#teachername").val();
 	var classdatafrom =$("#classdatafrom").val();
 	var classdatato =$("#classdatato").val();
-	window.location=Feng.ctxPath + '/classschedule/listforcount?teachername='+teachername+'&classdatafrom='+classdatafrom+'&classdatato='+classdatato; 
+	window.location=Feng.ctxPath + '/classschedule/listforcount?teachername='+teachername+'&datefrom='+classdatafrom+'&dateto='+classdatato; 
 }
 
 
