@@ -8,7 +8,7 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-					<#input id="studentid" name="学生Id" type="studentid"/>
+					<#input id="studentid" name="学生号" type="studentid"/>
 					<#select id="teacherid" name="教师">
 						@for(userIdname in dicMap.useridname){
 						<option value="${userIdname.id}">${userIdname.name}</option>
@@ -28,7 +28,7 @@
 					</#select>
                
 				<#input id="starttime" name="开始时间" underline="false" type="time"/>
-				<#input id="orderid" name="订单Id" underline="false" type="orderid"/>
+				<#input id="orderid" name="预约号" underline="false" type="orderid"/>
 				 <#input id="months" name="上课月份" type="months"/>
 
 

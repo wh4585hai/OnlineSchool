@@ -30,10 +30,10 @@ var UserInfoDlg = {
                 notEmpty: {
                     message: '密码不能为空'
                 },
-                identical: {
+             /*   identical: {
                     field: 'rePassword',
                     message: '两次密码不一致'
-                },
+                },*/
             }
         },
         rePassword: {

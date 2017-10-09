@@ -20,7 +20,7 @@
 			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
 			 and class_schedule.date &lt;= #{dateto}
 		</if>
-		order by class_schedule.date DESC
+		order by class_schedule.date asc
 	</select>
 	
 	<select id="listforcount" resultType="map">
@@ -39,7 +39,7 @@
 			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
 			 and class_schedule.date &lt;= #{dateto}
 		</if>
-		order by class_schedule.date DESC
+		order by class_schedule.date asc
 	</select>
 	<select id="listForStudent" resultType="map">
 		select class_schedule.* from class_schedule
@@ -57,6 +57,6 @@
 			<!-- and (date_format(class_schedule.date,'%Y-%c-%d') = #{classdata}) -->
 			 and class_schedule.date &lt;= #{dateto}
 		</if>
-		order by class_schedule.date DESC
+		order by class_schedule.date asc
 	</select>
 </mapper>

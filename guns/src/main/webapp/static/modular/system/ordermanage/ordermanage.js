@@ -14,7 +14,7 @@ var Ordermanage = {
 Ordermanage.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: '预约号', field: 'id', align: 'center', valign: 'middle'},
         {title: '学生姓名', field: 'studentName', visible: true, align: 'center', valign: 'middle'},
         {title: '教材名称', field: 'meterialName', visible: true, align: 'center', valign: 'middle'},
         {title: '课程名称', field: 'courseName', visible: true, align: 'center', valign: 'middle'},
