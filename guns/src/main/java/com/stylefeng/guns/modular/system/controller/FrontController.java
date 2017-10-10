@@ -28,11 +28,13 @@ import com.stylefeng.guns.common.constant.tips.ValTip;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.common.persistence.dao.ClassScheduleMapper;
 import com.stylefeng.guns.common.persistence.dao.CourseMapper;
 import com.stylefeng.guns.common.persistence.dao.MaterialMapper;
 import com.stylefeng.guns.common.persistence.dao.ShufflingMapper;
 import com.stylefeng.guns.common.persistence.dao.StudentMapper;
 import com.stylefeng.guns.common.persistence.dao.TeacherMapper;
+import com.stylefeng.guns.common.persistence.model.ClassSchedule;
 import com.stylefeng.guns.common.persistence.model.Course;
 import com.stylefeng.guns.common.persistence.model.Material;
 import com.stylefeng.guns.common.persistence.model.Shuffling;
@@ -88,6 +90,8 @@ public class FrontController extends BaseController {
     private DicUtilDao dicUtilDao;
 	@Resource
     private ClassscheduleDao classscheduleDao;
+	@Resource
+    private ClassScheduleMapper classscheduleMapper;
 	@Resource
 	private OrdermanageDao ordermanageDao;
 
@@ -364,6 +368,23 @@ public class FrontController extends BaseController {
 	    	 model.addAttribute("classschedules",classschedules);
 	    	 setStudentForRequest(model);
 	        return PREFIX + "myLesson.html";
+		 
+	 }
+	 @RequestMapping("/to_my_lesson_comment")	
+	 public String to_my_lesson_comment(String id,Model model){	
+		 ClassSchedule classschedule =classscheduleMapper.selectById(id);
+	    	 model.addAttribute("classschedule", classschedule);
+	    	 model.addAttribute("studentName", ConstantFactory.me().getStudentName(classschedule.getStudentid()));
+	    	 model.addAttribute("teacherName", ConstantFactory.me().getUserNameById(classschedule.getTeacherid()));
+	    	 model.addAttribute("meterialName", ConstantFactory.me().getMeterialName(classschedule.getMaterialid()));
+	    	 model.addAttribute("statusName", ConstantFactory.me().getDictsByName("课程状态",classschedule.getStatus()));
+	    	 model.addAttribute("isdelayName", ConstantFactory.me().getDictsByName("是否延期",classschedule.getIsdelay()));
+	    	 model.addAttribute("courseTimeName", ConstantFactory.me().getDictsByName("课时价格",classschedule.getCoursetime()));
+	    	 model.addAttribute("classapproach",ConstantFactory.me().getDictsByName("上课方式",ConstantFactory.me().getClassApproach(classschedule.getOrderid())));
+	    	 model.addAttribute("classnumber", ConstantFactory.me().getClassNumber(classschedule.getOrderid()));
+	    	 model.addAttribute("count", ConstantFactory.me().getclassCoont(classschedule.getCoursetime(),classschedule.getStatus()));
+	    	 setStudentForRequest(model);
+	        return PREFIX + "comment.html";
 		 
 	 }
 }
