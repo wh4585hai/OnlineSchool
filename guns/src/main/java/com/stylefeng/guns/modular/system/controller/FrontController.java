@@ -386,5 +386,13 @@ public class FrontController extends BaseController {
 	    	 setStudentForRequest(model);
 	        return PREFIX + "comment.html";
 		 
+	 }	 
+	 @RequestMapping("/submit_my_lesson_comment")
+	 public String submit_my_lesson_comment(String id,Model model,String comment){	
+		 ClassSchedule classschedule =classscheduleMapper.selectById(id);
+		 classschedule.setComment(comment);
+		 this.classscheduleMapper.updateById(classschedule);
+	        return REDIRECT+"/front/to_my_lesson_comment.html?id="+classschedule.getId();
+		 
 	 }
 }

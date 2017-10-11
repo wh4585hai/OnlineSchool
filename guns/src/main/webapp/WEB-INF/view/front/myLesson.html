@@ -132,7 +132,8 @@
                         <th>上课方式</th>
                         <th>教师姓名</th> 
                         <th>课程状态</th>
-                        <th>备注</th>  </tr>                    
+                        <th>备注</th> 
+                         <th>评论</th>  </tr>                    
                        </thead>
                         
                           <tbody>
@@ -146,7 +147,9 @@
                          <td>${classchedule.teacherName}</td>
                          <td>${classchedule.statusName}</td>
                          <td>${classchedule.remark}</td>
-                       
+                       	<td>
+                       	<a href="to_my_lesson_comment.html?id=${classchedule.id}" target="_blank">评论</a>
+                       	</td>
                          </tr>
                          	@}
                          	@}

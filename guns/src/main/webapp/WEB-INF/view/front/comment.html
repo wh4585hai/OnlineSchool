@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="${ctxPath}/static/css/bootstrap.min.css">
 <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+     <script src="${ctxPath}/static/js/autosize.js"></script>
 <style>
     .animated {
         -webkit-transition: height 0.2s;
@@ -22,11 +23,11 @@
 </style>
 </head>
 <body bgcolor="black">
+<div class="container">
 @layout("header.html"){
 @}
-<div class="container">
-
-<div class="row">
+<div style="height:120px;" class="row"></div>
+<div class="row" >
 <table class="table  table-striped">
                        
                        
@@ -42,13 +43,13 @@
                        </thead>
                           <tbody>
                          <tr>
-                         <td>${classchedule.date}</td>
-                         <td>${classchedule.starttime}</td>
+                         <td>${classschedule.date}</td>
+                         <td>${classschedule.starttime}</td>
                          <td>${courseTimeName}</td>
                          <td>${classapproach}</td>
                          <td>${teacherName}</td>
                          <td>${statusName}</td>
-                         <td>${classchedule.remark}</td>
+                         <td>${classschedule.remark}</td>
                          </tr>
                         </tbody>
                         </table>
@@ -62,14 +63,14 @@
                   </div> 
                    <div class="comments-list">
                        <div class="media">
-                           <p class="pull-right"><small>5 days ago</small></p>
+                           <p class="pull-right"><small></small></p>
                             <a class="media-left" href="#">
-                              <img src="http://lorempixel.com/40/40/people/1/">
+                              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC">
                             </a>
                             <div class="media-body">
                                 
                               <h4 class="media-heading user_name">${studentName}</h4>
-                              Wow! this is really great.
+                             ${classschedule.comment}
                               
                              <!--  <p><small><a href="">Like</a> - <a href="">Share</a></small></p> -->
                             </div>
@@ -83,6 +84,7 @@
                 </div>
             </div>
 
+<div style="height:20px;"></div>
 
     <div class="row">
         <div class="col-lg-8">
@@ -92,26 +94,36 @@
                         <img class="media-object img-circle" width="80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC" alt="Generic placeholder image">
                     </a>
                     <div class="media-body">
-
+                    <form method="post" action="submit_my_lesson_comment" id="comment">
+						<input type="hidden" name="id" value="${classschedule.id}">
                         <div class="form-group" style="padding:12px;">
-                            <textarea class="form-control animated" placeholder="Update your status"></textarea>
-                            <button class="btn btn-info pull-right" style="margin-top:10px" type="button">评论</button>
+                            <textarea class="form-control animated" placeholder="Submit Your Comment" name="comment" id="comment_html"></textarea>
+                            <button class="btn btn-info pull-right" id="commentBtn" style="margin-top:10px" type="button">评论</button>
                         </div>
-
+						</form>
                     </div>
                 </div>
             </div>  <!-- well-sm -->
         </div>
     </div>
+    
+    @layout("footer.html"){
+@}
 </div>
 
 <script>
     $(function(){
         $('.normal').autosize();
         $('.animated').autosize({append: "\n"});
+        $("#commentBtn").click(function(){
+        	var comment = $("#comment_html").val();
+        	if(comment==""){
+        		alert("请输入评论内容！");
+        		return;
+        	}
+        	 $("#comment").submit();
+        });
     });
 </script>
-@layout("footer.html"){
-@}
 </body>
 </html>

@@ -37,6 +37,7 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	
 	private int orderid;
 	
+	private String comment;
 	
 	
 	
@@ -180,6 +181,16 @@ public class ClassSchedule extends Model<ClassSchedule>{
 
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
+	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	
