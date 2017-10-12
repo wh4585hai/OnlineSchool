@@ -18,6 +18,7 @@ Classschedule.initColumn = function () {
          {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
          {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
          {title: '上课日期', field: 'date',  align: 'center', valign: 'middle',sortable: true},
+         {title: '星期', field: 'weekfordate',  align: 'center', valign: 'middle',sortable: true},
          {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
          {title: '课程时长', field: 'courseTimeName',align: 'center', valign: 'middle'},
          {title: '教材', field: 'meterialName',  align: 'center', valign: 'middle'},
@@ -27,7 +28,8 @@ Classschedule.initColumn = function () {
          {title: '状态', field: 'statusName', visible: true, align: 'center', valign: 'middle',sortable: true},
          {title: '时否延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
          {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
-         {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'}
+         {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'},
+         {title: '评论', field: 'comment', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 

@@ -126,7 +126,8 @@
                        
                          <thead>                                        
                       <tr>
-                        <th>上课日期</th>                      
+                        <th>上课日期</th>
+                        <th>星期</th>                        
                         <th>开始时间</th>
                         <th>课程时长</th>
                         <th>上课方式</th>
@@ -141,6 +142,7 @@
                          @for(classchedule in classschedules){
                          <tr>
                          <td>${classchedule.date}</td>
+                         <td>${classchedule.weekfordate}</td>
                          <td>${classchedule.starttime}</td>
                          <td>${classchedule.courseTimeName}</td>
                          <td>${classchedule.classapproach}</td>

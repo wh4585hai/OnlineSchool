@@ -1,8 +1,10 @@
 package com.stylefeng.guns.modular.system.warpper;
 
+import java.util.Date;
 import java.util.Map;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
+import com.stylefeng.guns.core.util.DateUtil;
 
 public class ClassScheduleWrapper extends BaseControllerWarpper{
 
@@ -26,6 +28,7 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 	        map.put("classapproach",ConstantFactory.me().getDictsByName("上课方式",ConstantFactory.me().getClassApproach((Integer) map.get("orderid"))));
 	        map.put("classnumber", ConstantFactory.me().getClassNumber((Integer) map.get("orderid")));
 	        map.put("count", ConstantFactory.me().getclassCoont((Integer) map.get("coursetime"),(Integer) map.get("status")));
+	        map.put("weekfordate",DateUtil.getWeekOfDate((Date) map.get("date")));
 	     
 	       
 	}
