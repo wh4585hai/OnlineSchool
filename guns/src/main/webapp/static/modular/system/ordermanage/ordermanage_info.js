@@ -44,7 +44,6 @@ OrdermanageInfoDlg.close = function() {
  * 收集数据
  */
 OrdermanageInfoDlg.collectData = function() {
-	debugger;
 	
 	var weeks = "";
 	var timesperweek=0;
@@ -89,7 +88,6 @@ OrdermanageInfoDlg.collectData = function() {
 }
 
 OrdermanageInfoDlg.collectDataManager = function() {
-	debugger;
 	
 	var weeks = "";
 	var timesperweek=0;
@@ -130,22 +128,30 @@ OrdermanageInfoDlg.collectDataManager = function() {
  */
 OrdermanageInfoDlg.addSubmit = function() {
 
-	debugger;
-	
+	this.disabled=true;
     this.clearData();
     this.collectData();
     $("#amount").val(this.ordermanageInfoData.amount);
-
+//    var index = layer.open({
+//        type: 1,
+//        area: ['200px', '100px'],
+//        shadeClose: true, //点击遮罩关闭
+//        content: '\<\div style="padding:20px;">正在加载......\<\/div>'
+//      });
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ordermanage/add	", function(data){
-        Feng.success("预约成功，请联系客服开通课程！");        
+    	//layer.close(layer.index);
+    	Feng.success("预约成功，请联系客服开通课程！"); 
+    	window.location=Feng.ctxPath +"/front/to_my_order.html?id="+$("#studentid").val();
         /*window.parent.Ordermanage.table.refresh();
         OrdermanageInfoDlg.close();*/
     },function(data){
+    	//layer.close(layer.index);
         Feng.error("预约失败!" + data.responseJSON.message + "!");
     });
     ajax.set(this.ordermanageInfoData);
     ajax.start();
+    
 }
 /**
  * 提交添加
