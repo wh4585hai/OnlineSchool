@@ -53,14 +53,17 @@
 	}
 	</style>
 <div class="col-xs-12 text-right" id="nav-menu">
-<div class="col-xs-7">
+<div class="col-xs-6">
 	<img src="${ctxPath}/static/img/logo.jpg" style="width:300px;height:120px;margin-top:5px;margin-left: 10px;" class="pull-left" />
 	</div>
-	<div class="col-xs-5 text-left" id="small-menu">
+	<div class="col-xs-6 text-left" id="small-menu">
 	@if(has(student)){
 	欢迎您，${student.nickname}
 	@}
 	<a href="${ctxPath}/front" style="padding-right:20px;padding-left:20px">首页</a>
+	<a href="${ctxPath}/front#teachera" style="padding-right:20px;padding-left:20px">外教</a> 
+	<a href="${ctxPath}/front#showteacher"  style="padding-right:20px;padding-left:20px">课程</a> 
+	<a href="${ctxPath}/front#showcourse"  style="padding-right:20px;padding-left:20px">教材</a> 
 	<div style="display:inline;position:relative;">
 	@if(has(user)){
 	您登陆的是后台账号

@@ -29,19 +29,21 @@
 	active
 	@}
 	">
-		<a href="${ctxPath}/front/acivityDetail/${shuffling.id}"><img src="${shuffling.path }" style="width:100%;height:800px" alt="${shuffling.title }"></a>
+		<a href="${ctxPath}/front/acivityDetail/${shuffling.id}"><img src="${shuffling.path }" style="width:100%;height:750px;" alt="${shuffling.title }"></a>
 		</div>
 	@}
+
+	
 	</div>
 	<a class="carousel-control left" style="font-size: 40px;line-height: 350px;" href="#myCarousel" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left"></span>
 	</a>
 	<a class="carousel-control right" style="font-size: 40px;line-height: 350px;" href="#myCarousel" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right"></span>
+		<span id="teachera" class="glyphicon glyphicon-chevron-right"></span>
 	</a>
 </div>
 
-<div class="col-xs-12" style="height:50px">
+<div  class="col-xs-12" style="height:50px">
 
 </div>
 <div class="col-xs-12" style="color:#d48b06;">
@@ -53,7 +55,7 @@
 		<div class="col-xs-12">
 		<div class="col-xs-12">
 		<div class="col-xs-4"></div>
-			<h2 class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">教师</h2>	
+			<h2 id="showteacher" class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">外教</h2>	
 		</div>
 		<div class="col-xs-12">
 			<div class="col-xs-4"></div>
@@ -83,7 +85,7 @@
 	<div class="col-xs-10">	
 		<div class="col-xs-12">
 		<div class="col-xs-4"></div>
-			<h2 class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">课程</h2>	
+			<h2 id="showcourse" class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">课程</h2>	
 		</div>
 		<div class="col-xs-12">
 			<div class="col-xs-4"></div>
@@ -113,7 +115,7 @@
 	<div class="col-xs-10">
 		<div class="col-xs-12">
 		<div class="col-xs-4"></div>
-			<h2 class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">教材</h2>	
+			<h2 id="showmeteria" class="text-center col-xs-4 bold" style="border-bottom:1px solid black;padding-bottom:10px;color:red;">教材</h2>	
 		</div>
 		<div class="col-xs-12">
 			<div class="col-xs-4"></div>
