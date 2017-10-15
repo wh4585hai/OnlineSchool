@@ -46,7 +46,7 @@ public class EditorPictureController {
 				// 将上传的图片的url返回给ckeditor
 				String callback = request.getParameter("CKEditorFuncNum");
 				String script = "<script type=\"text/javascript\">window.parent.CKEDITOR.tools.callFunction(" + callback
-						+ ", '" + "../editor/" + fileName + "');</script>";
+						+ ", '" + "../../editor/" + fileName + "');</script>";
 				response.setContentType("text/html; charset=UTF-8");
 				response.setHeader("Cache-Control", "no-cache");
 				response.setHeader("X-Frame-Options", "SAMEORIGIN");

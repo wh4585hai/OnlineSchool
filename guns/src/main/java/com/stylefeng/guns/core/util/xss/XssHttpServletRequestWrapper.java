@@ -48,7 +48,9 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
             return null;
 
         }
-
+        if(parameter.equals("content")){
+        	return value;
+        }
         return cleanXSS(value);
 
     }

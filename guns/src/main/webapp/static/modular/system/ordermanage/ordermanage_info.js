@@ -141,8 +141,10 @@ OrdermanageInfoDlg.addSubmit = function() {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ordermanage/add	", function(data){
     	//layer.close(layer.index);
-    	Feng.success("预约成功，请联系客服开通课程！"); 
-    	window.location=Feng.ctxPath +"/front/to_my_order.html?id="+$("#studentid").val();
+    	Feng.success("预约成功，请联系客服开通课程!3秒后自动跳转");
+        setTimeout(function(){
+        	window.location=Feng.ctxPath +"/front/to_my_order.html?id="+$("#studentid").val();
+        },3000);//延时3秒 
         /*window.parent.Ordermanage.table.refresh();
         OrdermanageInfoDlg.close();*/
     },function(data){

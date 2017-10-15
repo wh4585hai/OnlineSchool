@@ -171,6 +171,7 @@ public class MaterialController extends BaseController {
      	String description =request.getParameter("description");
      	String summary=request.getParameter("summary");
      	String content =request.getParameter("content"); 
+     	System.out.println("content="+content);
     	if(materialId==null || materialId.equals("")){
     		 throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
     	}

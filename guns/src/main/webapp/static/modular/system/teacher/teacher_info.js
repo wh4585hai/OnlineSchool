@@ -64,7 +64,7 @@ TeacherInfoDlg.collectData = function() {
  * 提交添加
  */
 TeacherInfoDlg.addSubmit = function() {
-
+	CKupdate();
     this.clearData();
     this.collectData();
 
@@ -99,14 +99,13 @@ TeacherInfoDlg.upload = function() {
  * 提交修改
  */
 TeacherInfoDlg.editSubmit = function() {
-	debugger;
-
+	CKupdate();
+	console.log(CKEDITOR.instances.content.getData())
     this.clearData();
     this.collectData();
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/teacher/update", function(data){
-    	debugger;
         Feng.success("修改成功!");
         window.location=Feng.ctxPath + '/teacher';
     },function(data){
@@ -116,7 +115,10 @@ TeacherInfoDlg.editSubmit = function() {
     ajax.set(this.teacherInfoData);
     ajax.start();
 }
-
+function CKupdate() {
+    for (instance in CKEDITOR.instances)
+        CKEDITOR.instances[instance].updateElement();
+}
 
 $(function() {
 	 var avatarUp = new $WebUpload("picture");
@@ -125,8 +127,13 @@ $(function() {
    $("#teacherid").val($("#teacheridvalue").val());
    $("#country").val($("#countryvalue").val());
    $("#language").val($("#languagevalue").val());
-   $("#isshow").val($("#isshowvalue").val());
+ //  $("#isshow").val($("#isshowvalue").val());
     
-   
+ //初始化是否是菜单
+   if($("#isshowvalue").val() == undefined){
+       $("#isshow").val(0);
+   }else{
+       $("#isshow").val($("#isshowvalue").val());
+   }
 
 });

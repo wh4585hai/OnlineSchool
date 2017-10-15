@@ -83,6 +83,7 @@ MaterialInfoDlg.addSubmit = function() {
  */
 MaterialInfoDlg.editSubmit = function() {
 	CKupdate();
+	console.log($("#content").val())
 	var options = {
 		    success: function(data) {
 		    	 Feng.success("修改成功!");

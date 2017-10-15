@@ -205,10 +205,12 @@ public class TeacherController extends BaseController {
     @Permission
     @ResponseBody
     @BussinessLog(value = "新增教师",key = "name",dict = Dict.TeacherMap)
-    public Object add(@Valid Teacher teacher,BindingResult result) {
+    public Object add(@Valid Teacher teacher,BindingResult result,HttpServletRequest request) {
     	   if (result.hasErrors()) {
                throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
            }
+    	   String content = request.getParameter("content");
+     	  teacher.setContent(content);
     	//String introduction = request.getParameter("introduction");
    
     	teacher.insert();   
@@ -236,11 +238,14 @@ public class TeacherController extends BaseController {
     @Permission
     @ResponseBody
     @BussinessLog(value = "修改教师",key = "name",dict = Dict.TeacherMap)
-    public Object update(@Valid Teacher teacher, BindingResult result) {
+    public Object update(@Valid Teacher teacher, BindingResult result,HttpServletRequest request) {
     	  if (result.hasErrors()) {
               throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
           }
+    	  String content = request.getParameter("content");
+    	  teacher.setContent(content);
     	 Teacher nTeacher = new Teacher();
+    	 System.out.println("content="+teacher.getContent());
     	 BeanUtils.copyProperties(teacher,nTeacher);                       
     	 nTeacher.updateById();
          return SUCCESS_TIP;
