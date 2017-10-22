@@ -17,7 +17,7 @@ Classschedule.initColumn = function () {
          {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
          {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
          {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
-         {title: '上课日期', field: 'date',  align: 'center', valign: 'middle',sortable: true},
+         {title: '上课日期', field: 'formatedate',  align: 'center', valign: 'middle',sortable: true},
          {title: '星期', field: 'weekfordate',  align: 'center', valign: 'middle',sortable: true},
          {title: '开始时间', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
          {title: '课程时长', field: 'courseTimeName',align: 'center', valign: 'middle'},

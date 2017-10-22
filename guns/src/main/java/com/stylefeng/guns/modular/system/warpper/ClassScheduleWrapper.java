@@ -29,6 +29,7 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 	        map.put("classnumber", ConstantFactory.me().getClassNumber((Integer) map.get("orderid")));
 	        map.put("count", ConstantFactory.me().getclassCoont((Integer) map.get("coursetime"),(Integer) map.get("status")));
 	        map.put("weekfordate",DateUtil.getWeekOfDate((Date) map.get("date")));
+	        map.put("formatedate",DateUtil.getDay((Date) map.get("date")));
 	     
 	       
 	}
