@@ -14,7 +14,7 @@ var Classschedule = {
 Classschedule.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: '学生号', field: 'id', align: 'center', valign: 'middle'},
+        {title: 'id', field: 'id',visible: false, align: 'center', valign: 'middle'},
         {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
         {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
         {title: '上课日期', field: 'formatedate',  align: 'center', valign: 'middle',sortable: true},

@@ -54,27 +54,27 @@
 	</style>
 <div class="col-xs-12 text-right" id="nav-menu">
 <div class="col-xs-6">
-	<img src="${ctxPath}/static/img/logo.jpg" style="width:450px;height:120px;margin-top:5px;margin-left: 10px;" class="pull-left" />
+	<img src="${ctxPath}/static/img/logo.jpg" style="width:55%;height:120px;margin-top:5px;margin-left: 0px;" class="pull-left" />
 	</div>
 	<div class="col-xs-6 text-left" id="small-menu">
 	@if(has(student)){
 	欢迎您，${student.nickname}
 	@}
-	<a href="${ctxPath}/front" style="padding-right:20px;padding-left:20px">首页</a>
-	<a href="${ctxPath}/front#teachera" style="padding-right:20px;padding-left:20px">外教</a> 
-	<a href="${ctxPath}/front#showteacher"  style="padding-right:20px;padding-left:20px">课程</a> 
-	<a href="${ctxPath}/front#showcourse"  style="padding-right:20px;padding-left:20px">教材</a> 
+	<a href="${ctxPath}/front" style="padding-right:2%;padding-left:2%">首页</a>
+	<a href="${ctxPath}/front#teachera" style="padding-right:2%;padding-left:2%">外教</a> 
+	<a href="${ctxPath}/front#showteacher"  style="padding-right:2%;padding-left:2%">课程</a> 
+	<a href="${ctxPath}/front#showcourse"  style="padding-right:2%;padding-left:2%">教材</a> 
 	<div style="display:inline;position:relative;">
 	@if(has(user)){
 	您登陆的是后台账号
 	<a href="${ctxPath}/admin" >点击跳转后台</a>
-	<a href="${ctxPath}/front/logout"  style="padding-right:20px;padding-left:20px">或者退出</a>
+	<a href="${ctxPath}/front/logout"  style="padding-right:2%;padding-left:2%">或者退出</a>
 	@}else{
 	@if(!has(student)){
-	<a href="${ctxPath}/front/login_s.html" style="padding-right:20px;padding-left:20px">登录</a>
-	<a href="${ctxPath}/front/sign.html"  style="padding-right:20px;padding-left:20px">注册</a>
+	<a href="${ctxPath}/front/login_s.html" style="padding-right:2%;padding-left:2%">登录</a>
+	<a href="${ctxPath}/front/sign.html"  style="padding-right:2%;padding-left:2%">注册</a>
 	 @}else{
-	<a style="padding-right:20px;padding-left:20px" onmouseover="showMenu()">个人中心<span class="caret" ></span></a>
+	<a style="padding-right:2%;padding-left:2%" onmouseover="showMenu()">个人中心<span class="caret" ></span></a>
 	<ul role="menu" id="down-menu" onmouseover="showMenu()" onmouseout="hideMenu()" style="display:none;padding-left:0;">
 		<li role="presentation">
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_modify_pwd.html?id=${student.id}">修改密码</a>
@@ -89,8 +89,8 @@
 			<a role="menuitem" tabindex="-1" href="${ctxPath}/front/to_my_order.html?id=${student.id}">我的预约</a>
 		</li>
 	</ul>
-	 <a href="${ctxPath}/front#contact" onclick=""  style="padding-right:20px;padding-left:20px">联系我们</a> 
-	<a href="${ctxPath}/front/logout.html"  style="padding-right:20px;padding-left:20px">退出</a>
+	 <a href="${ctxPath}/front#contact" onclick=""  style="padding-right:2%;padding-left:2%">联系我们</a> 
+	<a href="${ctxPath}/front/logout.html"  style="padding-right:2%;padding-left:2%">退出</a>
 	@}
 	@}
 	</div>

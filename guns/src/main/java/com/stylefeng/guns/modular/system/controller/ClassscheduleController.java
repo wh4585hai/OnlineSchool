@@ -247,7 +247,7 @@ public class ClassscheduleController extends BaseController {
 		classSchedule.setOrderid(classScheduleModel.getOrderid());
 		classSchedule.setStatus(1);
 
-		int months = classScheduleModel.getMaterialid();
+		int months = classScheduleModel.getMonths();
 		Date startDate = classScheduleModel.getDate();
 		String weeks = classScheduleModel.getWeeks();
 		String[] timesPerWeek = weeks.split(",");

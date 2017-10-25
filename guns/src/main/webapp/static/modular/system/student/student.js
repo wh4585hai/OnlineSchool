@@ -14,7 +14,7 @@ var Student = {
 Student.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: '学生id', field: 'id', align: 'center', valign: 'middle'},
         {title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true},
         {title: '昵称', field: 'nickname', align: 'center', valign: 'middle', sortable: true},
         {title: '姓名', field: 'realname', align: 'center', valign: 'middle', sortable: true}
