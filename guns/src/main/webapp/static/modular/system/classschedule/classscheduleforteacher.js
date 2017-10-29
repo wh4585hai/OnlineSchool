@@ -52,7 +52,6 @@ Classschedule.check = function () {
  * 查询课程表列表
  */
 Classschedule.search = function () {
-	debugger;
     var queryData = {};
     queryData['studentname'] = $("#studentname").val();
     queryData['datefrom'] = $("#classdatafrom").val();

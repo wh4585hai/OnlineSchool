@@ -44,7 +44,6 @@ ClassscheduleInfoDlg.close = function() {
  * 收集数据
  */
 ClassscheduleInfoDlg.collectData = function() {
-	debugger;
 	var weeks = "";
     $('input:checkbox[name=weeks]:checked').each(function(i){
      if(0==i){
@@ -124,8 +123,6 @@ ClassscheduleInfoDlg.addSubmit = function() {
  * 提交修改
  */
 ClassscheduleInfoDlg.editSubmit = function() {
-	debugger;
-
     this.clearData();
     this.collectUpdateData();
     console.log(this.classscheduleInfoData);

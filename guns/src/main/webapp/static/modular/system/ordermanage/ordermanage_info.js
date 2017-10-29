@@ -159,8 +159,6 @@ OrdermanageInfoDlg.addSubmit = function() {
  * 提交添加
  */
 OrdermanageInfoDlg.addSubmitManager = function() {
-
-	debugger;
 	
     this.clearData();
     this.collectDataManager();
@@ -185,7 +183,6 @@ OrdermanageInfoDlg.closePay = function() {
 }
 
 OrdermanageInfoDlg.showPay = function(data) {
-	debugger;
 	 $("#amount").val(data);
 	 $(".erweimaDiv").show();
 	 
@@ -211,7 +208,6 @@ OrdermanageInfoDlg.editSubmit = function() {
 
 $(function() {
 	
-	debugger
 	  $("#courseid").val($("#courseidValue").val());
 	  $("#coursetime").val($("#coursetimeValue").val());
 	  $("#materialid").val($("#materialidValue").val());
