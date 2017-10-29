@@ -13,7 +13,7 @@ var Classschedule = {
  */
 Classschedule.initColumn = function () {
     return [
-        {field: 'selectItem', radio: true},
+        {field: 'selectItem', radio: false},
         {title: 'id', field: 'id',visible: false, align: 'center', valign: 'middle'},
         {title: '学生', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
         {title: '教师', field: 'teacherName',  align: 'center', valign: 'middle'},
@@ -53,7 +53,7 @@ Classschedule.check = function () {
  * 查询课程表列表
  */
 Classschedule.search = function () {
-	debugger;
+	
     var queryData = {};
     queryData['studentname'] = $("#studentname").val();
     queryData['teachername'] = $("#teachername").val();
@@ -113,8 +113,14 @@ Classschedule.delete = function () {
 
 
 $(function () {
+	var queryData = {};
+    queryData['studentname'] = "kong";
+    queryData['teachername'] = $("#teachername").val();
+    queryData['datefrom'] = $("#classdatafrom").val();
+    queryData['dateto'] = $("#classdatato").val();
     var defaultColunms = Classschedule.initColumn();
     var table = new BSTable(Classschedule.id, "/classschedule/list", defaultColunms);
     table.setPaginationType("client");
+    table.setQueryParams(queryData);
     Classschedule.table = table.init();
 });
