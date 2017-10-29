@@ -80,6 +80,6 @@ Classschedule.openClassscheduleDetail = function () {
 $(function () {
     var defaultColunms = Classschedule.initColumn();
     var table = new BSTable(Classschedule.id, "/classschedule/listforteacher", defaultColunms);
-    table.setPaginationType("client");
+    table.setPaginationType("server");
     Classschedule.table = table.init();
 });
