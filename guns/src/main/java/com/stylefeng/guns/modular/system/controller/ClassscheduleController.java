@@ -1,12 +1,15 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.ClassScheduleMapper;
 import com.stylefeng.guns.common.persistence.model.ClassSchedule;
 import com.stylefeng.guns.common.persistence.model.ClassScheduleModel;
+import com.stylefeng.guns.common.persistence.model.OperationLog;
 import com.stylefeng.guns.common.persistence.model.Student;
 import com.stylefeng.guns.common.persistence.model.Teacher;
 import com.stylefeng.guns.config.properties.GunsProperties;
@@ -18,6 +21,7 @@ import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
 import com.stylefeng.guns.modular.system.dao.DicUtilDao;
 import com.stylefeng.guns.modular.system.dao.TeacherDao;
 import com.stylefeng.guns.modular.system.warpper.ClassScheduleWrapper;
+import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.modular.system.warpper.OrderWrapper;
 import com.stylefeng.guns.modular.system.warpper.TeacherWrapper;
 
@@ -171,9 +175,11 @@ public class ClassscheduleController extends BaseController {
 	@RequestMapping(value = "/list")
 	@ResponseBody
 	public Object list(String studentname, Integer teachername, String datefrom, String dateto) {
-
-		List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom, dateto);
-		return super.warpObject(new ClassScheduleWrapper(list));
+		Page<ClassSchedule> page = new PageFactory<ClassSchedule>().defaultPage();
+		List<Map<String, Object>> result = this.classscheduleDao.list(page,studentname, teachername, datefrom, dateto);
+		 page.setRecords((List<ClassSchedule>) new ClassScheduleWrapper(result).warp());
+	        return super.packForBT(page);
+		//return super.warpObject(new ClassScheduleWrapper(list));
 	}
 
 	/**
@@ -217,9 +223,12 @@ public class ClassscheduleController extends BaseController {
 	public Object listForTeacher(String studentname, String datefrom, String dateto) {
 
 		int teachername = ShiroKit.getUser().getId();
-		List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom, dateto);
-
-		return super.warpObject(new ClassScheduleWrapper(list));
+		//List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom, dateto);
+		Page<ClassSchedule> page = new PageFactory<ClassSchedule>().defaultPage();
+		List<Map<String, Object>> result = this.classscheduleDao.list(page,studentname, teachername, datefrom, dateto);
+		 page.setRecords((List<ClassSchedule>) new ClassScheduleWrapper(result).warp());
+	        return super.packForBT(page);
+		//return super.warpObject(new ClassScheduleWrapper(list));
 	}
 
 	/**
@@ -319,8 +328,10 @@ public class ClassscheduleController extends BaseController {
 	 */
 	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public Object delete(@RequestParam Integer classscheduleId) {
-		this.classScheduleMapper.deleteById(classscheduleId);
+	public Object delete(@RequestParam Integer classscheduleId,@RequestParam String classscheduleIds) {
+		String[] ids = classscheduleIds.split(",");
+		this.classscheduleDao.deleteBathById(ids);
+		//this.classScheduleMapper.deleteById(classscheduleId);
 		return SUCCESS_TIP;
 	}
 

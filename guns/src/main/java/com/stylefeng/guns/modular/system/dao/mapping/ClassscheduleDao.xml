@@ -59,4 +59,10 @@
 		</if>
 		order by class_schedule.date asc
 	</select>
+	<delete id="deleteBathById" parameterType="java.lang.String">  
+    delete from class_schedule where id in   
+    <foreach item="item" index="index" collection="array" open="(" separator="," close=")">  
+    #{item}  
+  </foreach>  
+</delete>  
 </mapper>

@@ -4,6 +4,7 @@
 var Classschedule = {
     id: "ClassscheduleTable",	//表格id
     seItem: null,		//选中的条目
+    seItems: null,
     table: null,
     layerIndex: -1
 };
@@ -44,6 +45,15 @@ Classschedule.check = function () {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     }else{
+    	var str="";
+    	for(i=0;i<selected.length;i++){
+    		if(i==selected.length-1){
+    			str+=selected[i].id;
+    		}else{
+    			str+=selected[i].id+",";
+    		}
+    	}
+    	Classschedule.seItems = str;
         Classschedule.seItem = selected[0];
         return true;
     }
@@ -105,6 +115,7 @@ Classschedule.delete = function () {
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
+        ajax.set("classscheduleIds",this.seItems);
         ajax.set("classscheduleId",this.seItem.id);
         ajax.start();
     }
@@ -120,7 +131,7 @@ $(function () {
     queryData['dateto'] = $("#classdatato").val();
     var defaultColunms = Classschedule.initColumn();
     var table = new BSTable(Classschedule.id, "/classschedule/list", defaultColunms);
-    table.setPaginationType("client");
+    table.setPaginationType("server");
     table.setQueryParams(queryData);
     Classschedule.table = table.init();
 });
