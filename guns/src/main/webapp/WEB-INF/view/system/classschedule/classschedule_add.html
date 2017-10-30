@@ -14,7 +14,7 @@
 						<option value="${userIdname.id}">${userIdname.name}</option>
 						@}
 					</#select>
-					<#input id="date" name="开始日期" underline="false" type="date"
+					<#input id="date" name="开始日期" underline="false" 
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>	
 					<#select id="coursetime" name="课程时长">
 					@for(classTime in dicMap.calsstime){

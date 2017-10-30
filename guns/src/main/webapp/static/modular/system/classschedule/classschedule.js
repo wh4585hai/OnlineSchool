@@ -124,14 +124,10 @@ Classschedule.delete = function () {
 
 
 $(function () {
-	var queryData = {};
-    queryData['studentname'] = "kong";
-    queryData['teachername'] = $("#teachername").val();
-    queryData['datefrom'] = $("#classdatafrom").val();
-    queryData['dateto'] = $("#classdatato").val();
+
     var defaultColunms = Classschedule.initColumn();
     var table = new BSTable(Classschedule.id, "/classschedule/list", defaultColunms);
     table.setPaginationType("server");
-    table.setQueryParams(queryData);
+
     Classschedule.table = table.init();
 });
