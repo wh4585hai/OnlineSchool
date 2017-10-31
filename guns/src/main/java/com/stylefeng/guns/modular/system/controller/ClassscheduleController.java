@@ -329,7 +329,6 @@ public class ClassscheduleController extends BaseController {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.DATE, n);
-		System.out.println(sdf.format(c.getTime()));
 		return c.getTime();
 	}
 

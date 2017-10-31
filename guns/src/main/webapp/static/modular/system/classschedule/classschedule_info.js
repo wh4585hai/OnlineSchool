@@ -44,6 +44,7 @@ ClassscheduleInfoDlg.close = function() {
  * 收集数据
  */
 ClassscheduleInfoDlg.collectData = function() {
+	debugger;
 	var weeks = "";
     $('input:checkbox[name=weeks]:checked').each(function(i){
      if(0==i){
@@ -61,6 +62,7 @@ ClassscheduleInfoDlg.collectData = function() {
     this.set('starttime');
     this.set('months');
     this.set('file');
+    this.set('teachercharge');
     this.classscheduleInfoData['weeks'] = weeks;
     
    
