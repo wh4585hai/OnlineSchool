@@ -40,7 +40,7 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	private String comment;
 	
 	private int teachercharge;
-	
+	private String startDate;
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
@@ -201,6 +201,16 @@ public class ClassSchedule extends Model<ClassSchedule>{
 
 	public void setTeachercharge(int teachercharge) {
 		this.teachercharge = teachercharge;
+	}
+
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 	
 	

@@ -47,6 +47,7 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.shiro.UsernamePasswordUsertypeToken;
 import com.stylefeng.guns.core.shiro.factory.ShiroFactroy;
+import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
 import com.stylefeng.guns.modular.system.dao.CourseDao;
 import com.stylefeng.guns.modular.system.dao.DicUtilDao;
@@ -391,6 +392,7 @@ public class FrontController extends BaseController {
 	 public String submit_my_lesson_comment(String id,Model model,String comment){	
 		 ClassSchedule classschedule =classscheduleMapper.selectById(id);
 		 classschedule.setComment(comment);
+		 classschedule.setStartDate(DateUtil.getDay(classschedule.getDate()));
 		 this.classscheduleMapper.updateById(classschedule);
 	        return REDIRECT+"/front/to_my_lesson_comment.html?id="+classschedule.getId();
 		 
