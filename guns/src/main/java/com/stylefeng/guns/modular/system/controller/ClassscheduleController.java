@@ -226,6 +226,7 @@ public class ClassscheduleController extends BaseController {
 	public Object listForTeacher(String studentname, String datefrom, String dateto) {
 
 		int teachername = ShiroKit.getUser().getId();
+		System.out.println(teachername);
 		//List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom, dateto);
 		Page<ClassSchedule> page = new PageFactory<ClassSchedule>().defaultPage();
 		if(datefrom==null && dateto==null) {
@@ -233,6 +234,7 @@ public class ClassscheduleController extends BaseController {
 			dateto = DateUtil.getDay();
 		}
 		List<Map<String, Object>> result = this.classscheduleDao.list(page,studentname, teachername, datefrom, dateto);
+		System.out.println(result.size());
 		 page.setRecords((List<ClassSchedule>) new ClassScheduleWrapper(result).warp());
 	        return super.packForBT(page);
 		//return super.warpObject(new ClassScheduleWrapper(list));
