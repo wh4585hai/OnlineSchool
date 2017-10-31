@@ -15,6 +15,7 @@ import com.stylefeng.guns.common.persistence.model.Teacher;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.core.util.FileUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.ClassscheduleDao;
@@ -81,6 +82,8 @@ public class ClassscheduleController extends BaseController {
 	 */
 	@RequestMapping("")
 	public String index(Model model) {
+		
+		model.addAttribute("today", DateUtil.getDay());
 		return PREFIX + "classschedule.html";
 	}
 
@@ -202,11 +205,11 @@ public class ClassscheduleController extends BaseController {
 		for (Map<String, Object> a : list) {
 			int status = (int) a.get("status");
 			if (status == 0) {
-				count = count + Double.parseDouble(a.get("coursetime").toString());
+				count = count + Double.parseDouble(a.get("teachercharge").toString());
 			}
 			if (status == 2) {
 
-				count = count + (Double.parseDouble(a.get("coursetime").toString())) / 2;
+				count = count + (Double.parseDouble(a.get("teachercharge").toString())) / 2;
 			}
 
 		}
@@ -225,6 +228,10 @@ public class ClassscheduleController extends BaseController {
 		int teachername = ShiroKit.getUser().getId();
 		//List<Map<String, Object>> list = this.classscheduleDao.list(studentname, teachername, datefrom, dateto);
 		Page<ClassSchedule> page = new PageFactory<ClassSchedule>().defaultPage();
+		if(datefrom==null && dateto==null) {
+			datefrom = DateUtil.getDay();
+			dateto = DateUtil.getDay();
+		}
 		List<Map<String, Object>> result = this.classscheduleDao.list(page,studentname, teachername, datefrom, dateto);
 		 page.setRecords((List<ClassSchedule>) new ClassScheduleWrapper(result).warp());
 	        return super.packForBT(page);
@@ -254,6 +261,7 @@ public class ClassscheduleController extends BaseController {
 		classSchedule.setCoursetime(classScheduleModel.getCoursetime());
 		classSchedule.setMaterialid(classScheduleModel.getMaterialid());
 		classSchedule.setOrderid(classScheduleModel.getOrderid());
+		classSchedule.setTeachercharge(classScheduleModel.getTeachercharge());
 		classSchedule.setStatus(1);
 
 		int months = classScheduleModel.getMonths();

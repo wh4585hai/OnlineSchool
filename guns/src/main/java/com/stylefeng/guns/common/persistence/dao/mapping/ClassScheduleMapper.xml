@@ -15,6 +15,7 @@
 		<result column="status" property="status" />
 		<result column="isdelay" property="isdelay" />
 		<result column="delayreason" property="delayreason" />
+		<result column="teachercharge" property="teachercharge" />
 	</resultMap>
 
 </mapper>

@@ -32,6 +32,8 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 
 	private int orderid;
 	
+	private int teachercharge;
+	
 	@Override
 	protected Serializable pkVal() {
 		return this.studentid;
@@ -118,6 +120,14 @@ public class ClassScheduleModel extends Model<ClassScheduleModel>{
 
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
+	}
+
+	public int getTeachercharge() {
+		return teachercharge;
+	}
+
+	public void setTeachercharge(int teachercharge) {
+		this.teachercharge = teachercharge;
 	}
 
 

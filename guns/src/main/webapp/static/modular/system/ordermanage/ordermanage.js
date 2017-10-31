@@ -20,14 +20,14 @@ Ordermanage.initColumn = function () {
         {title: '课程名称', field: 'courseName', visible: true, align: 'center', valign: 'middle'},
         {title: '购买期限', field: 'months', visible: true, align: 'center', valign: 'middle'},
         {title: '课程时长', field: 'courseTimeName', visible: true, align: 'center', valign: 'middle'},
-        {title: '开始日期', field: 'date', visible: true, align: 'center', valign: 'middle'},
+        {title: '开始日期', field: 'formatedate', visible: true, align: 'center', valign: 'middle'},
         {title: '开始时间', field: 'starttime', visible: true, align: 'center', valign: 'middle'},
         {title: '上课星期', field: 'weeks', visible: true, align: 'center', valign: 'middle'},
         {title: '订单金额', field: 'amount', visible: true, align: 'center', valign: 'middle'},
-        {title: '创建日期', field: 'createdate', visible: true, align: 'center', valign: 'middle'},
+        {title: '创建日期', field: 'formatecreatedate', visible: true, align: 'center', valign: 'middle'},
         {title: '上课方式', field: 'classapproachName', visible: true, align: 'center', valign: 'middle'},
         {title: '上课号码', field: 'classnumber', visible: true, align: 'center', valign: 'middle'},
-        {title: '生日', field: 'birthday', visible: true, align: 'center', valign: 'middle'},
+        {title: '生日', field: 'formatebirthday', visible: true, align: 'center', valign: 'middle'},
         {title: '性别', field: 'sexName', visible: true, align: 'center', valign: 'middle'},
         {title: '支付状态', field: 'statusName', visible: true, align: 'center', valign: 'middle'}
         
