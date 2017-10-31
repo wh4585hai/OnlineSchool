@@ -127,7 +127,14 @@ OrdermanageInfoDlg.collectDataManager = function() {
  * 提交添加
  */
 OrdermanageInfoDlg.addSubmit = function() {
-
+	if(document.getElementById("date").value==""){
+		alert("请选择开始日期")
+		return;
+	}
+	if(document.getElementById("birthday").value==""){
+		alert("请选择出生日期")
+		return;
+	}
 	this.disabled=true;
     this.clearData();
     this.collectData();
@@ -159,7 +166,6 @@ OrdermanageInfoDlg.addSubmit = function() {
  * 提交添加
  */
 OrdermanageInfoDlg.addSubmitManager = function() {
-	
     this.clearData();
     this.collectDataManager();
    
