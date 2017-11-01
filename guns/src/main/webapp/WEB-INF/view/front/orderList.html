@@ -71,7 +71,7 @@
 				<input type="hidden" name="id" id="studentid" value="${id}"/>
 			</div>
 			<div class="col-xs-8" style="margin-top: 30px;">
-				<h4>我的订单</h4>
+				<h4>我的预约</h4>
 			
 				
 				@for(order in orders){
@@ -81,16 +81,20 @@
 						<span class="pull-right">${order.createDate}</span>
 					</div>
 					<div>
-						<span>课程期限：${order.months}个月</span><br />
-						<span>上课时间:${order.starttime}</span><br />
-						<span>教材：${order.meterialName}</span>
+					<span>教材名称:${order.meterialName}</span><br />
+					<span>开始日期:${order.date}</span><br />
+						<span>课程期限:${order.months}个月</span><br />
+						
+						
 					</div>
 					<div>
-						<span>开始日期:${order.date}</span><br />
+					<span>上课时间:${order.starttime}</span><br />
+					<span>上课时长:${order.courseTimeName}</span><br />
 <!-- 						<span>上课方式：${order.classapproachName}</span><br /> -->
-						<span>金额：${order.amount}</span><br />
-						<span>上课时长：${order.courseTimeName}</span><br />
-						<span>星期：${order.weeks}</span>
+					<span>上课星期:${order.weeks}</span><br />
+					<span>总金额 :${order.amount}</span><br />
+						
+						
 					</div>
 					@if( order.status == 0){
 					<a class="btn btn-default pay pull-right" >未支付</a>

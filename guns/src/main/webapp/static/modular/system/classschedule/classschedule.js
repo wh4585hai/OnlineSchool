@@ -30,7 +30,7 @@ Classschedule.initColumn = function () {
         {title: '时否延期', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
         {title: '延期原因', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
         {title: '课时费', field: 'teachercharge', visible: true, align: 'center', valign: 'middle'},
-        {title: '课评', field: 'remark', visible: true, align: 'center', valign: 'middle'},
+        {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle'},
         {title: '学生反馈', field: 'comment', visible: true, align: 'center', valign: 'middle'}
         
      

@@ -11,10 +11,11 @@
             <input type="hidden" id="isdelayvalue" value="${classSchedule.isdelay}">
             <input type="hidden" id="statusvalue" value="${classSchedule.status}">
             <input type="hidden" id="orderid" value="${classSchedule.orderid}"/>
+            <input type="hidden" id="studentid" value="${classSchedule.studentid}"/>
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-	                <#input id="studentid" name="student" value="${classSchedule.studentid}" disabled="disabled"/>
+	                <#input id="englishname" name="student" value="${dicMap.englishname}" disabled="disabled"/>
 	                <#select id="teacherid" name="teacher" disabled="disabled">
 								@for(userIdname in dicMap.useridname){
 								<option value="${userIdname.id}">${userIdname.name}</option>
@@ -47,7 +48,7 @@
 							<option value="0">no</option>
 					</#select>
 	                <#input id="delayreason" name="delay reason" value="${classSchedule.delayreason}" disabled="disabled"/>
-	                <#input id="remark" name="备注" value="${classSchedule.remark}"/>
+	                <#input id="remark" name="remark" value="${classSchedule.remark}"/>
 	               
 						<input type="file" class="form-control" id="file" name="file">
 						<span class="help-block m-b-none">

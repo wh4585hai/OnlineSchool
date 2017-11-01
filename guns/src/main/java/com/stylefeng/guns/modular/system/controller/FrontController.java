@@ -384,6 +384,7 @@ public class FrontController extends BaseController {
 	    	 model.addAttribute("classapproach",ConstantFactory.me().getDictsByName("上课方式",ConstantFactory.me().getClassApproach(classschedule.getOrderid())));
 	    	 model.addAttribute("classnumber", ConstantFactory.me().getClassNumber(classschedule.getOrderid()));
 	    	 model.addAttribute("count", ConstantFactory.me().getclassCoont(classschedule.getCoursetime(),classschedule.getStatus()));
+	    	 model.addAttribute("startDate", DateUtil.getDay(classschedule.getDate()));
 	    	 setStudentForRequest(model);
 	        return PREFIX + "comment.html";
 		 
@@ -392,7 +393,7 @@ public class FrontController extends BaseController {
 	 public String submit_my_lesson_comment(String id,Model model,String comment){	
 		 ClassSchedule classschedule =classscheduleMapper.selectById(id);
 		 classschedule.setComment(comment);
-		 classschedule.setStartDate(DateUtil.getDay(classschedule.getDate()));
+		 //classschedule.setStartDate(DateUtil.getDay(classschedule.getDate()));
 		 this.classscheduleMapper.updateById(classschedule);
 	        return REDIRECT+"/front/to_my_lesson_comment.html?id="+classschedule.getId();
 		 

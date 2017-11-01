@@ -84,6 +84,7 @@ ClassscheduleInfoDlg.collectUpdateData = function() {
     this.set('isdelay');
     this.set('remark');
     this.set('delayreason');
+    this.set('teachercharge');
   
     
    

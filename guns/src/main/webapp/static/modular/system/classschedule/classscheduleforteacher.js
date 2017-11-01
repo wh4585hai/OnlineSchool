@@ -15,21 +15,22 @@ Classschedule.initColumn = function () {
     return [
     	 {field: 'selectItem', radio: true},
          {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-         {title: 'Student Name', field: 'studentName',  align: 'center', valign: 'middle',sortable: true},
+         {title: 'Student Name', field: 'englishName',  align: 'center', valign: 'middle',sortable: true},
          {title: 'Teacher Name', field: 'teacherName',  align: 'center', valign: 'middle'},
+         {title: 'Months', field: 'months',  align: 'center', valign: 'middle'},
          {title: 'Course Date', field: 'formatedate',  align: 'center', valign: 'middle',sortable: true},
-         {title: 'Week', field: 'weekfordate',  align: 'center', valign: 'middle',sortable: true},
-         {title: 'Start Time', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
-         {title: 'Course Time', field: 'courseTimeName',align: 'center', valign: 'middle'},
+         {title: 'Week', field: 'weekforeng',  align: 'center', valign: 'middle',sortable: true},
+         {title: 'StartTime', field: 'starttime', align: 'center', valign: 'middle', sortable: true},
+         {title: 'CourseTime', field: 'courseTimeName',align: 'center', valign: 'middle'},
          {title: 'Material', field: 'meterialName',  align: 'center', valign: 'middle'},
-         {title: 'Class Way', field: 'classapproach',  align: 'center', valign: 'middle'},
-         {title: 'Contact Way', field: 'classnumber',  align: 'center', valign: 'middle'},
-         {title: 'File', field: 'file',  align: 'center', valign: 'middle'},
+         {title: 'ClassWay', field: 'classapproach',  align: 'center', valign: 'middle'},
+         {title: 'ContactWay', field: 'classnumber',  align: 'center', valign: 'middle'},
+         {title: 'File', field: 'file',  align: 'center', visible: false,valign: 'middle'},
          {title: 'Status', field: 'statusName', visible: true, align: 'center', valign: 'middle',sortable: true},
          {title: 'Delay', field: 'isdelayName', visible: true, align: 'center', valign: 'middle'},
-         {title: 'Delay Reason', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
-         {title: 'Course Comment', field: 'remark', visible: true, align: 'center', valign: 'middle'},
-         {title: 'Students Feedback', field: 'comment', visible: true, align: 'center', valign: 'middle'}
+         {title: 'DelayReason', field: 'delayreason', visible: true, align: 'center', valign: 'middle'},
+         {title: 'CourseComment', field: 'remark', visible: true, align: 'center', valign: 'middle'},
+         {title: 'StudentsFeedback', field: 'comment', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 

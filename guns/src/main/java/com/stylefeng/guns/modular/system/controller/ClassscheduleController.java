@@ -165,6 +165,7 @@ public class ClassscheduleController extends BaseController {
 		dicMap.put("calssstatus", ConstantFactory.me().getDictList("课程状态"));
 		dicMap.put("useridname", dicUtilDao.getTeacherName());
 		dicMap.put("meterialname", dicUtilDao.getMeterialName());
+		dicMap.put("englishname", ConstantFactory.me().getStudentEnglishName(classSchedule.getStudentid()));
 		model.addAttribute("dicMap", dicMap);
 		model.addAttribute(classSchedule);
 		LogObjectHolder.me().set(classSchedule);
@@ -265,6 +266,7 @@ public class ClassscheduleController extends BaseController {
 		classSchedule.setOrderid(classScheduleModel.getOrderid());
 		classSchedule.setTeachercharge(classScheduleModel.getTeachercharge());
 		classSchedule.setStatus(1);
+		classSchedule.setMonths(classScheduleModel.getMonths());
 
 		int months = classScheduleModel.getMonths();
 		Date startDate = classScheduleModel.getDate();

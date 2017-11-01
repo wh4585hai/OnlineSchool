@@ -327,6 +327,16 @@ public class DateUtil {
             w = 0;
         return weekDays[w];
     }
+    
+    public static String getEngWeekOfDate(Date dt) {
+        String[] weekDays = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dt);
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+        return weekDays[w];
+    }
 	/**
 	 * 格式化Oracle Date
 	 * @param value

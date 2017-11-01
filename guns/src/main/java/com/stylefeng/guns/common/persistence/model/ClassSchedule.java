@@ -40,6 +40,8 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	private String comment;
 	
 	private int teachercharge;
+	private int months;
+
 
 	@Override
 	protected Serializable pkVal() {
@@ -112,6 +114,16 @@ public class ClassSchedule extends Model<ClassSchedule>{
 
 
 
+
+
+	public int getMonths() {
+		return months;
+	}
+
+
+	public void setMonths(int months) {
+		this.months = months;
+	}
 
 
 	public int getMaterialid() {
@@ -202,6 +214,9 @@ public class ClassSchedule extends Model<ClassSchedule>{
 	public void setTeachercharge(int teachercharge) {
 		this.teachercharge = teachercharge;
 	}
+
+
+
 
 
 	

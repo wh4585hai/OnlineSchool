@@ -19,6 +19,7 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 		  //Integer creater = (Integer) map.get("userId");
 	        
 
+	        map.put("englishName", ConstantFactory.me().getStudentEnglishName((Integer) map.get("studentid")));
 	        map.put("studentName", ConstantFactory.me().getStudentName((Integer) map.get("studentid")));
 	        map.put("teacherName", ConstantFactory.me().getUserNameById((Integer) map.get("teacherid")));
 	        map.put("meterialName", ConstantFactory.me().getMeterialName((Integer) map.get("materialid")));
@@ -29,6 +30,7 @@ public class ClassScheduleWrapper extends BaseControllerWarpper{
 	        map.put("classnumber", ConstantFactory.me().getClassNumber((Integer) map.get("orderid")));
 	        map.put("count", ConstantFactory.me().getclassCoont((Integer) map.get("teachercharge"),(Integer) map.get("status")));
 	        map.put("weekfordate",DateUtil.getWeekOfDate((Date) map.get("date")));
+	        map.put("weekforeng",DateUtil.getEngWeekOfDate((Date) map.get("date")));
 	        map.put("formatedate",DateUtil.getDay((Date) map.get("date")));
 	     
 	       

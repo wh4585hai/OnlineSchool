@@ -88,7 +88,7 @@ OrdermanageInfoDlg.collectData = function() {
 }
 
 OrdermanageInfoDlg.collectDataManager = function() {
-	
+	debugger;
 	var weeks = "";
 	var timesperweek=0;
     $('input:checkbox[name=weeks]:checked').each(function(i){
@@ -119,6 +119,43 @@ OrdermanageInfoDlg.collectDataManager = function() {
     this.set('sex');
     this.set('classnumber');
     this.ordermanageInfoData['amount'] = amount; 
+    this.ordermanageInfoData['weeks'] = weeks;
+   
+    
+}
+
+OrdermanageInfoDlg.collectDataedit = function() {
+	debugger;
+	var weeks = "";
+	var timesperweek=0;
+    $('input:checkbox[name=weeks]:checked').each(function(i){
+     if(0==i){
+    	 weeks = $(this).val();
+     }else{
+    	 weeks += (","+$(this).val());
+    	
+     }
+     timesperweek = timesperweek+1;
+    });
+   
+    var amount="";
+    var months =$("#months").val();
+    var coursetime =$("#coursetime").val();
+    amount = months*timesperweek*coursetime*4;
+    this.set('id');
+    this.set('studentid');
+    this.set('courseid');
+    this.set('months');
+    this.set('coursetime');
+    this.set('materialid');
+    this.set('date');
+    this.set('starttime');
+    this.set('classapproach');
+    this.set('birthday');
+    this.set('status');
+    this.set('sex');
+    this.set('classnumber');
+    this.set('amount');
     this.ordermanageInfoData['weeks'] = weeks;
    
     
@@ -199,7 +236,7 @@ OrdermanageInfoDlg.showPay = function(data) {
 OrdermanageInfoDlg.editSubmit = function() {
 
     this.clearData();
-    this.collectDataManager();
+    this.collectDataedit();
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/ordermanage/update", function(data){

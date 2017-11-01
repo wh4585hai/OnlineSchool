@@ -331,6 +331,15 @@ public class ConstantFactory implements IConstantFactory {
         }
         return "";
     }
+    
+    @Override
+    public String getStudentEnglishName(Integer studentId) {
+        Student student = studentMapper.selectById(studentId);
+        if (ToolUtil.isNotEmpty(student) && ToolUtil.isNotEmpty(student.getRealname())) {
+            return student.getNickname();
+        }
+        return "";
+    }
     /**
      * 获取学生名称
      */

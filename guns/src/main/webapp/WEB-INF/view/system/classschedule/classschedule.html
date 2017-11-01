@@ -3,34 +3,34 @@
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>课程表管理</h5>
+                <h5>Class Schedule</h5>
             </div>
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
                       <div class="row">
                             <div class="col-sm-3">
-                                <#NameCon id="studentname" name="学生姓名" />
+                                <#NameCon id="studentname" name="student name" />
                             </div>
                             
                           
                               <div class="col-sm-3">
-                              <#input id="classdatafrom" name="课程日期从" underline="false" type="classdata"
+                              <#input id="classdatafrom" name="date from" underline="false" type="classdata"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${today}"/>
                                 
                             </div>
                             <div class="col-sm-3">
-                              <#input id="classdatato" name="到" underline="false" type="classdata"
+                              <#input id="classdatato" name="to" underline="false" type="classdata"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${today}"/>
                                 
                             </div>
                             <div class="col-sm-3">
-                                <#button name="搜索" icon="fa-search" clickFun="Classschedule.search()"/>
+                                <#button name="search" icon="fa-search" clickFun="Classschedule.search()"/>
                             </div>
                         </div>
                         <div class="hidden-xs" id="ClassscheduleTableToolbar" role="group">
                             @if(shiro.hasPermission("/classschedule/checkin")){
-                                <#button name="签到" icon="fa-plus" clickFun="Classschedule.openClassscheduleDetail()"/>
+                                <#button name="checkin" icon="fa-plus" clickFun="Classschedule.openClassscheduleDetail()"/>
                             @}
                           
                         </div>
